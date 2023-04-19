@@ -30,11 +30,11 @@
 >```
 
 >### > Linky
->[- Laravel sail]('https://laravel.com/docs/10.x/sail')
+>[- Laravel sail](https://laravel.com/docs/10.x/sail)
 >
->[- Vite]('https://vitejs.dev/guide/cli.html')
+>[- Vite](https://vitejs.dev/guide/cli.html)
 >
->[- Kubove DMs]('https://chat.openai.com/')
+>[- Kubove DMs](https://chat.openai.com/)
 
 ... netestoval som postup - kedže som to vytváral, čííže good luck
 
