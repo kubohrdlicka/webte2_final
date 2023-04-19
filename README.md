@@ -1,22 +1,55 @@
 # Webte 2 - FINAL
 
-## daky config som pozliepal dokopy, popisem to...
+## Inštalačka
+
+>### > Požiadavky
+>- WSL2
+>   - PHP 8.0.2+ (curl, xml, dom)
+>   - node 18.+
+>   - composer
+>- Docker
+>
+> ...idk, možno aj niečo iné
+
+>### > Inštalácia (WSL)
+>```
+>composer update
+>
+>php artisan sail:install
+>
+>npm i
+>```
+
+>### > Spustenie (WSL)
+>```
+>npm run dev
+>```
+>
+>```
+>./vendor/bin/sail up
+>```
+
+>### > Linky
+>[- Laravel sail]('https://laravel.com/docs/10.x/sail')
+>
+>[- Vite]('https://vitejs.dev/guide/cli.html')
+>
+>[- Kubove DMs]('https://chat.openai.com/')
+
+... netestoval som postup - kedže som to vytváral, čííže good luck
 
 ---
 
-## zatial: 
+## Notes
 
-(pre local dev):
+> 
+> nepushujte pls to master vetvy 💙
+>
 
-```
-php artisan serve
-```
+>
+> kacírstvo v podobe FE a BE v jednom repozitári prežijeme :wink:
+>
 
-```
-npm run dev
-```
-
----
-nepushujte pls to master vetvy 💙
-
-kacirstvo v podobe FE a BE v jednom repozitare prezijeme :wink:
+>
+> možno kuk do záložky `Projects`
+>
