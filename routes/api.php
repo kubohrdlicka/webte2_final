@@ -23,17 +23,16 @@ use App\Http\Controllers\api\UserController;
 
 //Users
 
-Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'logIn']);
+Route::post('account/register', [UserController::class, 'register']);
+Route::post('account/login', [UserController::class, 'logIn']);
+Route::get('account/refresh', [UserController::class, 'refresh']);
+Route::get('account/logout', [UserController::class, 'logOut']);
 //delete after deply
-Route::post('createadmin', [UserController::class, 'createSuperUser']);
+Route::post('account/createadmin', [UserController::class, 'createSuperUser']);
 
-Route::get('users', [UserController::class, 'getAllUsers'])->middleware('role:admin');
-Route::post('changerole', [UserController::class, 'changeRole'])->middleware('role:admin');
-Route::post('deleteuser', [UserController::class, 'deleteUser'])->middleware('role:admin');
+Route::get('account/users', [UserController::class, 'getAllUsers'])->middleware('role:admin');
+Route::post('account/changerole', [UserController::class, 'changeRole'])->middleware('role:admin');
+Route::post('account/deleteuser', [UserController::class, 'deleteUser'])->middleware('role:admin');
 
+//tasks
 
-
-
-
-// Route::get('users', [UserController::class, 'getAllUsers']);

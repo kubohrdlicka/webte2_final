@@ -4,6 +4,7 @@ import enTranslation from '../i18n/en.json'
 
 const i18n = createI18n({
   locale: 'sk',
+  legacy: false,
   messages: {
     sk: skTranslation,
     en: enTranslation,

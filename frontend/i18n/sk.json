@@ -1,5 +1,10 @@
 {
   "title": {
     "test": "Slovensky vypravaj, nie?"
+  },
+  
+  "login": {
+    "title": "Prihlásiť sa",
+    "password": "Heslo"
   }
 }

@@ -1,5 +1,10 @@
 {
   "title": {
     "test": "Bon zour."
+  },
+
+  "login": {
+    "title": "Log in",
+    "password": "Password"
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div>App</div>
+    <!-- <div>App</div> -->
     <RouterView></RouterView>
   </v-app>
 </template>
