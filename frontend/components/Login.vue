@@ -9,7 +9,7 @@
 
                     <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                         :type="visible ? 'text' : 'password'" v-model="password" :label="$t('login.password')"
-                        @click:append-inner="visible = !visible" required></v-text-field>
+                        @click:append-inner="visible = !visible" :rules="[required]"></v-text-field>
 
                     <v-btn type="submit" @click="logIn" block class="mt-2">{{ $t('login.title') }}</v-btn>
 
@@ -35,6 +35,13 @@ export default {
 
     },
     methods: {
+        required: function (value) {
+            if (value) {
+                return true;
+            } else {
+                return 'This field is required.';
+            }
+        },
         logIn() {
             try {
                 axios.post(import.meta.env.VITE_URL + '/api/account/login', {
