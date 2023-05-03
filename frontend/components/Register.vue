@@ -4,7 +4,7 @@
 
             <v-sheet width="600" class="align-self-center">
                 <h1>{{ $t('register.title') }}</h1>
-                <v-form fast-fail @submit.prevent>
+                <v-form validate-on="submit" @submit.prevent="submit">
                     <v-row>
                         <v-col cols="12" md="6">
                             <v-text-field v-model="name" :label="$t('register.name')" required></v-text-field>
@@ -28,7 +28,7 @@
                                 :rules="[required, min6, matchingPasswords]" required></v-text-field>
                         </v-col>
                     </v-row>
-                    <v-btn type="submit" @click="register" block class="mt-2">{{ $t('register.title') }}</v-btn>
+                    <v-btn type="submit">{{ $t('register.title') }}</v-btn>
 
                 </v-form>
             </v-sheet>
