@@ -1,0 +1,112 @@
+<template>
+    <div class="d-flex justify-center align-center">
+        <div class="form">
+
+            <v-sheet width="600" class="align-self-center">
+                <h1>{{ $t('register.title') }}</h1>
+                <v-form fast-fail @submit.prevent>
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <v-text-field v-model="name" :label="$t('register.name')" required></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-text-field v-model="email" label="E-mail" required></v-text-field>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                                :type="visible ? 'text' : 'password'" v-model="password" :label="$t('register.password')"
+                                @click:append-inner="visible = !visible" :rules="[required, min6]"
+                                required></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-text-field :append-inner-icon="visibler ? 'mdi-eye-off' : 'mdi-eye'"
+                                :type="visibler ? 'text' : 'password'" v-model="repeatpassword"
+                                :label="$t('register.password2')" @click:append-inner="visibler = !visibler"
+                                :rules="[required, min6, matchingPasswords]" required></v-text-field>
+                        </v-col>
+                    </v-row>
+                    <v-btn type="submit" @click="register" block class="mt-2">{{ $t('register.title') }}</v-btn>
+
+                </v-form>
+            </v-sheet>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    name: 'Login',
+    data() {
+        return {
+            rules: {
+                match: value => this.repeatpassword === this.password || 'Passwords do not match'
+            },
+            name: '',
+            email: '',
+            password: '',
+            repeatpassword: '',
+            visible: false,
+            visibler: false
+        }
+    },
+    computed: {
+
+    },
+    methods: {
+        required: function (value) {
+            if (value) {
+                return true;
+            } else {
+                return 'This field is required.';
+            }
+        },
+        min6: function (value) {
+            if (value.length >= 6) {
+                return true;
+            } else {
+                return 'Password should have more than 6 characters.';
+            }
+        },
+        matchingPasswords: function () {
+            if (this.password === this.repeatpassword) {
+                return true;
+            } else {
+                return 'Passwords does not match.';
+            }
+        },
+        register() {
+            if(this.password != this.repeatpassword) {
+                // this.$store.dispatch('showSnackbar', this.$t('register.passwordsNotMatch'))
+                alert("bad");
+                return
+            }
+
+
+            try {
+                axios.post(import.meta.env.VITE_URL + '/api/account/register', {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+
+                }).then((response) => {
+                    console.log(response)
+
+                    sessionStorage.setItem('token', response.data.token)
+                    sessionStorage.setItem('role', response.data.role)
+                    this.$router.push("/")
+                    this.$store.dispatch('login', [response.data.token, response.data.role])
+
+                })
+            } catch (e) {
+                console.log(e)
+            }
+        }
+    }
+}
+</script>
+

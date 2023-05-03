@@ -6,5 +6,13 @@
   "login": {
     "title": "Log in",
     "password": "Password"
+  },
+  
+  "register": {
+    "title": "Register",
+    "name": "Name",
+    "password": "Password",
+    "password2": "Repeat password"
   }
+  
 }

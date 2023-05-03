@@ -34,9 +34,20 @@ const router = createRouter({
         },
       ]
     },{
-      path: '/login',
+      path: '/user',
       component: () => import('../layouts/PlainLayout.vue'),
-      
+      children: [
+        {
+          path: '/login',
+          component: () => import('../components/Login.vue'),
+        },
+        {
+          path: '/register',
+          component: () => import('../components/Register.vue'),
+        },
+      ]
+
+
     }
     ],
 })
