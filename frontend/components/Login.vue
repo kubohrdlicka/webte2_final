@@ -45,8 +45,13 @@ export default {
 
                     sessionStorage.setItem('token', response.data.token)
                     sessionStorage.setItem('role', response.data.role)
-                    this.$router.push("/")
+                    // this.$router.push("/")
                     this.$store.dispatch('login', [response.data.token, response.data.role])
+
+
+                    if(response.data.role === 'admin'){
+                        this.$router.push("/admin")
+                    }
 
                 })
             } catch (e) {

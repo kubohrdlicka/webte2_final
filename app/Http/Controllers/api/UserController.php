@@ -18,7 +18,8 @@ class UserController extends Controller
 
     public function getAllUsers()
     {
-        return response()->json(["data" => "Hello world"], 200);
+        $users = User::all()->toArray();
+        return response()->json($users, 200);
     }
     public function register(Request $request)
     {
@@ -116,17 +117,10 @@ class UserController extends Controller
         }
     }
 
-    public function deleteUser(Request $request)
+    public function deleteUser($id)
     {
-        $validador = Validator::make($request->all(), [
-            "email" => "required|email",
-        ]);
 
-        if ($validador->fails()) {
-            return response()->json(["error" => $validador->errors()], 401);
-        }
-
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('id', $id)->first();
 
         if ($user) {
             $user->delete();

@@ -26,13 +26,14 @@ use App\Http\Controllers\api\UserController;
 Route::post('account/register', [UserController::class, 'register']);
 Route::post('account/login', [UserController::class, 'logIn']);
 Route::get('account/refresh', [UserController::class, 'refresh']);
-Route::get('account/logout', [UserController::class, 'logOut']);
+Route::post('account/logout', [UserController::class, 'logOut']);
+
 //delete after deply
 Route::post('account/createadmin', [UserController::class, 'createSuperUser']);
 
 Route::get('account/users', [UserController::class, 'getAllUsers'])->middleware('role:admin');
 Route::post('account/changerole', [UserController::class, 'changeRole'])->middleware('role:admin');
-Route::post('account/deleteuser', [UserController::class, 'deleteUser'])->middleware('role:admin');
+Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])->middleware('role:admin');
 
 //tasks
 

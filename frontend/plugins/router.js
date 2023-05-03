@@ -46,8 +46,17 @@ const router = createRouter({
           component: () => import('../components/Register.vue'),
         },
       ]
-
-
+    },
+    {
+      path: '/admin',
+      component: () => import('../layouts/AdminLayout.vue'),
+      beforeEnter: guardMyroute,
+      children: [
+        {
+          path: '',
+          component: () => import('../components/AdminTable.vue'),
+        },
+      ]
     }
     ],
 })
