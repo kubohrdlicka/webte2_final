@@ -1,3 +1,64 @@
 <template>
-  <router-view></router-view>
+  <div class="app-holder">
+    <v-app-bar app clipped-left dense>
+      <v-app-bar-nav-icon color="secondary" @click="showNav = !showNav" />
+      <v-spacer />
+      <v-chip outlined color="secondary" @click="requestLogout()" class="mr-3">
+        <v-icon small class="mr-2">mdi-logout-variant</v-icon>
+        Odhlásiť sa
+      </v-chip>
+    </v-app-bar>
+
+    <v-navigation-drawer app clipped v-model="showNav">
+      <v-list>
+        <NavLink link="/portal" title="Prehľad" icon="mdi-view-grid" />
+        <NavLink link="/" title="Tabuľky" icon="mdi-table" />
+        <NavLink link="/portal/manage-data" title="Dáta" icon="mdi-database-outline" />
+        <NavLink link="/portal/user-profile" title="Profil" icon="mdi-account" />
+        <NavLink link="" title="Odhlásiť sa" icon="mdi-logout-variant" button @clicked="requestLogout()" />
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-main>
+      <v-container fluid class="col-xl-7 col-md-10 col-sm-11">
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+
+    <v-footer dense class="d-flex justify-center py-1 bg-primary" app>
+      <div class="text-caption">
+        QuatroMagoras 2023
+      </div>
+    </v-footer>
+
+  </div>
 </template>
+
+<script>
+import NavLink from '../components/NavLink.vue'
+
+export default {
+  components: {
+    NavLink
+  },
+  data() {
+    return {
+      showNav: false,
+    }
+  },
+  methods: {
+    getUserChipLink() {
+      return ''
+    },
+    getUserChipText() {
+      return ''
+    }
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+v-main {
+  min-height: calc(100vh - 64px - 56px); //idk, chat povedal ze su to taketo rozmery a sedi to
+}
+</style>
