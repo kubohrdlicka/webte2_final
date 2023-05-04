@@ -2,6 +2,18 @@
   "title": {
     "test": "Slovensky vypravaj, nie?"
   },
+  
+  "login": {
+    "title": "Prihlásiť sa",
+    "password": "Heslo"
+  },
+
+  "register": {
+    "title": "Zaregistrovať sa",
+    "name": "Meno",
+    "password": "Heslo",
+    "password2": "Heslo znovu"
+  },
   "navigation": {
     "dashboard": "Prehľad",
     "activeAssignments": "Zadania",

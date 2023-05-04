@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Middleware\UserCapability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\api\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+//Users
+
+Route::post('account/register', [UserController::class, 'register']);
+Route::post('account/login', [UserController::class, 'logIn']);
+Route::get('account/refresh', [UserController::class, 'refresh']);
+Route::post('account/logout', [UserController::class, 'logOut']);
+
+//delete after deply
+Route::post('account/createadmin', [UserController::class, 'createSuperUser']);
+
+Route::get('account/users', [UserController::class, 'getAllUsers'])->middleware('role:admin');
+Route::post('account/changerole', [UserController::class, 'changeRole'])->middleware('role:admin');
+Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])->middleware('role:admin');
+
+//tasks
+
