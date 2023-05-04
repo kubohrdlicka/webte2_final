@@ -15,6 +15,10 @@ class Task extends Model
         "solution"
     ];
 
+    protected $hidden = [
+        "solution"
+    ];
+
     public function taskBundle(): BelongsTo {
         return $this->belongsTo(TaskBundle::class);
     }
