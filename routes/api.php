@@ -32,7 +32,7 @@ Route::post('account/logout', [UserController::class, 'logOut']);
 Route::post('account/createadmin', [UserController::class, 'createSuperUser']);
 
 Route::get('account/users', [UserController::class, 'getAllUsers'])->middleware('role:admin');
-Route::post('account/changerole', [UserController::class, 'changeRole'])->middleware('role:admin');
+Route::post('account/changerole/{id}', [UserController::class, 'changeRole'])->middleware('role:admin');
 Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])->middleware('role:admin');
 
 //tasks
