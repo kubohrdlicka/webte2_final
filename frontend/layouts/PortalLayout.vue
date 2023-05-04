@@ -5,17 +5,19 @@
       <v-spacer />
       <v-chip outlined color="secondary" @click="requestLogout()" class="mr-3">
         <v-icon small class="mr-2">mdi-logout-variant</v-icon>
-        Odhlásiť sa
+        {{ $t('navigation.logout') }}
       </v-chip>
     </v-app-bar>
 
     <v-navigation-drawer app clipped v-model="showNav">
       <v-list>
-        <NavLink link="/portal" title="Prehľad" icon="mdi-view-grid" />
-        <NavLink link="/" title="Tabuľky" icon="mdi-table" />
-        <NavLink link="/portal/manage-data" title="Dáta" icon="mdi-database-outline" />
-        <NavLink link="/portal/user-profile" title="Profil" icon="mdi-account" />
-        <NavLink link="" title="Odhlásiť sa" icon="mdi-logout-variant" button @clicked="requestLogout()" />
+        <!-- todo role management -->
+        <NavLink link="/" :title="$t('navigation.dashboard')" icon="mdi-view-grid" />
+        <NavLink link="/" :title="$t('navigation.activeAssignments')" icon="mdi-view-grid" />
+        <NavLink link="/" :title="$t('navigation.historyAssignments')" icon="mdi-view-grid" />
+        <NavLink link="/" :title="$t('navigation.results')" icon="mdi-view-grid" />
+        <NavLink link="/" :title="$t('navigation.adminPortal')" icon="mdi-view-grid" />
+        <NavLink link="" :title="$t('navigation.logout')" icon="mdi-logout-variant" button @clicked="requestLogout()" />
       </v-list>
     </v-navigation-drawer>
 

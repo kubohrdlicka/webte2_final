@@ -1,5 +1,13 @@
 {
   "title": {
     "test": "Bon zour."
+  },
+  "navigation": {
+    "dashboard": "Overview",
+    "activeAssignments": "Assignments",
+    "historyAssignments": "Turned in",
+    "results": "Results",
+    "adminPortal": "App management",
+    "logout": "Log out"
   }
 }

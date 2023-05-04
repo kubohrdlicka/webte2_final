@@ -1,5 +1,13 @@
 {
   "title": {
     "test": "Slovensky vypravaj, nie?"
+  },
+  "navigation": {
+    "dashboard": "Prehľad",
+    "activeAssignments": "Zadania",
+    "historyAssignments": "Odovzdané",
+    "results": "Výsledky",
+    "adminPortal": "Správa aplikácie",
+    "logout": "Odhlásiť sa"
   }
 }
