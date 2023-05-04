@@ -36,7 +36,7 @@ const store = createStore({
             sessionStorage.setItem('token', response.data.token)
             this.commit('setToken', response.data.token)
           })
-      }, 1000 * 60 * 2)
+      }, 1000 * 60 * 1)
       sessionStorage.setItem('auth', true)
       this.commit('setIntervalId', intervalId)
       this.commit('setAuthentificated', true)
@@ -46,7 +46,7 @@ const store = createStore({
     logOut (state) {
       sessionStorage.removeItem('auth')
       sessionStorage.removeItem('token')
-      clearInterval(this.state.intervalId)
+      clearInterval(state.intervalId)
       this.commit('setAuthentificated', false)
       this.commit('setToken', null)
       this.commit('setRole', null)

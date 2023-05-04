@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("description");
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreignId('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
