@@ -1,7 +1,7 @@
 <template>
     <v-btn variant="plain" @click="setlocale">
-        <div v-if="$i18n.locale === 'sk'" ><img class="img" src="../public/en.png" alt=""></div>
-        <div v-if="$i18n.locale === 'en'" ><img class="img" src="../public/sk.png" alt=""></div>
+        <div v-if="$i18n.locale === 'sk'" class="d-flex align-center"><img class="img" src="../public/en.png" alt=""></div>
+        <div v-if="$i18n.locale === 'en'" class="d-flex align-center"><img class="img" src="../public/sk.png" alt=""></div>
     </v-btn>
 </template>
   

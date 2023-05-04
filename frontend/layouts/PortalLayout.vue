@@ -1,9 +1,13 @@
 <template>
   <div class="app-holder">
     <v-app-bar app clipped-left dense>
-      <v-app-bar-nav-icon color="secondary" @click="showNav = !showNav" />
-      <v-spacer />
-      <v-chip outlined color="secondary" @click="requestLogout()" class="mr-3">
+      <v-app-bar-nav-icon color="primary" @click="showNav = !showNav" />
+      <v-spacer/>
+      <div class="d-flex align-center">
+        <ChangeTheme class="mr-2"/>
+        <ChangeLanguage class="mr-2"/>
+      </div>
+      <v-chip outlined color="primary" @click="requestLogout()" class="mr-3">
         <v-icon small class="mr-2">mdi-logout-variant</v-icon>
         {{ $t('navigation.logout') }}
       </v-chip>
@@ -38,10 +42,14 @@
 
 <script>
 import NavLink from '../components/NavLink.vue'
+import ChangeLanguage from '../components/ChangeLanguage.vue'
+import ChangeTheme from '../components/ChangeTheme.vue'
 
 export default {
   components: {
-    NavLink
+    NavLink,
+    ChangeLanguage,
+    ChangeTheme,
   },
   data() {
     return {

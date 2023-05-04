@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path: '/',
       component: PortalLayout,
-      beforeEnter: guardMyroute,
+      //beforeEnter: guardMyroute,
       children: [ 
         {
           path: '',
