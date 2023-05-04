@@ -1,4 +1,5 @@
 <template>
+    <MathEditor></MathEditor>
     <router-view class="content"></router-view>
     <div class="info">
         <ChangeLanguage></ChangeLanguage>
@@ -9,13 +10,15 @@
 <script>
 import ChangeTheme from '../components/ChangeTheme.vue'
 import ChangeLanguage from '../components/ChangeLanguage.vue'
+import MathEditor from '../components/MathEditor.vue'
 import axios from 'axios'
 
 export default {
     name: 'PlainLayout',
     components: {
         ChangeTheme,
-        ChangeLanguage
+        ChangeLanguage,
+        MathEditor
     },
   
 
