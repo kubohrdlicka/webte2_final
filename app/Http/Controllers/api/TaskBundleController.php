@@ -29,7 +29,7 @@ class TaskBundleController extends Controller
                     'description' => $request->description,
                 ]);
                 $id = $taskbunle->id;
-                $this->parseTaskBundle($file, $id);
+                $this->parseTaskBundle("zip://" . storage_path('app/' . $tempPath) . "#" . $filename, $id);
             } else {
                 $publicPath = public_path();
                 $fileDestination = $publicPath . '/' . basename($filename);
@@ -53,7 +53,7 @@ class TaskBundleController extends Controller
         // $latex = file('./blokovka01pr.tex');
         //    var_dump($latex);
 
-        $latex = $file;
+        $latex = file($file);
 
         $content = '';
         $name = '';
