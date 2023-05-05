@@ -88,6 +88,7 @@ class TaskBundleController extends Controller
     
         for($i = 0; $i < sizeof($solutions); $i++){
                 Task::create([
+                    'name' => $names[$i],
                     'instructions' => $assigments[$i],
                     'solution' => $solutions[$i],
                     'task_bundle_id' => $id
