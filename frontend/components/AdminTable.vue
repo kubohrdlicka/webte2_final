@@ -20,7 +20,44 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
+
+                    <v-dialog v-model="dialogEdit" max-width="600px">
+                        <v-card>
+                            <v-card-title class="text-h5">Change role</v-card-title>
+                            <v-card-actions>
+                                <v-container>
+                                    <v-row>
+                                        <v-col cols="12" sm="6" >
+                                            <h2>{{ itemToEdit.name }}</h2>
+                                        </v-col>
+                                        
+                                        <v-col cols="12" sm="6" >
+                                            <h2>{{ itemToEdit.email }}</h2>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col cols="12" sm="6" ></v-col>
+                                        <v-col cols="12" sm="6" >
+                                            <v-select v-model="itemToEdit.role"  :items="roles" :item-title="'text'" :item-value="'value'"
+                                            label="Select role"></v-select>
+                                        </v-col>
+                                        
+                                    </v-row>
+                                    <!-- <v-spacer></v-spacer> -->
+                                    <v-row class="d-flex justify-end">
+                                        <v-btn color="blue darken-1" text @click="closeEdit">Cancel</v-btn>
+                                        <v-btn color="blue darken-1" text @click="saveEdit">SAVE</v-btn>
+                                    </v-row>
+                                        <!-- <v-spacer></v-spacer> -->
+                                </v-container>
+
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                 </v-toolbar>
+
+
+
             </template>
 
             <template v-slot:item.actions="{ item }">
@@ -50,12 +87,22 @@ export default {
         dialogDelete(val) {
             val || this.closeDelete()
         },
+        dialogEdit(val) {
+            val || this.closeEdit()
+        },
     },
     data() {
         return {
+            roles: [
+                { text: 'Admin', value: 'admin' },
+                { text: 'Student', value: 'student' },
+                { text: 'Teacher', value: 'teacher' }
+            ],
             users: [],
             dialogDelete: false,
             itemToDel: null,
+            dialogEdit: false,
+            itemToEdit: null,
             headers: [
                 { title: 'Name', text: 'Name', value: 'name' },
                 { title: 'E-mail', text: 'Email', value: 'email' },
@@ -67,28 +114,45 @@ export default {
     methods: {
         editUser(item) {
             console.log(item)
-
+            this.dialogEdit = true
+            this.itemToEdit = item
         },
+        closeEdit() {
+            this.dialogEdit = false
+            // this.itemToEdit = null
+        },
+        async saveEdit() {
+            try {
+                await axios.post(import.meta.env.VITE_URL + '/api/account/changerole/'+this.itemToEdit.id, {role: this.itemToEdit.role},{ headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
+                    
+                    this.closeEdit()
+                })
+
+            } catch (e) {
+                console.log(e)
+            }
+        },
+
         deleteUser(item) {
             this.dialogDelete = true
             this.itemToDel = item
 
         },
-        closeDelete(){
+        closeDelete() {
             this.dialogDelete = false
             this.itemToDel = null
         },
         async deleteConfirm() {
             console.log(this.itemToDel.id)
-            try{
+            try {
                 await axios.delete(import.meta.env.VITE_URL + '/api/account/deleteuser/' + this.itemToDel.id, { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
                     this.users = this.users.filter((item) => item.id !== this.itemToDel.id)
                     this.closeDelete()
                 })
-            }catch(e){
+            } catch (e) {
                 console.log(e)
             }
-            
+
         },
 
     }, async mounted() {

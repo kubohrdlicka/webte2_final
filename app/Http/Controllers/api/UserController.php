@@ -95,18 +95,13 @@ class UserController extends Controller
         }
     }
 
-    public function changeRole(Request $request)
-    {
-        $validador = Validator::make($request->all(), [
-            "email" => "required|email",
+    public function changeRole(Request $request, $id)
+    {   
+        Validator::make($request->all(), [
             "role" => "required",
         ]);
 
-        if ($validador->fails()) {
-            return response()->json(["error" => $validador->errors()], 401);
-        }
-
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('id', $id)->first();
 
         if ($user) {
             $user->role = $request->role;
