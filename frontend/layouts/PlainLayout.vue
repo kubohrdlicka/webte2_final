@@ -1,4 +1,6 @@
 <template>
+    <MathEditor></MathEditor>
+    <AssigmentGiver></AssigmentGiver>
     <router-view class="content"></router-view>
     <div class="info">
         <ChangeLanguage></ChangeLanguage>
@@ -9,13 +11,19 @@
 <script>
 import ChangeTheme from '../components/ChangeTheme.vue'
 import ChangeLanguage from '../components/ChangeLanguage.vue'
+import MathEditor from '../components/MathEditor.vue'
+import AssigmentGiver from '../components/AssigmentGiver.vue'
+
 import axios from 'axios'
 
 export default {
     name: 'PlainLayout',
     components: {
         ChangeTheme,
-        ChangeLanguage
+        ChangeLanguage,
+        MathEditor,
+        AssigmentGiver
+        
     },
   
 

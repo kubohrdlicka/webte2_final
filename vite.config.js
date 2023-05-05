@@ -17,6 +17,7 @@ export default defineConfig({
     },
   },
   base: '/',
-  root: './frontend'
+  root: './frontend',
+  runtimeCompiler: true,
   
 });

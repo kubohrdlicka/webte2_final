@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("email", 100)->unique();
-            $table->string("password");
-            $table->string("role")->default("student");
+            $table->text("instructions");
+            $table->string("solution");
+            // file ? obraztek //netreba 
+            $table->foreignId('task_bundle_id')->references('id')->on('task_bundles');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('tasks');
     }
 };

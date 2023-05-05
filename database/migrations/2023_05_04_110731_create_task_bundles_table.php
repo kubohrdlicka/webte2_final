@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('task_bundles', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("email", 100)->unique();
-            $table->string("password");
-            $table->string("role")->default("student");
+            $table->string('name');
+            $table->string('description');
+            $table->string('category');
+            // file??
+            //      - file path
+            //      - file name
+            // or
+            //      - BLOB
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('task_bundles');
     }
 };
