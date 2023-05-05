@@ -25,7 +25,7 @@ class TaskBundleController extends Controller
         $this->parseTaskBundle($file, $id);
 
 
-        $file->move('../../../public/latex', $file->getClientOriginalName());
+        // $file->move('../../../public/latex', $file->getClientOriginalName());
 
         return response()->json([
             'message' => 'File uploaded successfully'
