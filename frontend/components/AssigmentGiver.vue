@@ -12,7 +12,7 @@ export default {
     data() {
         return {
             assigment: `Nájdite prenosovú funkciu $F(s)=\\dfrac{Y(s)}{W(s)}$ pre systém opísaný blokovou schémou: 
-                    \\includegraphics{/sk.png}`,
+                    \\includegraphics{blokovka01_00002.jpg}`,
         };
     },
     computed: {
@@ -30,10 +30,10 @@ export default {
 
 
                     args['includegraphics'] = ['H', 'k']
-                    
                     prototype['includegraphics'] = function (src) {
                         let img =  this.g.create('img')
-                        img.src = src
+                        let url = import.meta.env.VITE_URL 
+                        img.src = url + '/' + src
                         img.className = 'img-fluid'
                         return [img]
                     }
