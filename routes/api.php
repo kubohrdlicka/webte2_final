@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\TaskBundleController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,4 +39,6 @@ Route::post('account/changerole', [UserController::class, 'changeRole'])->middle
 Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])->middleware('role:admin');
 
 //tasks
+//todo add middlewares
+Route::post('upload', [TaskBundleController::class, 'uploadTask']);
 

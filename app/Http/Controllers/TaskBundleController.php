@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\TaskBundle;
 use App\Models\Task;
+
+use ZipArchive;
 
 class TaskBundleController extends Controller
 {
     public function uploadTask(Request $request)
     {
-        $file = $request->file('zipFile');
+        $file = $request->file('file');
 
 
         $tempPath = $file->store('temp', 'local');
@@ -25,15 +28,22 @@ class TaskBundleController extends Controller
 
             if (pathinfo($filename, PATHINFO_EXTENSION) == 'tex') {
                 $taskbunle = TaskBundle::create([
-                    'name' => $file->getClientOriginalName(),
-                    'description' => $request->description,
+                    'name' => $filename,
+                    'category' => '',
+                    'description' => "",
                 ]);
+
                 $id = $taskbunle->id;
-                $this->parseTaskBundle("zip://" . storage_path('app/' . $tempPath) . "#" . $filename, $id);
+                $this->parseTask("zip://" . storage_path('app/' . $tempPath) . "#" . $filename, $id);
             } else {
-                $publicPath = public_path();
-                $fileDestination = $publicPath . '/' . basename($filename);
-                copy("zip://" . storage_path('app/' . $tempPath) . "#" . $filename, $fileDestination);
+                if (
+                    pathinfo($filename, PATHINFO_EXTENSION) == 'jpg' || pathinfo($filename, PATHINFO_EXTENSION) == 'png' ||
+                    pathinfo($filename, PATHINFO_EXTENSION) == 'jpeg'
+                ) {
+                    $publicPath = public_path();
+                    $fileDestination = $publicPath . '/' . basename($filename);
+                    copy("zip://" . storage_path('app/' . $tempPath) . "#" . $filename, $fileDestination);
+                }
             }
         }
 
