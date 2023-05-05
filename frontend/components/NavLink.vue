@@ -2,29 +2,29 @@
   <div>
     <!-- a button link-->
     <div v-if="button !== undefined" @click="$emit('clicked')" class="link">
-      <v-list-item  :prepend-icon="icon">
-        <v-list-item-content>
-          <v-list-item-title v-text="title"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <v-list-item
+        :prepend-icon="icon"
+        active-color="primary"
+        :title="title"
+      />
     </div>
 
     <!-- a link link -->
     <a v-else-if="(truelink !== undefined)" :href="link" class="link" target="_blank">
-      <v-list-item :prepend-icon="icon">
-        <v-list-item-content>
-          <v-list-item-title v-text="title"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <v-list-item
+        :prepend-icon="icon"
+        active-color="primary"
+        :title="title"
+      />
     </a>
 
     <!-- a router link -->
     <router-link v-else :to="link" class="link">
-      <v-list-item :prepend-icon="icon">
-        <v-list-item-content>
-          <v-list-item-title v-text="title"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <v-list-item
+        :prepend-icon="icon"
+        active-color="primary"
+        :title="title"
+      />
     </router-link>
   </div>
 </template>

@@ -7,7 +7,7 @@
         <ChangeTheme class="mr-2"/>
         <ChangeLanguage class="mr-2"/>
       </div>
-      <v-chip outlined color="primary" @click="requestLogout()" class="mr-3">
+      <v-chip outlined color="primary" @click="logout()" class="mr-3">
         <v-icon small class="mr-2">mdi-logout-variant</v-icon>
         {{ $t('navigation.logout') }}
       </v-chip>
@@ -21,7 +21,7 @@
         <NavLink link="/" :title="$t('navigation.historyAssignments')" icon="mdi-view-grid" />
         <NavLink link="/" :title="$t('navigation.results')" icon="mdi-view-grid" />
         <NavLink link="/" :title="$t('navigation.adminPortal')" icon="mdi-view-grid" />
-        <NavLink link="" :title="$t('navigation.logout')" icon="mdi-logout-variant" button @clicked="requestLogout()" />
+        <NavLink link="" :title="$t('navigation.logout')" icon="mdi-logout-variant" button @clicked="logout()" />
       </v-list>
     </v-navigation-drawer>
 
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import NavLink from '../components/NavLink.vue'
 import ChangeLanguage from '../components/ChangeLanguage.vue'
 import ChangeTheme from '../components/ChangeTheme.vue'
@@ -62,7 +63,18 @@ export default {
     },
     getUserChipText() {
       return ''
-    }
+    },
+    logout() {
+      try {
+        axios.post(import.meta.env.VITE_URL + '/api/account/logout', {})
+          .then(() => {
+            sessionStorage.setItem('auth', '')
+            sessionStorage.setItem('token', '')
+            sessionStorage.setItem('role', '')
+            this.$router.push('/login')
+          })
+      } catch (e) {}
+    },
   },
 }
 </script>
@@ -70,5 +82,8 @@ export default {
 <style lang="scss" scoped>
 v-main {
   min-height: calc(100vh - 64px - 56px); //idk, chat povedal ze su to taketo rozmery a sedi to
+}
+:deep(.v-navigation-drawer) {
+  will-change: initial;
 }
 </style>

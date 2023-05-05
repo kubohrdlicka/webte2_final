@@ -28,7 +28,7 @@
                                 :rules="[required, min6, matchingPasswords]" required></v-text-field>
                         </v-col>
                     </v-row>
-                    <v-btn type="submit">{{ $t('register.title') }}</v-btn>
+                    <v-btn type="submit" @click="register()">{{ $t('register.title') }}</v-btn>
 
                 </v-form>
             </v-sheet>
@@ -86,6 +86,7 @@ export default {
                 return
             }
 
+            
 
             try {
                 axios.post(import.meta.env.VITE_URL + '/api/account/register', {
@@ -106,7 +107,7 @@ export default {
                 console.log(e)
             }
         }
-    }
+    },
 }
 </script>
 

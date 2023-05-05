@@ -52,6 +52,9 @@ export default {
                     if(response.data.role === 'admin'){
                         this.$router.push("/admin")
                     }
+                    if(response.data.role === 'student' || response.data.role === 'teacher'){
+                        this.$router.push("/")
+                    }
 
                 })
             } catch (e) {
