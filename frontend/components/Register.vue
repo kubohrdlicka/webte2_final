@@ -7,10 +7,10 @@
                 <v-form validate-on="submit" @submit.prevent="submit">
                     <v-row>
                         <v-col cols="12" md="6">
-                            <v-text-field v-model="name" :label="$t('register.name')" required></v-text-field>
+                            <v-text-field v-model="name" :label="$t('register.name')" :rules="[required]"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field v-model="email" label="E-mail" required></v-text-field>
+                            <v-text-field v-model="email" label="E-mail" :rules="[required, validMail]" required></v-text-field>
                         </v-col>
                     </v-row>
 
@@ -18,7 +18,7 @@
                         <v-col cols="12" md="6">
                             <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                                 :type="visible ? 'text' : 'password'" v-model="password" :label="$t('register.password')"
-                                @click:append-inner="visible = !visible" :rules="[required, min6]"
+                                @click:append-inner="visible = !visible" :rules="[required, min6, validPassword]"
                                 required></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
@@ -72,11 +72,25 @@ export default {
                 return 'Password should have more than 6 characters.';
             }
         },
+        validPassword: function () {
+            if (/^(?=.*\d).{8,}$/.test(this.password)) {
+                return true;
+            } else {
+                return 'Password must contain at least one digit.';
+            }
+        },
         matchingPasswords: function () {
             if (this.password === this.repeatpassword) {
                 return true;
             } else {
                 return 'Passwords does not match.';
+            }
+        },
+        validMail: function () {
+            if (/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)) {
+                return true;
+            } else {
+                return 'This e-mail is not valid.';
             }
         },
         register() {
