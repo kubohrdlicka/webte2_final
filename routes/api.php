@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use App\Http\Middleware\UserCapability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,4 +42,5 @@ Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])-
 //tasks
 //todo add middlewares
 Route::post('upload', [TaskBundleController::class, 'uploadTask']);
+Route::get('task/{id}', [TaskController::class, 'getTaskById']);
 

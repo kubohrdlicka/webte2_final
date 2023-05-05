@@ -90,6 +90,7 @@ class TaskBundleController extends Controller
 
 
             if (strpos($line, '\end{task} ') !== false) {
+                // $con = str_replace("\\", "\\\\", $content );
                 $assigments[] = $content;
                 $breaker = false;
                 $content = '';
@@ -102,6 +103,7 @@ class TaskBundleController extends Controller
 
             if (strpos($line, '\end{solution}') !== false) {
                 $breaker = false;
+                // $con = str_replace("\"", "\\", $content );
                 $solutions[] = $content;
                 $content = '';
             }
