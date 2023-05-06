@@ -79,7 +79,8 @@ class TaskBundleController extends Controller
                 $name = substr($line, strpos($line, '{') + 1, -2);
             }
 
-            if ($breaker && !(strpos($line, '\end{solution}') !== false || strpos($line, '\end{task} ') !== false)) {
+            if ($breaker && !(strpos($line, '\end{solution}') !== false || strpos($line, '\end{task} ') !== false ||
+                strpos($line, '\begin{') !== false || strpos($line, '\end{') !== false)) {
                 $content .= $line;
             }
 
