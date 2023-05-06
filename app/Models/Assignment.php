@@ -19,6 +19,7 @@ class Assignment extends Model
         "description",
         "start",
         "end",
+        "created_by",
     ];
 
 }

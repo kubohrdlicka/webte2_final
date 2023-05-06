@@ -12,6 +12,14 @@ use ZipArchive;
 
 class TaskBundleController extends Controller
 {
+
+    public function getAllTaskBundles()
+    {
+        $taskbundles = TaskBundle::all(['id', 'name'])->toArray();
+        return response()->json($taskbundles);
+    }
+
+
     public function uploadTask(Request $request)
     {
         $file = $request->file('file');
@@ -122,8 +130,5 @@ class TaskBundleController extends Controller
                 'task_bundle_id' => $id
             ]);
         }
-
-
-
     }
 }

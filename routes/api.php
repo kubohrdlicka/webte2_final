@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\TaskController;
 use App\Http\Middleware\UserCapability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\TaskBundleController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AssigmentController;
 
 
 /*
@@ -40,10 +41,18 @@ Route::post('account/changerole/{id}', [UserController::class, 'changeRole'])->m
 Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])->middleware('role:admin');
 
 //tasks
+
+Route::get("taskbundles", [TaskBundleController::class, "getAllTaskBundles"]);
+
+
+
 //todo add middlewares
 Route::post('upload', [TaskBundleController::class, 'uploadTask']);
 Route::get('task/{id}', [TaskController::class, 'getTaskById']);
 
 
 Route::get('result/{id}', [TaskController::class, 'getResultFromTask']);
+
+
+Route::post('assigments/create', [AssigmentController::class, 'createAssigment']);
 

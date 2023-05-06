@@ -1,6 +1,6 @@
 <template>
     <UploadZip></UploadZip>
-    <AssigmentGiver task-id="1" />
+    <CreateAssigment></CreateAssigment>
     <router-view class="content"></router-view>
     <div class="info">
         <ChangeLanguage></ChangeLanguage>
@@ -13,6 +13,7 @@ import ChangeTheme from '../components/ChangeTheme.vue'
 import ChangeLanguage from '../components/ChangeLanguage.vue'
 import UploadZip from '../components/UploadZip.vue'
 import AssigmentGiver from '../components/AssigmentGiver.vue'
+import CreateAssigment from '../components/CreateAssigment.vue'
 
 import axios from 'axios'
 
@@ -22,7 +23,8 @@ export default {
         ChangeTheme,
         ChangeLanguage,
         UploadZip,
-        AssigmentGiver
+        AssigmentGiver,
+        CreateAssigment
         
     },
   
