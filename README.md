@@ -28,6 +28,13 @@
 >```
 >./vendor/bin/sail up
 >```
+^
+### > Python packages
+>pytnon 3 
+>pip
+>sympy
+>antlr4-python3-runtime==4.10 
+
 
 >### > Linky
 >[- Laravel sail](https://laravel.com/docs/10.x/sail)
