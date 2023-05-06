@@ -28,7 +28,7 @@
 >```
 >./vendor/bin/sail up
 >```
-^
+
 >### > Python packages
 >```
 >pytnon 3 
