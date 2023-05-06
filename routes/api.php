@@ -44,3 +44,6 @@ Route::delete('account/deleteuser/{id}', [UserController::class, 'deleteUser'])-
 Route::post('upload', [TaskBundleController::class, 'uploadTask']);
 Route::get('task/{id}', [TaskController::class, 'getTaskById']);
 
+
+Route::get('result/{id}', [TaskController::class, 'getResultFromTask']);
+

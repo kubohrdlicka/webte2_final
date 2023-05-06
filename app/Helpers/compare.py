@@ -1,10 +1,13 @@
+import sys
+
+
 from sympy import Float
 from sympy import *
 from sympy.parsing.latex import parse_latex
 
 
-x =  r"\dfrac{2.000000001s^2+13s+10}{s^3+7s^2+18s+15} "
-y = r"\dfrac{2s^2+13s+10}{s^3+7s^2+18s+15}"
+x = sys.argv[1]
+y = sys.argv[2]
 
 
 expr1 = parse_latex(x)
