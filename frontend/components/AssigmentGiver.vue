@@ -3,21 +3,35 @@
 </template>
   
 <script>
+import axios from 'axios';
 import { HtmlGenerator, parse } from 'latex.js'
 
 
 
 export default {
     name: 'AssigmentGiver',
+    props: {
+        taskId: Number,
+    },
     data() {
         return {
-            assigment: `Nájdite prenosovú funkciu $F(s)=\\dfrac{Y(s)}{W(s)}$ pre systém opísaný blokovou schémou: 
-                    \\includegraphics{blokovka01_00002.jpg}`,
-        };
-    },
-    computed: {
-        htmlContent() {
-            this.assigment = this.assigment;
+            assigment: null,
+    };
+},
+    async created() {
+    try {
+        await axios.get(import.meta.env.VITE_URL + '/api/task/' + this.taskId).then((response) => {
+            console.log(response)
+            this.assigment = response.data.task.instructions
+        })
+    } catch (e) {
+        console.log(e)
+    }
+},
+computed: {
+    htmlContent() {
+        this.assigment = this.assigment;
+        if (this.assigment) {
             const latex = new HtmlGenerator({
                 hyphenate: false,
                 CustomMacros: (function () {
@@ -31,14 +45,16 @@ export default {
 
                     args['includegraphics'] = ['H', 'k']
                     prototype['includegraphics'] = function (src) {
-                        let img =  this.g.create('img')
-                        let url = import.meta.env.VITE_URL 
+                        src = src.split('/').pop()
+
+                        let img = this.g.create('img')
+                        let url = import.meta.env.VITE_URL
                         img.src = url + '/' + src
                         img.className = 'img-fluid'
                         return [img]
                     }
-                    
-                    
+
+
                     return CustomMacros
                 }())
             });
@@ -47,18 +63,17 @@ export default {
             html = html.domFragment();
 
             return html.firstChild.outerHTML;
-        },
+        }
     },
+},
 };
 </script>
   
 
 <style>
-
 .img-fluid {
     max-width: 60%;
     height: auto;
     margin: 0 auto;
 }
-
 </style>

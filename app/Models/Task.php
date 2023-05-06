@@ -12,7 +12,8 @@ class Task extends Model
 
     protected $fillable = [
         "instructions",
-        "solution"
+        "solution",
+        "task_bundle_id"
     ];
 
     protected $hidden = [

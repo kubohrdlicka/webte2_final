@@ -1,6 +1,6 @@
 <template>
-    <MathEditor></MathEditor>
-    <AssigmentGiver></AssigmentGiver>
+    <UploadZip></UploadZip>
+    <AssigmentGiver task-id="1" />
     <router-view class="content"></router-view>
     <div class="info">
         <ChangeLanguage></ChangeLanguage>
@@ -11,7 +11,7 @@
 <script>
 import ChangeTheme from '../components/ChangeTheme.vue'
 import ChangeLanguage from '../components/ChangeLanguage.vue'
-import MathEditor from '../components/MathEditor.vue'
+import UploadZip from '../components/UploadZip.vue'
 import AssigmentGiver from '../components/AssigmentGiver.vue'
 
 import axios from 'axios'
@@ -21,7 +21,7 @@ export default {
     components: {
         ChangeTheme,
         ChangeLanguage,
-        MathEditor,
+        UploadZip,
         AssigmentGiver
         
     },

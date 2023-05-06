@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->text("instructions");
             $table->string("solution");
-            // file ? obraztek //netreba 
             $table->foreignId('task_bundle_id')->references('id')->on('task_bundles');
             $table->timestamps();
         });
