@@ -15,7 +15,7 @@ class TaskBundleController extends Controller
 
     public function getAllTaskBundles()
     {
-        $taskbundles = TaskBundle::all(['id', 'name'])->toArray();
+        $taskbundles = TaskBundle::all(['id', 'name', 'created_at'])->toArray();
         return response()->json($taskbundles);
     }
 

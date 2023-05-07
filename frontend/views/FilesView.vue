@@ -31,6 +31,10 @@
             <v-icon color="primary">mdi-file</v-icon>
           </template>
 
+          <template v-slot:item.created_at="{ item }">
+            {{ formatToLocalTime(item.raw.created_at) }}
+          </template>
+
           <template v-slot:no-data>
             <td colspan="3">
               <div class="d-flex align-center justify-center py-8">
@@ -46,6 +50,7 @@
 
 <script>
 import { VDataTable } from 'vuetify/labs/VDataTable'
+import apiService from '../services/apiService'
 
 export default {
   name: 'Fiels view',
@@ -80,17 +85,30 @@ export default {
       } catch (e) {
         console.log(e) //TODO file error toast
       }
+    },
+    getBundles() {
+      apiService.get('api/taskbundles')
+        .then((response) => {
+          this.fileList = response.data
+        })
+    },
+    formatToLocalTime(time) {
+      const date = new Date(time)
+      return `${date.toLocaleDateString('sk')}  (${date.toLocaleTimeString('sk')})`
     }
   },
   computed: {
     headers() {
       return [
         { title: '', key: 'icon', width: '10%', align: 'end', sortable: false },
-        { title: this.$t('table.title'), key: 'title', width: '60%' },
-        { title: this.$t('table.created'), key: 'date', width: '30%' },
+        { title: this.$t('table.title'), key: 'name', width: '60%' },
+        { title: this.$t('table.created'), key: 'created_at', width: '30%' },
       ]
     }
   },
+  mounted() {
+    this.getBundles()
+  }
 }
 </script>
 
