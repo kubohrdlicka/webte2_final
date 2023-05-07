@@ -39,6 +39,7 @@
 
 <script>
 import { VDataTable } from 'vuetify/labs/VDataTable'
+import apiService from '../services/apiService'
 
 export default {
   name: 'Admin view',
@@ -111,15 +112,17 @@ export default {
         console.log(e)
       }
     },
+
+    async getUsers() {
+      await apiService.get('/api/account/userss')
+        .then(response => {
+          console.log(response);
+          this.userList = response.data
+        })
+    }
   },
   async mounted() {
-  try {
-    await axios.get(import.meta.env.VITE_URL + '/api/account/users', { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
-      this.userList = response.data
-    })
-  } catch (e) {
-    console.log(e)
-  }
+    this.getUsers()
   },
 }
 </script>
