@@ -1,9 +1,8 @@
 import sys
 
-
-from sympy import Float
 from sympy import *
 from sympy.parsing.latex import parse_latex
+
 
 
 x = sys.argv[1]
@@ -29,10 +28,7 @@ for a in preorder_traversal(expr2):
         rounded_expr2 = expr2.subs(a, round(a, 4))
 
 
-print(expr1)
-print(rounded_expr1)
-print(rounded_expr2)
-print(rounded_expr1.equals(rounded_expr2))
+return rounded_expr1.equals(rounded_expr2)
 
 
 
