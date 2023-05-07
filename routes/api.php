@@ -8,6 +8,7 @@ use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\TaskBundleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AssigmentController;
+use App\Http\Controllers\ExamController;
 
 
 /*
@@ -59,4 +60,8 @@ Route::get('assigments/active', [AssigmentController::class, 'getAllActiveAssigm
 Route::get('assigments/pastdue', [AssigmentController::class, 'getPastDueAssigments']);
 Route::get('assigments/{id}', [AssigmentController::class, 'getAssigmentsInfo']);
 
+
+Route::get('generatetask/{id}', [ExamController::class, 'generateTaskFromExambundle']);
+Route::get('getstudentassigmentpoints/{id}', [ExamController::class, 'getAllPointsFromAssigmentStudent']);
+Route::get('teachergradetable/{id}', [ExamController::class, 'getPointsFromExambundle']);
 
