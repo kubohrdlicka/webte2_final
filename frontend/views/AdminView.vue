@@ -34,6 +34,54 @@
         </v-data-table>
       </v-container>
     </v-card>
+
+    <v-dialog v-model="dialogDelete" max-width="500px">
+      <v-card>
+        
+        <div class="d-flex justify-center py-8 hk-big-icon">
+          <v-icon class="py-8" color="primary">mdi-account-cancel</v-icon>
+        </div>
+        <v-card-title class="text-h5 pb-0">{{ $t('messages.askForDelete') }}</v-card-title>
+        <v-card-subtitle class="pb-6">{{ $t('messages.actionWillDeleteUser') }}</v-card-subtitle>
+
+        <v-card-actions class="d-flex justify-center">
+          <v-btn @click="closeDelete">{{ $t('button.cancel') }}</v-btn>
+          <v-btn color="primary" @click="deleteConfirm">{{ $t('button.submit')  }}</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogEdit" max-width="600px">
+      <v-card>
+
+        <div class="d-flex align-center">
+          <div class="hk-big-icon pa-8">
+            <v-icon color="primary pa-8">mdi-account</v-icon>
+          </div>
+          <div>
+            <v-card-title>{{ itemToEdit.name }}</v-card-title>
+            <v-card-subtitle>{{ itemToEdit.email }}</v-card-subtitle>
+          </div>
+        </div>
+
+        <v-divider class="mx-6"/>
+
+        <div class="px-2">
+          <v-card-title class="text-h5 pb-0">{{ $t('messages.changeUser') }}</v-card-title>
+          <v-card-subtitle class="pb-6">{{ $t('messages.actionWillChangeRole') }}</v-card-subtitle>
+        </div>
+
+        <div class="px-8">
+          <v-select v-model="itemToEdit.role" :items="roles" :item-title="'text'" :item-value="'value'"
+            :label="$t('input.role')"></v-select>
+        </div>
+
+        <v-card-actions class="d-flex justify-end px-6">
+          <v-btn class="mx-2" @click="closeEdit">{{ $t('button.cancel') }}</v-btn>
+          <v-btn class="mx-2" @click="saveEdit" color="primary">{{ $t('button.save') }}</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -74,7 +122,6 @@ export default {
   },
   methods: {
     editUser(item) {
-      console.log(item)
       this.dialogEdit = true
       this.itemToEdit = item
     },
@@ -82,15 +129,11 @@ export default {
       this.dialogEdit = false
       // this.itemToEdit = null
     },
-    async saveEdit() {
-      try {
-        await axios.post(import.meta.env.VITE_URL + '/api/account/changerole/'+this.itemToEdit.id, {role: this.itemToEdit.role},{ headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
+    saveEdit() {
+      apiService.post(`/api/account/changerole/${this.itemToEdit.id}`, {role: this.itemToEdit.role})
+        .then(() => {
           this.closeEdit()
         })
-
-      } catch (e) {
-        console.log(e)
-      }
     },
 
     deleteUser(item) {
@@ -102,26 +145,21 @@ export default {
       this.itemToDel = null
     },
     async deleteConfirm() {
-      console.log(this.itemToDel.id)
-      try {
-        await axios.delete(import.meta.env.VITE_URL + '/api/account/deleteuser/' + this.itemToDel.id, { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
-          this.users = this.users.filter((item) => item.id !== this.itemToDel.id)
+      apiService.delete(`/api/account/deleteuser/${this.itemToDel.id}`)
+        .then(() => {
+          this.userList = this.userList.filter((item) => item.id !== this.itemToDel.id)
           this.closeDelete()
         })
-      } catch (e) {
-        console.log(e)
-      }
     },
 
-    async getUsers() {
-      await apiService.get('/api/account/userss')
+    getUsers() {
+      apiService.get('/api/account/users')
         .then(response => {
-          console.log(response);
           this.userList = response.data
         })
     }
   },
-  async mounted() {
+  mounted() {
     this.getUsers()
   },
 }
@@ -139,4 +177,10 @@ export default {
     font-weight: 600 !important;
   }
 }
+.hk-big-icon {
+  * {
+    transform: scale(3);
+  }
+}
+
 </style>
