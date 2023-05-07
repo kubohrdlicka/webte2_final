@@ -31,11 +31,11 @@
       </v-container>
     </v-main>
 
-    <v-footer dense class="d-flex justify-center py-1 bg-primary" app>
+    <div class="d-flex justify-center py-1 bg-primary">
       <div class="text-caption">
         QuatroMagoras 2023
       </div>
-    </v-footer>
+    </div>
 
   </div>
 </template>
@@ -80,8 +80,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-v-main {
-  min-height: calc(100vh - 64px - 56px); //idk, chat povedal ze su to taketo rozmery a sedi to
+.v-main {
+  min-height: calc(100vh - 28px) !important; //idk, chat povedal ze su to taketo rozmery a sedi to
 }
 :deep(.v-navigation-drawer) {
   will-change: initial;
