@@ -8,6 +8,7 @@ use JWTAuth;
 
 use App\Models\Assignment;
 use App\Models\ExamBundle;
+use App\Models\Exam;
 
 class AssigmentController extends Controller
 {
@@ -59,7 +60,14 @@ class AssigmentController extends Controller
     public function getAssigmentsInfo($id)
     {
         $assigment = Assignment::find($id);
-        $exams = ExamBundles::where('assignment_id', $id)->get()->toArray();
+        $exams = ExamBundle::where('assignment_id', $id)->get()->toArray();
+
+        if(JWTAuth::parseToken()->authenticate()->role == 'student') {
+            foreach($exams as $exam){
+                $tmp = Exam::where('user_id', JWTAuth::parseToken()->authenticate()->id)->where('exam_bundle_id', $exam->id)->get()->toArray();
+                $exam = array_merge($exam, $tmp->earned_points); 
+            }
+        }
 
         return response()->json([
             'assigment' => $assigment,
