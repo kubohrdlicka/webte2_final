@@ -13,12 +13,16 @@ function requireTeacher(to, from, next) {
   const role = window.sessionStorage.getItem('role')
   if (role === 'teacher' || role === 'admin') {
     next()
+  } else {
+    next('/')
   }
 }
 function requireAdmin(to, from, next) {
   const role = window.sessionStorage.getItem('role')
   if (role === 'admin') {
     next()
+  } else {
+    next('/')
   }
 }
 
@@ -41,6 +45,11 @@ const router = createRouter({
         {
           path: '/history',
           component: () => import('../views/HistoryView.vue'),
+        },
+        {
+          path: '/files',
+          component: () => import('../views/FilesView.vue'),
+          beforeEnter: requireTeacher,
         },
         {
           path: '/results',

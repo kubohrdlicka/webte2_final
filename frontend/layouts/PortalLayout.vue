@@ -17,6 +17,7 @@
       <v-list>
         <!-- todo role management -->
         <NavLink link="/" :title="$t('navigation.dashboard')" icon="mdi-view-grid" />
+        <NavLink link="/files" :title="$t('navigation.files')" icon="mdi-database" :requireRole="['teacher','admin']" />
         <NavLink link="/assignments" :title="$t('navigation.activeAssignments')" icon="mdi-file-document" />
         <NavLink link="/history" :title="$t('navigation.historyAssignments')" icon="mdi-file-clock" />
         <NavLink link="/results" :title="$t('navigation.results')" icon="mdi-clipboard-file" :requireRole="['teacher','admin']"/>
