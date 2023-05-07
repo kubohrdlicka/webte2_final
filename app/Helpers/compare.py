@@ -28,7 +28,7 @@ for a in preorder_traversal(expr2):
         rounded_expr2 = expr2.subs(a, round(a, 4))
 
 
-return rounded_expr1.equals(rounded_expr2)
+print(rounded_expr1.equals(rounded_expr2))
 
 
 
