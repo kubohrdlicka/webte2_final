@@ -1,7 +1,10 @@
 <template>
   <div class="pt-6">
-    <v-card class="mx-4 mt-6">
+    <div>
       <v-card-title>{{ $t('titles.adminViewTitle') }}</v-card-title>
+    </div>
+
+    <v-card class="mx-4">
 
       <v-container class="v-col-sm-12 v-col-md-10 v-col-lg-8 pb-8">
         <div class="d-flex justify-end my-2">

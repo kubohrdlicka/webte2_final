@@ -60,10 +60,7 @@ export default {
   data() {
     return {
       file: null,
-      fileList: [
-        { title: 'Neviem', date: '2023-05-07' },
-        { title: 'Moyno', date: '2022-08-20' },
-      ],
+      fileList: [],
       itemsPerPage: 10,
       search: '',
     }

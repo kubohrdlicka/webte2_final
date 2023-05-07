@@ -18,8 +18,7 @@ class AssigmentController extends Controller
             'description' => $request->description,
             'start' => $request->start,
             'end' => $request->end,
-            // 'created_by' => JWTAuth::parseToken()->authenticate()->id,
-            'created_by' => 1,
+            'created_by' => JWTAuth::parseToken()->authenticate()->id,
         ]);
 
         $exams = $request->exams;
