@@ -4,7 +4,6 @@
     <div v-if="button !== undefined" @click="$emit('clicked')" class="link">
       <v-list-item
         :prepend-icon="icon"
-        active-color="primary"
         :title="title"
       />
     </div>
@@ -13,7 +12,6 @@
     <a v-else-if="(truelink !== undefined)" :href="link" class="link" target="_blank">
       <v-list-item
         :prepend-icon="icon"
-        active-color="primary"
         :title="title"
       />
     </a>
@@ -22,7 +20,6 @@
     <router-link v-else :to="link" class="link">
       <v-list-item
         :prepend-icon="icon"
-        active-color="primary"
         :title="title"
       />
     </router-link>

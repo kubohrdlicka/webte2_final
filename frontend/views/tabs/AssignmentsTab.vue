@@ -42,10 +42,13 @@ export default {
       ],
     }
   },
+  methods: {
+    async getAssignments() {
+
+    },
+  },
   mounted() {
-    // getAssignmentsList - active
-    // or
-    // getAssignmentsList - history
+    this.getAssignments()
   },
 }
 </script>

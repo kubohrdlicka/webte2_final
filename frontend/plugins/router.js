@@ -48,6 +48,11 @@ const router = createRouter({
           beforeEnter: requireTeacher,
         },
         {
+          path: '/create-assignment',
+          component: () => import('../views/AssignmentCreationView.vue'),
+          beforeEnter: requireTeacher,
+        },
+        {
           path: '/admin',
           component: () => import('../views/AdminView.vue'),
           beforeEnter: requireAdmin,

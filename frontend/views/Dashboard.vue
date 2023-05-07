@@ -10,13 +10,27 @@
         <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false"/>
       </div>
 
-      <v-card v-else-if="store.role === 'teacher'">
+      <div v-else-if="store.role === 'teacher' || store.role === 'admin'">
 
-      </v-card>
+        <div class="text-right">
+          <router-link to="/create-assignment">
+            <v-chip outlined round color="primary" @click="{}" class="mr-3">
+              <v-icon small class="mr-2">mdi-plus-thick</v-icon>
+              {{ $t('buttons.createNewAssignment') }}
+            </v-chip>
+          </router-link>
+        </div>
 
-      <v-card v-else-if="store.role === 'admin'">
+        <AssignmentsTab :title="$t('dashboard.activeAssignment')" :active="true"/>
+        <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false"/>
+      </div>
 
-      </v-card>
+      <div v-else-if="store.role === 'admin'">
+
+
+        <AssignmentsTab :title="$t('dashboard.activeAssignment')" :active="true"/>
+        <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false"/>
+      </div>
 
       <v-card v-else>
         <v-card-title>{{ $t('dashboard.expiredSession') }}</v-card-title>
