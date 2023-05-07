@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Tymon\JWTAuth\Facades\JWTAuth;
+use JWTAuth;
 
 use App\Models\Assignment;
 use App\Models\ExamBundle;
@@ -18,7 +18,7 @@ class AssigmentController extends Controller
             'description' => $request->description,
             'start' => $request->start,
             'end' => $request->end,
-            // 'created_by' => JWTAuth::user()->id,
+            // 'created_by' => JWTAuth::parseToken()->authenticate()->id,
             'created_by' => 1,
         ]);
 
