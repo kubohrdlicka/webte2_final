@@ -1,6 +1,6 @@
 <template>
   <div class="h-wrapper ma-2">
-    {{ data }}
+    {{ data }} | {{ store.role }}
   </div>
 </template>
 
@@ -15,8 +15,13 @@ export default {
     active: {
       type: Boolean,
       required: true,
-    }
-  }
+    },
+  },
+  computed: {
+    store() {
+      return this.$store.state
+    },
+  },
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isVisible">
     <!-- a button link-->
     <div v-if="button !== undefined" @click="$emit('clicked')" class="link">
       <v-list-item
@@ -31,7 +31,19 @@
 
 <script>
 export default {
-  props: ['link', 'title', 'icon', 'button', 'truelink'],
+  props: ['link', 'title', 'icon', 'button', 'truelink', 'requireRole'],
+  computed: {
+    isVisible() {
+      const role = this.$store.state.role
+      if (this.requireRole) {
+        if (this.requireRole.indexOf(role) >= 0) {
+          return true
+        }
+        return false
+      }
+      return true
+    },
+  },
 }
 </script>
 

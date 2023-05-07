@@ -17,10 +17,10 @@
       <v-list>
         <!-- todo role management -->
         <NavLink link="/" :title="$t('navigation.dashboard')" icon="mdi-view-grid" />
-        <NavLink link="/" :title="$t('navigation.activeAssignments')" icon="mdi-view-grid" />
-        <NavLink link="/" :title="$t('navigation.historyAssignments')" icon="mdi-view-grid" />
-        <NavLink link="/" :title="$t('navigation.results')" icon="mdi-view-grid" />
-        <NavLink link="/" :title="$t('navigation.adminPortal')" icon="mdi-view-grid" />
+        <NavLink link="/assignments" :title="$t('navigation.activeAssignments')" icon="mdi-view-grid" />
+        <NavLink link="/history" :title="$t('navigation.historyAssignments')" icon="mdi-view-grid" />
+        <NavLink link="/results" :title="$t('navigation.results')" icon="mdi-view-grid" :requireRole="['teacher','admin']"/>
+        <NavLink link="/admin" :title="$t('navigation.adminPortal')" icon="mdi-view-grid" :requireRole="['admin']"/>
         <NavLink link="" :title="$t('navigation.logout')" icon="mdi-logout-variant" button @clicked="logout()" />
       </v-list>
     </v-navigation-drawer>

@@ -1,12 +1,12 @@
 <template>
   <div class="py-4">
-    <v-card flat>
+    <v-card>
       <v-card-title>{{ title }}</v-card-title>
       <v-divider/>
       <div class="d-flex flex-wrap h-limit-max-height">
         <AssignmentTile v-for="item, i in assignments" :key="i"
-        :data="item"
-        :active="active"
+          :data="item"
+          :active="active"
         />
       </div>
     </v-card>

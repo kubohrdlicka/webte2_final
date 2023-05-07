@@ -1,22 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PortalLayout from '../layouts/PortalLayout.vue'
 
-function guardMyroute(to, from, next)
-{
- var isAuthenticated= false;
- var authentificated = window.sessionStorage.getItem('auth') ? JSON.parse(sessionStorage.getItem('auth')) : false
-if(authentificated)
-    isAuthenticated = true;
-  else
-    isAuthenticated= false;
-    
-  if(isAuthenticated) 
-  {
-    next(); 
-  } 
-  else
-  {
-    next('/login'); 
+function requireLogin(to, from, next) {
+  const role = window.sessionStorage.getItem('auth')
+  if (role) {
+    next()
+  } else {
+    next('/login')
+  }
+}
+function requireTeacher(to, from, next) {
+  const role = window.sessionStorage.getItem('role')
+  if (role === 'teacher' || role === 'admin') {
+    next()
+  }
+}
+function requireAdmin(to, from, next) {
+  const role = window.sessionStorage.getItem('role')
+  if (role === 'admin') {
+    next()
   }
 }
 
@@ -26,14 +28,32 @@ const router = createRouter({
     {
       path: '/',
       component: PortalLayout,
-      //beforeEnter: guardMyroute,
-      children: [ 
+      beforeEnter: requireLogin,
+      children: [
         {
           path: '',
           component: () => import('../views/Dashboard.vue'),
         },
+        {
+          path: '/assignments',
+          component: () => import('../views/AssignmentsListView.vue'),
+        },
+        {
+          path: '/history',
+          component: () => import('../views/HistoryView.vue'),
+        },
+        {
+          path: '/results',
+          component: () => import('../views/ResultsView.vue'),
+          beforeEnter: requireTeacher,
+        },
+        {
+          path: '/admin',
+          component: () => import('../views/AdminView.vue'),
+          beforeEnter: requireAdmin,
+        },
       ]
-    },{
+    }, {
       path: '/user',
       component: () => import('../layouts/PlainLayout.vue'),
       children: [
@@ -47,18 +67,7 @@ const router = createRouter({
         },
       ]
     },
-    {
-      path: '/admin',
-      component: () => import('../layouts/AdminLayout.vue'),
-      beforeEnter: guardMyroute,
-      children: [
-        {
-          path: '',
-          component: () => import('../components/AdminTable.vue'),
-        },
-      ]
-    }
-    ],
+  ],
 })
 
 export default router
