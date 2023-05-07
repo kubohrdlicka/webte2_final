@@ -26,11 +26,11 @@ const router = createRouter({
     {
       path: '/',
       component: PortalLayout,
-      beforeEnter: guardMyroute,
+      //beforeEnter: guardMyroute,
       children: [ 
         {
           path: '',
-          component: () => import('../components/Hello.vue'),
+          component: () => import('../views/Dashboard.vue'),
         },
       ]
     },{

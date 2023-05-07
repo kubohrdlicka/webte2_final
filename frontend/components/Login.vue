@@ -48,20 +48,10 @@ export default {
                     email: this.email,
                     password: this.password
                 }).then((response) => {
-                    console.log(response)
-
                     sessionStorage.setItem('token', response.data.token)
                     sessionStorage.setItem('role', response.data.role)
-                    // this.$router.push("/")
-                    this.$store.dispatch('login', [response.data.token, response.data.role])
-
-
-                    if(response.data.role === 'admin'){
-                        this.$router.push("/admin")
-                    }
-                    if(response.data.role === 'student' || response.data.role === 'teacher'){
-                        this.$router.push("/")
-                    }
+                    this.$store.dispatch('login', {token: response.data.token, role: response.data.role})
+                    this.$router.push("/")
 
                 })
             } catch (e) {

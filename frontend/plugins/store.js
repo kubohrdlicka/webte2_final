@@ -30,6 +30,7 @@ const store = createStore({
   },
   actions: {
     login (state, {token, role}) {
+      console.log('login dispatch:', token, role);
       let intervalId = setInterval(async() => {
         let data = await axios.get(import.meta.env.VITE_URL + '/api/account/refresh', {headers: {Authorization: 'Bearer ' + sessionStorage.getItem('token')}}).then(
           response => {
@@ -37,6 +38,7 @@ const store = createStore({
             this.commit('setToken', response.data.token)
           })
       }, 1000 * 60 * 1)
+      console.log('store role:', role);
       sessionStorage.setItem('auth', true)
       this.commit('setIntervalId', intervalId)
       this.commit('setAuthentificated', true)
