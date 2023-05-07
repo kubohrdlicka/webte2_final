@@ -20,8 +20,26 @@
     <v-card class="mx-4 mt-6">
       <v-card-title>{{ $t('titles.filesList') }}</v-card-title>
 
-      <v-data-table v-model:items-per-page="itemsPerPage" :headers="headers" :items="fileList" item-value="name"
-        class="elevation-1"></v-data-table>
+      <v-container class="v-col-sm-12 v-col-md-10 v-col-lg-8 pb-8">
+        <div class="d-flex justify-end my-2">
+          <v-text-field variant="outlined" class="v-col-5 pa-0" density="compact" prepend-icon="mdi-magnify" v-model="search"/>
+        </div>
+
+        <v-data-table v-model:items-per-page="itemsPerPage" :headers="headers" :items="fileList" item-value="name"
+          class="elevation-1 hk-table" :search="search">
+          <template v-slot:item.icon="{ item }">
+            <v-icon color="primary">mdi-file</v-icon>
+          </template>
+
+          <template v-slot:no-data>
+            <td colspan="3">
+              <div class="d-flex align-center justify-center py-8">
+                <v-card-subtitle>{{ $t('table.noData') }}</v-card-subtitle>
+              </div>
+            </td>
+          </template>
+        </v-data-table>
+      </v-container>
     </v-card>
   </div>
 </template>
@@ -38,9 +56,11 @@ export default {
     return {
       file: null,
       fileList: [
-        { title: 'Neviem' }
+        { title: 'Neviem', date: '2023-05-07' },
+        { title: 'Moyno', date: '2022-08-20' },
       ],
       itemsPerPage: 10,
+      search: '',
     }
   },
   methods: {
@@ -65,12 +85,25 @@ export default {
   computed: {
     headers() {
       return [
-        { title: '', key: 'prep-icon' },
-        { title: this.$t('table.title'), key: 'title' },
+        { title: '', key: 'icon', width: '10%', align: 'end', sortable: false },
+        { title: this.$t('table.title'), key: 'title', width: '60%' },
+        { title: this.$t('table.created'), key: 'date', width: '30%' },
       ]
     }
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.v-table__wrapper),
+.hk-table {
+  background-color: rgb(var(--v-theme-on-surface-variant)) !important;
+  * {
+    background-color: rgb(var(--v-theme-on-surface-variant)) !important;
+  }
+  th {
+    text-transform: uppercase;
+    font-weight: 600 !important;
+  }
+}
+</style>
