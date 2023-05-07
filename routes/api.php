@@ -52,7 +52,7 @@ Route::post('upload', [TaskBundleController::class, 'uploadTask']);
 Route::get('task/{id}', [TaskController::class, 'getTaskById']);
 
 
-Route::get('result/{id}', [TaskController::class, 'getResultFromTask']);
+Route::post('result', [TaskController::class, 'getResultFromTask']);
 
 
 Route::post('assigments/create', [AssigmentController::class, 'createAssigment']);

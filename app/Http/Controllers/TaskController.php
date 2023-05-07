@@ -7,6 +7,7 @@ use JWTAuth;
 
 use App\Models\Task;
 use App\Models\ExamBundle;
+use App\Models\Exam;
 
 class TaskController extends Controller
 {
@@ -18,22 +19,15 @@ class TaskController extends Controller
         ], 200);
     }
 
-    public function getResultFromTask(Request $request, $id)
+    public function getResultFromTask(Request $request)
     {
         $task = Task::find($request->task_id);
         $exambundle = ExamBundle::find($request->exambundle_id);
         
-        $solution = $task->solution;
-        $student_solution = $request->input('solution');
+        $solution = trim($task->solution);
+        $student_solution = $request->studnet_solution;
 
-
-
-
-        // $solution = "\dfrac{2.000000001s^2+13s+10}{s^3+7s^2+18s+15} ";
-        // $student_solution = "\dfrac{2s^2+13s+10}{s^3+7s^2+18s+15}";
-
-
-        $output = exec('python ' . base_path('app/Helpers/compare.py') . " \"{$solution}\" \"{$student_solution}\"");
+        $output = exec('python ' . base_path('app/Helpers/compare.py') . " \"$solution\" \"$student_solution\"");
 
         $points = 0;
         if($output == 'True'){
@@ -41,11 +35,11 @@ class TaskController extends Controller
         }
 
         $exam = Exam::create([
-            'student_solution' => $request->input('solution'),
+            'studen_solution' => $student_solution,
             'earned_points' => $points,
             'task_id' => $request->task_id,
             'exam_bundle_id' => $request->exambundle_id,
-            'student_id' => JWTAuth::parseToken()->authenticate()->id,
+            'user_id' => JWTAuth::parseToken()->authenticate()->id,
         ]);
         
 

@@ -1,6 +1,5 @@
 <template>
-    <UploadZip></UploadZip>
-    <CreateAssigment></CreateAssigment>
+    <ExamView :assigment-id="2" :exambundle-id="2"></ExamView>
     <router-view class="content"></router-view>
     <div class="info">
         <ChangeLanguage></ChangeLanguage>
@@ -11,9 +10,8 @@
 <script>
 import ChangeTheme from '../components/ChangeTheme.vue'
 import ChangeLanguage from '../components/ChangeLanguage.vue'
-import UploadZip from '../components/UploadZip.vue'
-import AssigmentGiver from '../components/AssigmentGiver.vue'
-import CreateAssigment from '../components/CreateAssigment.vue'
+import ExamView from '../views/ExamView.vue'
+
 
 import axios from 'axios'
 
@@ -22,9 +20,8 @@ export default {
     components: {
         ChangeTheme,
         ChangeLanguage,
-        UploadZip,
-        AssigmentGiver,
-        CreateAssigment
+        ExamView
+
         
     },
   
