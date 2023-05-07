@@ -55,4 +55,8 @@ Route::get('result/{id}', [TaskController::class, 'getResultFromTask']);
 
 
 Route::post('assigments/create', [AssigmentController::class, 'createAssigment']);
+Route::get('assigments/active', [AssigmentController::class, 'getAllActiveAssigments']);
+Route::get('assigments/pastdue', [AssigmentController::class, 'getPastDueAssigments']);
+Route::get('assigments/{id}', [AssigmentController::class, 'getAssigmentsInfo']);
+
 

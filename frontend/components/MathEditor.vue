@@ -8,7 +8,7 @@
     name: "MathEditor",
     data() {
       return {
-        formula: "\\sqrt{25}",
+        formula: "",
       };
     },
     methods: {

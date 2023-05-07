@@ -29,7 +29,7 @@ class TaskController extends Controller
 
         $output = exec('python ' . base_path('app/Helpers/compare.py') . " \"{$solution}\" \"{$student_solution}\"");     
 
-        if($output){
+        if($output == "True"){
             return response()->json([
                 'message' => 'Correct'
             ], 200);

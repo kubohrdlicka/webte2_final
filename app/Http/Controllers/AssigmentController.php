@@ -36,4 +36,35 @@ class AssigmentController extends Controller
         return response()->json($exams);
     }
 
+
+    public function getAllActiveAssigments()
+    {
+        $assigments = Assignment::where('start', '<=', now())
+            ->where('end', '>=', now())
+            ->get()
+            ->toArray();
+        return response()->json($assigments);
+    }
+
+    public function getPastDueAssigments()
+    {
+        $assigments = Assignment::where('end', '<', now())
+            ->get()
+            ->toArray();
+        return response()->json($assigments);
+    }
+
+
+
+    public function getAssigmentsInfo($id)
+    {
+        $assigment = Assignment::find($id);
+        $exams = ExamBundles::where('assignment_id', $id)->get()->toArray();
+
+        return response()->json([
+            'assigment' => $assigment,
+            'exams' => $exams,
+        ], 200);
+    }
+
 }
