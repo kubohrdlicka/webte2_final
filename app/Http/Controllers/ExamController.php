@@ -9,6 +9,7 @@ use JWTAuth;
 use App\Models\ExamBundle;
 use App\Models\Exam;
 use App\Models\User;
+use App\Models\Task;
 
 class ExamController extends Controller
 {
@@ -16,11 +17,11 @@ class ExamController extends Controller
     public function generateTaskFromExambundle($id)
     {
         $examBundle = ExamBundle::find($id);
-        $taskBundle = $examBundle->taskBundle;
-        $tasks = $taskBundle->tasks;
-        $task = $tasks->random();
-        $task->solution = null;
-        return response()->json($task->id);
+        $taskBundle = $examBundle->task_bundle_id;
+        $tasks = Task::where('task_bundle_id', $taskBundle)->get()->toArray();
+        $task = array_rand($tasks, 1);
+        $task = $tasks[$task];
+        return response()->json($task["id"]);
     }
 
     public function getAllPointsFromAssigmentStudent($id)

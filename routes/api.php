@@ -52,13 +52,13 @@ Route::post('upload', [TaskBundleController::class, 'uploadTask']);
 Route::get('task/{id}', [TaskController::class, 'getTaskById']);
 
 
-Route::get('result/{id}', [TaskController::class, 'getResultFromTask']);
+Route::post('result', [TaskController::class, 'getResultFromTask']);
 
 
 Route::post('assigments/create', [AssigmentController::class, 'createAssigment']);
 Route::get('assigments/active', [AssigmentController::class, 'getAllActiveAssigments']);
 Route::get('assigments/pastdue', [AssigmentController::class, 'getPastDueAssigments']);
-Route::get('assigments/{id}', [AssigmentController::class, 'getAssigmentsInfo']);
+Route::get('assigments/info/{id}', [AssigmentController::class, 'getAssigmentsInfo']);
 
 
 Route::get('generatetask/{id}', [ExamController::class, 'generateTaskFromExambundle']);
