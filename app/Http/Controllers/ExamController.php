@@ -53,11 +53,13 @@ class ExamController extends Controller
             $sumpoints = 0;
             $studentPoints = [];
             foreach ($examBundles as $examBundle) {
-                $exam = Exam::where('exam_bundle_id', $examBundle->id)->where('user_id', $student->id)->get();
-                $studentPoints[] = ['examBundleId' => $examBundle->id, "points"->$exam->points];
-                $sumpoints += $exam->points;
+                $exam = Exam::where('exam_bundle_id', $examBundle["id"])->where('user_id', $student["id"])->get();
+                $task = Task::where('id', $exam[0]['task_id'])->get();
+
+                $studentPoints[] = ['examBundleId' => $examBundle, 'task'=> $task , "student_exam"=>$exam];
+                $sumpoints += $exam[0]["earned_points"];
             }
-            $points[] = ['studentId' => $student->id, 'points' => $studentPoints, 'sumpoints' => $sumpoints];
+            $points[] = ['student' => $student, 'points' => $studentPoints, 'sumpoints' => $sumpoints];
         }
         return response()->json($points);
     }

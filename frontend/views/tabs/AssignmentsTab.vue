@@ -7,6 +7,7 @@
         <AssignmentTile v-for="item, i in assignments" :key="i"
           :data="item"
           :active="active"
+          :done="done"
         />
       </div>
     </v-card>
@@ -27,6 +28,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    done: {
+      type: Boolean,
+      required: true,
+    },
     title: {
       required: true,
     }
@@ -38,14 +43,21 @@ export default {
   },
   methods: {
     async getAssignments() {
+      console.log(this.done)
       if(this.active){
         apiService.get('/api/assigments/active').then(Response => {
           this.assignments = Response.data
         })
       }else{
-        apiService.get('/api/assigments/pastdue').then(Response => {
-          this.assignments = Response.data
-        })
+        if(this.done){
+          apiService.get('api/assigments/done').then(Response => {
+            this.assignments = Response.data
+          })
+        }else{
+          apiService.get('/api/assigments/pastdue').then(Response => {
+            this.assignments = Response.data
+          })
+        }
       }
     },
   },
