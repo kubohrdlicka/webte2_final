@@ -37,7 +37,7 @@
 
     <div class="d-flex justify-center py-1 bg-primary">
       <div class="text-caption">
-        QuatroMagoras 2023
+        QuatrosMagores &copy; 2023
       </div>
     </div>
 

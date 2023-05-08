@@ -43,6 +43,10 @@ const router = createRouter({
           component: () => import('../views/AssignmentsListView.vue'),
         },
         {
+          path: '/assigment/info',
+          component: () => import('../views/AssigmentInfoView.vue'),
+        },
+        {
           path: '/history',
           component: () => import('../views/HistoryView.vue'),
         },

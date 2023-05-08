@@ -15,6 +15,7 @@
 
 <script>
 import AssignmentTile from '../../components/AssignmentTile.vue';
+import apiService from '../../services/apiService';
 
 export default {
   name: 'ActiveAssignmentsTab',
@@ -32,19 +33,20 @@ export default {
   },
   data() {
     return {
-      assignments: [
-        {title:'caw', description:'idk'},
-        {title:'caw', description:'idk'},
-        {title:'caw', description:'idk'},
-        {title:'caw', description:'idk'},
-        {title:'caw', description:'idk'},
-        {title:'caw', description:'idk'},
-      ],
+      assignments: [],
     }
   },
   methods: {
     async getAssignments() {
-
+      if(this.active){
+        apiService.get('/api/assigments/active').then(Response => {
+          this.assignments = Response.data
+        })
+      }else{
+        apiService.get('/api/assigments/pastdue').then(Response => {
+          this.assignments = Response.data
+        })
+      }
     },
   },
   mounted() {

@@ -1,5 +1,5 @@
 <template>
-    <ExamView :assigment-id="2" :exambundle-id="2"></ExamView>
+    <!-- <ExamView :assigment-id="2" :exambundle-id="2"></ExamView> -->
     <router-view class="content"></router-view>
     <div class="info">
         <ChangeLanguage></ChangeLanguage>
