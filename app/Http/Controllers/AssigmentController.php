@@ -31,7 +31,7 @@ class AssigmentController extends Controller
                 'task_bundle_id' => $exam['id'],
                 'points' => $exam['points'],
             ]);
-            
+
         }
 
         return response()->json($exams);
@@ -62,10 +62,14 @@ class AssigmentController extends Controller
         $assigment = Assignment::find($id);
         $exams = ExamBundle::where('assignment_id', $id)->get()->toArray();
 
-        if(JWTAuth::parseToken()->authenticate()->role == 'student') {
-            foreach($exams as $exam){
-                $tmp = Exam::where('user_id', JWTAuth::parseToken()->authenticate()->id)->where('exam_bundle_id', $exam->id)->get()->toArray();
-                $exam = array_merge($exam, $tmp->earned_points); 
+        $student = JWTAuth::parseToken()->authenticate();
+        $result = [];
+        foreach ($exams as $key => $exam) {
+            if ($student->role == 'student') {
+                $tmp = Exam::where('user_id', $student->id)->where('exam_bundle_id', $exam["id"])->first();
+                if (!empty($tmp)) {
+                    $exams[$key]["earned_points"] = $tmp->earned_points;
+                } 
             }
         }
 

@@ -1,50 +1,51 @@
 <template>
-    <div class="h-wrapper ma-2">
-      {{ data.title }} | {{ data.description}} | {{data.start}} | {{data.end}}| {{ store.role }}
-      <v-if>
-        <v-btn color="primary" v-if="store.role === 'student' && active" @click="take()">{{$t('studnet.take')}}</v-btn>
-      </v-if>
+    <div class="py-4">
+      <v-card>
+        <v-card-title>{{ title }}</v-card-title>
+        <div class="d-flex flex-wrap h-limit-max-height">
+          <ExamTile v-for="item, i in examBundles" :key="i"
+            :data="item"
+          />
+        </div>
+      </v-card>
     </div>
-  
   </template>
   
   <script>
-import apiService from '../services/apiService';
-
+  import ExamTile from '../components/ExamTile.vue';
+  import apiService from '../services/apiService';
+  
   export default {
-    name: 'Assignment Tile',
+    name: 'ActiveAssignmentsTab',
+    components: {
+      ExamTile
+    },
     props: {
-      data: {
+      assignmentsId: {
         type: Number,
         required: true,
       },
-
-    },
-    computed: {
-      store() {
-        // return this.$store.state
-      },
-    },
-    methods: {
-      take() {
-        //redirect to page wehere studend chooses tasks from assigmesnts
-        //get from api /api/assigments/info/{id} (id is in props data object)
+      title: {
+        required: true,
       }
     },
-    mounted(){
-        apiService.get('api/asssigments/info/'+this.data).then(Response => {
-            this.data = Response.data
-          })
-    }
-  
+    data() {
+      return {
+        examBundles: [],
+        assignment: [],
+      }
+    },
+    methods: {
+      async getExamBundles() {
+        apiService.get('/api/assigments/info/' + this.$route.params.id).then(Response => {
+          this.examBundles = Response.data.exams
+          this.assignment = Response.data.assignment
+        })
+      },
+    },
+    mounted() {
+      this.getExamBundles()
+    },
   }
   </script>
-  
-  <style lang="scss" scoped>
-  .h-wrapper {
-    background-color: rgb(var(--v-theme-primary));
-    width: 10rem;
-    height: 10rem;
-  }
-  </style>
   

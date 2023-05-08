@@ -39,9 +39,9 @@ import { HtmlGenerator, parse } from 'latex.js'
 
 export default {
   name: 'Exam view',
-  props: {
-    exambundleId: Number,
-  },
+  // props: {
+  //   exambundleId: Number,
+  // },
   data() {
     return {
       taskId: null,
@@ -103,14 +103,14 @@ export default {
         "api/result",
         {
           "task_id": this.taskId,
-          "exambundle_id": this.exambundleId,
+          "exambundle_id": this.$route.params.id,
           "studnet_solution": this.formula,
         }
       )
     }
   },
   async mounted() {
-    await apiService.get("/api/generatetask/" + this.exambundleId).then((response) => {
+    await apiService.get("/api/generatetask/" + this.$route.params.id).then((response) => {
       console.log(response.data)
       this.taskId = response.data
     })
