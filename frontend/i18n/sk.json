@@ -1,25 +1,97 @@
 {
-  "title": {
-    "test": "Slovensky vypravaj, nie?"
+  "titles": {
+    "test": "Slovensky vypravaj, nie?",
+    "adminViewTitle": "Správa používateľov",
+    "assignmentCreation": "Nové zadanie",
+    "filesOverview": "Prehľad súborov",
+    "newFile": "Pridať súbory",
+    "filesList": "Zoznam súborov"
   },
-  
+  "table": {
+    "noData": "Žiadne dostupné dáta",
+    "name": "Meno",
+    "email": "E-mail",
+    "role": "Rola",
+    "title": "Názov",
+    "created": "Vytvorený"
+  },
+  "button": {
+    "cancel": "Späť",
+    "delete": "Odstrániť",
+    "save": "Uložiť",
+    "createNewAssignment": "Vytvoriť nové zadanie",
+    "submitExam": "Odovzdať",
+    "upload": "Nahrať"
+  },
+  "messages": {
+    "changeUser": "Zmena role",
+    "actionWillChangeRole": "Vykonaním tejto akcie zmeníte zvolenému používateľovi rolu.",
+    "askForDelete": "Odstrániť používateľa",
+    "actionWillDeleteUser": "Naozaj chcete odstrániť zvoleného používateľa?",
+    "askForSubmitExam": "Naozaj chcete zadanie odovzdať?",
+    "postSuccess": "Požiadavka úspešne vykonaná",
+    "putSuccess": "Požiadavka úspešne vykonaná",
+    "deleteSuccess": "Odstránenie prebehlo úspešne"
+  },
   "login": {
     "title": "Prihlásiť sa",
-    "password": "Heslo"
+    "password": "Heslo",
+    "email": "E-mail"
   },
-
+  "roles": {
+    "admin": "Admin",
+    "student": "Študent",
+    "teacher": "Učiteľ"
+  },
   "register": {
     "title": "Zaregistrovať sa",
     "name": "Meno",
     "password": "Heslo",
-    "password2": "Heslo znovu"
+    "password2": "Heslo znovu",
+    "email": "E-mail",
+    "passwordsDontMatch": "Heslá sa nezhodujú"
   },
   "navigation": {
     "dashboard": "Prehľad",
-    "activeAssignments": "Zadania",
-    "historyAssignments": "Odovzdané",
+    "files": "Súbory",
+    "activeAssignments": "Aktívne zadania",
+    "historyAssignments": "Odovzdané zadania",
     "results": "Výsledky",
     "adminPortal": "Správa aplikácie",
     "logout": "Odhlásiť sa"
+  },
+  "uploadZip": {
+    "chooseFile": "Zvoľte súbor"
+  },
+  "examTile": {
+    "take": "Vstúpiť"
+  },
+  "assignmentDetails": {
+    "name": "Názov",
+    "description": "Popis",
+    "start": "Začiatok",
+    "end": "Koniec",
+    "points": "Body",
+    "taskBundles": "Sada príkladov"
+  },
+  "assignmentTile": {
+    "take": "Vstúpiť"
+  },
+  "input": {
+    "role": "Rola",
+    "fileLabel": "Zvoľte .zip priečinok"
+  },
+  "dashboard": {
+    "activeAssignment": "Aktívne zadania",
+    "historyAssignment": "História zadaní",
+    "greetingTitle": "Vitajte!",
+    "expiredSession": "Platnosť relácie vypršala"
+  },
+  "validation": {
+    "required": "Toto pole je povinné.",
+    "minLength": "Pole musí obsahovať aspoň 6 znakov.",
+    "mustContainDigit": "Heslo musí obsahovať aspoň jednu číslicu.",
+    "passwordsDontMatch": "Heslá sa nezhodujú.",
+    "invalidMail": "Zadajte platnú mailovú adresu."
   }
 }

@@ -102,9 +102,9 @@ export default {
       search: '',
       userList: [],
       roles: [
-        { text: 'Admin', value: 'admin' },
-        { text: 'Student', value: 'student' },
-        { text: 'Teacher', value: 'teacher' },
+        { text: this.$t('roles.admin'), value: 'admin' },
+        { text: this.$t('roles.student'), value: 'student' },
+        { text: this.$t('roles.teacher'), value: 'teacher' },
       ],
       itemsPerPage: 10,
       dialogDelete: false,

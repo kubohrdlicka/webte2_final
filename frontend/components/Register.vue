@@ -10,7 +10,7 @@
                             <v-text-field v-model="name" :label="$t('register.name')" :rules="[required]"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field v-model="email" label="E-mail" :rules="[required, validMail]" required></v-text-field>
+                            <v-text-field v-model="email" :label="$t('register.email')" :rules="[required, validMail]" required></v-text-field>
                         </v-col>
                     </v-row>
 
@@ -62,41 +62,41 @@ export default {
             if (value) {
                 return true;
             } else {
-                return 'This field is required.';
+                return this.$t('validation.required');
             }
         },
         min6: function (value) {
             if (value.length >= 6) {
                 return true;
             } else {
-                return 'Password should have more than 6 characters.';
+                return this.$t('validation.minLength');
             }
         },
         validPassword: function () {
-            if (/^(?=.*\d).{8,}$/.test(this.password)) {
+            if (/.*\d.*/.test(this.password)) {
                 return true;
             } else {
-                return 'Password must contain at least one digit.';
+                return this.$t('validation.mustContainDigit');
             }
         },
         matchingPasswords: function () {
             if (this.password === this.repeatpassword) {
                 return true;
             } else {
-                return 'Passwords does not match.';
+                return this.$t('validation.passwordsDontMatch');
             }
         },
         validMail: function () {
             if (/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)) {
                 return true;
             } else {
-                return 'This e-mail is not valid.';
+                return this.$t('validation.invalidMail');
             }
         },
         register() {
             if(this.password != this.repeatpassword) {
                 // this.$store.dispatch('showSnackbar', this.$t('register.passwordsNotMatch'))
-                alert("bad");
+                // alert("bad");
                 return
             }
 

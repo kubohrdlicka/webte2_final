@@ -11,17 +11,17 @@
           
           <!-- to be continued... -->
           
-          <v-text-field label="title"/>
-          <v-text-field label="desc"/>
+          <v-text-field :label="$t('assignmentDetails.name')"/>
+          <v-text-field :label="$t('assignmentDetails.description')"/>
           
-          <v-text-field label="start" type="datetime-local"/>
-          <v-text-field label="end" type="datetime-local"/>
+          <v-text-field :label="$t('assignmentDetails.start')" type="datetime-local"/>
+          <v-text-field :label="$t('assignmentDetails.end')" type="datetime-local"/>
           
           <v-autocomplete 
             v-model="values"
             :items="taskBundles"
             :item-title="'name'"
-            label="Task bundles"
+            :label="$t('assignmentDetails.taskBundles')"
             return-object
             multiple
           />

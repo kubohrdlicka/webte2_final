@@ -1,7 +1,7 @@
 <template>
   <div class="h-wrapper ma-2">
     {{ data.title }} | {{ data.description }} | {{ data.start }} | {{ data.end }}| {{ store.role }}
-    <v-btn color="primary" v-if="store.role === 'student' && active" @click="take()">{{ $t('studnet.take') }}</v-btn>
+    <v-btn color="primary" v-if="store.role === 'student' && active" @click="take()">{{ $t('assignmentTile.take') }}</v-btn>
   </div>
 </template>
 

@@ -15,7 +15,7 @@
 
 <script>
 import AssignmentTile from '../../components/AssignmentTile.vue';
-import apiService from '../../services/apiService';
+// import apiService from '../../services/apiService';
 import apiService from '../../services/apiService';
 
 export default {

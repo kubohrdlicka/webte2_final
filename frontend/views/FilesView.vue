@@ -8,7 +8,7 @@
       <div class="pa-4 pb-0">
         <v-card-title class="text-h6 pa-0 pb-4">{{ $t('titles.newFile') }}</v-card-title>
 
-        <v-file-input v-model="file" :label="$t('inputs.fileLabel')" accept=".zip" :loading="false" color="primary"
+        <v-file-input v-model="file" :label="$t('input.fileLabel')" accept=".zip" :loading="false" color="primary"
           variant="outlined" />
 
         <div class="d-flex justify-end pb-4">

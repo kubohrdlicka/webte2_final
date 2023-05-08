@@ -40,7 +40,7 @@ export default {
       .post(url, body, credentials)
       .then((response) => {
         if (!options.alert || options.alert.success !== false) {
-          toast.success(`${i18n.global.t('message.postSuccess')}`)
+          toast.success(`${i18n.global.t('messages.postSuccess')}`)
         }
         return response
       })
@@ -56,7 +56,7 @@ export default {
     return apiClient
       .put(url, body, credentials)
       .then((response) => {
-        toast.success(`${i18n.global.t('message.putSuccess')}`)
+        toast.success(`${i18n.global.t('messages.putSuccess')}`)
         return response
       })
       .catch((e) => {
@@ -70,7 +70,7 @@ export default {
       .delete(url, credentials)
       .then((response) => {
         if (!options.alert || options.alert.success !== false) {
-          toast.success(`${i18n.global.t('message.deleteSuccess')}`)
+          toast.success(`${i18n.global.t('messages.deleteSuccess')}`)
         }
         return response
       })

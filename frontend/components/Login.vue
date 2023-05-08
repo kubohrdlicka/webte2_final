@@ -5,7 +5,7 @@
             <v-sheet width="300" class="align-self-center">
                 <h1>{{ $t('login.title') }}</h1>
                 <v-form fast-fail @submit.prevent>
-                    <v-text-field v-model="email" label="E-mail" required></v-text-field>
+                    <v-text-field v-model="email" :label="$t('login.email')" required></v-text-field>
 
                     <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                         :type="visible ? 'text' : 'password'" v-model="password" :label="$t('login.password')"
@@ -39,7 +39,7 @@ export default {
             if (value) {
                 return true;
             } else {
-                return 'This field is required.';
+                return this.$t('validation.required');
             }
         },
         logIn() {

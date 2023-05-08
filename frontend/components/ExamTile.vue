@@ -2,7 +2,7 @@
     <div class="h-wrapper ma-2">
         {{ data.title }} | {{ data.description }} | {{ data.created_at }} | {{ data.end }}| {{ store.role }}
 
-        <v-btn color="primary" v-if="store.role === 'student' && data.earned_points == undefined" @click="take()">{{ $t('generate.exam') }}</v-btn>
+        <v-btn color="primary" v-if="store.role === 'student' && data.earned_points == undefined" @click="take()">{{ $t('examTile.take') }}</v-btn>
         <h2 v-if="data.earned_points != undefined">{{data.earned_points}} / {{data.points}}</h2>
     </div>
 </template>

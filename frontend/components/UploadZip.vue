@@ -1,5 +1,5 @@
 <template>
-      <v-file-input v-model="file" label="Choose a file" accept=".zip" class="inp"></v-file-input>
+      <v-file-input v-model="file" :label="$t('uploadZip.chooseFile')" accept=".zip" class="inp"></v-file-input>
             <v-btn class="btn" size="small" icon @click="uploadBundle()">
                 <v-icon icon="mdi-upload"></v-icon>
             </v-btn>

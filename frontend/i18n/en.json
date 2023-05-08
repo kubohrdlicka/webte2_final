@@ -19,8 +19,12 @@
   "register": {
     "title": "Register",
     "name": "Name",
+    "email": "E-mail",
     "password": "Password",
-    "password2": "Repeat password"
+    "password2": "Repeat password",
+    "passwordsDontMatch": "Passwords don't match"
+  },
+  "dashboard": {
+    "greetingTitle": "Welcome!"
   }
-  
 }

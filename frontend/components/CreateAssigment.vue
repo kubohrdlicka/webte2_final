@@ -1,9 +1,9 @@
 <template>
-    <v-text-field v-model="name" label="Name" :rules="rules" hide-details="auto"></v-text-field>
-    <v-text-field v-model="description" label="Description" :rules="rules" hide-details="auto"></v-text-field>
+    <v-text-field v-model="name" :label="$t('assignmentDetails.name')" :rules="rules" hide-details="auto"></v-text-field>
+    <v-text-field v-model="description" :label="$t('assignmentDetails.description')" :rules="rules" hide-details="auto"></v-text-field>
 
-    <v-text-field type="datetime-local" v-model="start" label="Start date"  :rules="rules" hide-details="auto"></v-text-field>
-    <v-text-field type="datetime-local" v-model="end" label="End date"  :rules="rules" hide-details="auto"></v-text-field>
+    <v-text-field type="datetime-local" v-model="start" :label="$t('assignmentDetails.start')"  :rules="rules" hide-details="auto"></v-text-field>
+    <v-text-field type="datetime-local" v-model="end" :label="$t('assignmentDetails.end')"  :rules="rules" hide-details="auto"></v-text-field>
 
     <v-select v-model="values" :items="taskBundles" :item-title="'name'"  label="Task bundles" return-object
         multiple></v-select>
@@ -11,7 +11,7 @@
 
     <div v-for="i in values">
         {{i.name}}
-        <v-text-field v-model="i.points" type="number" label="Points"></v-text-field>
+        <v-text-field v-model="i.points" type="number" :label="$t('assignmentDetails.points')"></v-text-field>
     </div>
 
     <v-btn @click="check">Check</v-btn>

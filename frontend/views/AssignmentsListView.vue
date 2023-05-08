@@ -5,7 +5,7 @@
       <router-link to="/create-assignment">
         <v-chip outlined round color="primary" @click="{ }" class="mr-3">
           <v-icon small class="mr-2">mdi-plus-thick</v-icon>
-          {{ $t('buttons.createNewAssignment') }}
+          {{ $t('button.createNewAssignment') }}
         </v-chip>
       </router-link>
     </div>
