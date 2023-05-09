@@ -55,6 +55,9 @@ Route::get('task/{id}', [TaskController::class, 'getTaskById']);
 Route::post('result', [TaskController::class, 'getResultFromTask']);
 
 
+
+//assigments
+Route::get('allassigments', [AssigmentController::class, 'getAllAssigments']);
 Route::post('assigments/create', [AssigmentController::class, 'createAssigment']);
 Route::get('assigments/active', [AssigmentController::class, 'getAllActiveAssigments']);
 Route::get('assigments/done', [AssigmentController::class, 'getDoneAssigments']);
@@ -66,3 +69,4 @@ Route::get('generatetask/{id}', [ExamController::class, 'generateTaskFromExambun
 Route::get('getstudentassigmentpoints/{id}', [ExamController::class, 'getAllPointsFromAssigmentStudent']);
 Route::get('assigmentpoints/{id}', [ExamController::class, 'getPointsFromExambundle']);
 
+Route::get('generatecsv', [AssigmentController::class, 'generateCsv']);

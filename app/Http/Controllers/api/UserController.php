@@ -25,6 +25,7 @@ class UserController extends Controller
     {
         $validador = Validator::make($request->all(), [
             "name" => "required",
+            "surname" => "required",
             "email" => "required|email|unique:users",
             "password" => "required|min:6",
         ]);
@@ -35,6 +36,7 @@ class UserController extends Controller
 
         $user = User::create([
             "name" => $request->name,
+            "surname" => $request->surname,
             "email" => $request->email,
             "password" => bcrypt($request->password),
             "role" => 'student'
@@ -73,6 +75,7 @@ class UserController extends Controller
     {
         $validador = Validator::make($request->all(), [
             "name" => "required",
+            "surname" => "required",
             "email" => "required|email|unique:users",
             "password" => "required|min:6",
         ]);
@@ -83,6 +86,7 @@ class UserController extends Controller
 
         $user = User::create([
             "name" => $request->name,
+            "surname" => $request->surname,
             "email" => $request->email,
             "password" => bcrypt($request->password),
             "role" => 'admin'

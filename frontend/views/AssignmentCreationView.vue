@@ -11,11 +11,11 @@
           
           <!-- to be continued... -->
           
-          <v-text-field :label="$t('assignmentDetails.name')"/>
-          <v-text-field :label="$t('assignmentDetails.description')"/>
+          <v-text-field v-model="name" :label="$t('assignmentDetails.name')"/>
+          <v-text-field v-model="description" :label="$t('assignmentDetails.description')"/>
           
-          <v-text-field :label="$t('assignmentDetails.start')" type="datetime-local"/>
-          <v-text-field :label="$t('assignmentDetails.end')" type="datetime-local"/>
+          <v-text-field v-model="start" :label="$t('assignmentDetails.start')" type="datetime-local"/>
+          <v-text-field v-model="end" :label="$t('assignmentDetails.end')" type="datetime-local"/>
           
           <v-autocomplete 
             v-model="values"
@@ -36,7 +36,7 @@
 
           <div class="d-flex justify-center pa-4">
             <v-btn class="mx-2" @click="back()">{{ $t('button.cancel') }}</v-btn>
-            <v-btn class="mx-2" color="primary">{{ $t('button.save') }}</v-btn>
+            <v-btn class="mx-2" color="primary" @click="submitForm()">{{ $t('button.save') }}</v-btn>
           </div>
         </v-form>
       </div>
@@ -73,6 +73,14 @@ export default {
     },
     submitForm() {
       if (this.$refs.form.validate()) {
+        console.log(this.name)
+        apiService.post('api/assigments/create', {
+          name: this.name,
+          description: this.description,
+          start: this.start,
+          end: this.end,
+          exams: this.values
+        })
         
       }
     },

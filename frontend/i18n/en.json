@@ -10,6 +10,7 @@
   "table": {
     "noData": "No data available",
     "name": "Name",
+    "surneme": "Surname",
     "email": "E-mail",
     "role": "Role",
     "title": "Title",
@@ -83,7 +84,8 @@
   },
   "dashboard": {
     "activeAssignment": "Active Assignments",
-    "historyAssignment": "Turned in",
+    "doneAssignment": "Turned in",
+    "historyAssignment": "Past due",
     "greetingTitle": "Welcome!",
     "expiredSession": "The session has expired"
   },

@@ -9,9 +9,16 @@ use JWTAuth;
 use App\Models\Assignment;
 use App\Models\ExamBundle;
 use App\Models\Exam;
+use App\Models\User;
 
 class AssigmentController extends Controller
 {
+
+    public function getAllAssigments(){
+        $assignments = Assignment::all()->toArray();
+        return response()->json($assignments);
+
+    }
     public function createAssigment(Request $request)
     {
         $assigment = Assignment::create([
@@ -119,7 +126,7 @@ class AssigmentController extends Controller
 
         if ($user->role == 'student') {
             $pastDue = [];
-            foreach($assigments as $asig){
+            foreach ($assigments as $asig) {
                 $exams = ExamBundle::where('assignment_id', $asig['id'])->get()->toArray();
                 $total_exams = sizeof($exams);
                 $taken_exams = 0;
@@ -165,6 +172,80 @@ class AssigmentController extends Controller
             'assigment' => $assigment,
             'exams' => $exams,
         ], 200);
+    }
+
+    public function generateCsv()
+    {
+        $students = User::where('role', 'student')->get()->toArray();
+        $exams = Exam::all()->toArray();
+        $assigments = Assignment::all()->toArray();
+
+        $total_points = 0;
+
+        foreach ($assigments as $assigment) {
+            $examBundles = ExamBundle::where('assignment_id', $assigment['id'])->get()->toArray();
+            foreach ($examBundles as $examb) {
+                $total_points += $examb['points'];
+            }
+        }
+
+        $csv = [];
+        $headers = ['id', 'name', 'surname', 'email', 'earned_points', 'total_points'];
+        $csv[] = $headers;
+
+
+        foreach ($students as $student) {
+            $earned_points = 0;
+
+            foreach ($exams as $exam) {
+                if ($exam['user_id'] == $student['id']) {
+                    $earned_points += $exam['earned_points'];
+                }
+            }
+
+            $csv[] = [
+                'id' => $student['id'],
+                'name' => $student['name'],
+                'surname' => $student['surname'],
+                'email' => $student['email'],
+                'earned_points' => $earned_points,
+                'total_points' => $total_points,
+            ];
+        }
+        if(sizeof($csv) > 2){
+            usort($csv, function ($a, $b) {
+                if ($a['earned_points'] == $b['earned_points']) {
+                    return strnatcmp($a['surname'], $b['surname']);
+                }
+                return ($a['earned_points'] > $b['earned_points']) ? -1 : 1;
+            });
+        }
+
+        $fileName = 'results.csv';
+
+        $file = fopen('php://temp', 'w+');
+
+        foreach ($csv as $row) {
+            fputcsv($file, $row);
+        }
+
+        rewind($file);
+        $content = stream_get_contents($file);
+
+        fclose($file);
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '";',
+        ];
+
+        return response($content, 200, $headers);
+
+
+
+
+
+
     }
 
 }

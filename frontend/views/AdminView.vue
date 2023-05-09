@@ -62,7 +62,7 @@
             <v-icon color="primary pa-8">mdi-account</v-icon>
           </div>
           <div>
-            <v-card-title>{{ itemToEdit.name }}</v-card-title>
+            <v-card-title>{{ itemToEdit.name }} {{itemToEdit.surname}}</v-card-title>
             <v-card-subtitle>{{ itemToEdit.email }}</v-card-subtitle>
           </div>
         </div>
@@ -117,6 +117,7 @@ export default {
     headers() {
       return [
         { title: this.$t('table.name'), value: 'name', width: '40%' },
+        { title: this.$t('table.surname'), value: 'surname', width: '40%' },
         { title: this.$t('table.email'), value: 'email', width: '25%' },
         { title: this.$t('table.role'), value: 'role', width: '23%' },
         { key: 'actions', sortable: false, align: 'end', width: '12%' },

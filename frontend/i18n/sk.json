@@ -10,6 +10,7 @@
   "table": {
     "noData": "Žiadne dostupné dáta",
     "name": "Meno",
+    "surname": "Priezvisko",
     "email": "E-mail",
     "role": "Rola",
     "title": "Názov",
@@ -83,7 +84,8 @@
   },
   "dashboard": {
     "activeAssignment": "Aktívne zadania",
-    "historyAssignment": "Odovzdané",
+    "doneAssignment": "Odovzdané",
+    "historyAssignment": "Po termíne",
     "greetingTitle": "Vitajte!",
     "expiredSession": "Platnosť relácie vypršala"
   },
