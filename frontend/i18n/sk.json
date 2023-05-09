@@ -17,7 +17,7 @@
   },
   "button": {
     "cancel": "Späť",
-    "delete": "Odstrániť",
+    "submit": "Potvrdiť",
     "save": "Uložiť",
     "createNewAssignment": "Vytvoriť nové zadanie",
     "submitExam": "Odovzdať",
@@ -83,7 +83,7 @@
   },
   "dashboard": {
     "activeAssignment": "Aktívne zadania",
-    "historyAssignment": "História zadaní",
+    "historyAssignment": "Odovzdané",
     "greetingTitle": "Vitajte!",
     "expiredSession": "Platnosť relácie vypršala"
   },

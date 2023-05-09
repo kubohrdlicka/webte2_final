@@ -1,21 +1,57 @@
 {
   "title": {
-    "test": "Bon zour."
+    "test": "Bon zour.",
+    "adminViewTitle": "User administration",
+    "assignmentCreation": "New assignment",
+    "filesOverview": "File overview",
+    "newFile": "Add files",
+    "filesList": "List of files"
+  },
+  "table": {
+    "noData": "No data available",
+    "name": "Name",
+    "email": "E-mail",
+    "role": "Role",
+    "title": "Title",
+    "created": "Created at"
+  },
+  "button": {
+    "cancel": "Cancel",
+    "submit": "Confirm",
+    "save": "Save",
+    "createNewAssignment": "Create new assignment",
+    "submitExam": "Submit",
+    "upload": "Upload"
   },
   "navigation": {
     "dashboard": "Overview",
+    "files": "Files",
     "activeAssignments": "Assignments",
     "historyAssignments": "Turned in",
     "results": "Results",
     "adminPortal": "App management",
     "logout": "Log out"
   },
-
+  "messages": {
+    "changeUser": "Change role",
+    "actionWillChangeRole": "The role of selected user will be changed.",
+    "askForDelete": "Delete user",
+    "actionWillDeleteUser": "Do you really want to delete this user?",
+    "askForSubmitExam": "Do you really want to submit the exam?",
+    "postSuccess": "Request completed successfully",
+    "putSuccess": "Request completed successfully",
+    "deleteSuccess": "Deleted successfully"
+  },
   "login": {
     "title": "Log in",
-    "password": "Password"
+    "password": "Password",
+    "email": "E-mail"
   },
-  
+  "roles": {
+    "admin": "Admin",
+    "student": "Student",
+    "teacher": "Teacher"
+  },
   "register": {
     "title": "Register",
     "name": "Name",
@@ -24,7 +60,38 @@
     "password2": "Repeat password",
     "passwordsDontMatch": "Passwords don't match"
   },
+  "uploadZip": {
+    "chooseFile": "Choose a file"
+  },
+  "examTile": {
+    "take": "Take"
+  },
+  "assignmentDetails": {
+    "name": "Name",
+    "description": "Description",
+    "start": "Start",
+    "end": "End",
+    "points": "Points",
+    "taskBundles": "Task bundle"
+  },
+  "assignmentTile": {
+    "take": "Take"
+  },
+  "input": {
+    "role": "Role",
+    "fileLabel": "Choose a .zip folder"
+  },
   "dashboard": {
-    "greetingTitle": "Welcome!"
+    "activeAssignment": "Active Assignments",
+    "historyAssignment": "Turned in",
+    "greetingTitle": "Welcome!",
+    "expiredSession": "The session has expired"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "minLength": "Field must contain at least 6 characters.",
+    "mustContainDigit": "Password must contain at least one digit.",
+    "passwordsDontMatch": "Passwords don't match",
+    "invalidMail": "Input a valid e-mail address."
   }
 }
