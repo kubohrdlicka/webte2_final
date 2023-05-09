@@ -23,6 +23,12 @@ class TaskController extends Controller
     {
         $task = Task::find($request->task_id);
         $exambundle = ExamBundle::find($request->exambundle_id);
+
+        if(Exam::where('user_id', JWTAuth::parseToken()->authenticate()->id)->where('exam_bundle_id', $request->exambundle_id)->first()){
+            return response()->json([
+                'message' => 'Already taken'
+            ], 200);
+        }
         
         $solution = trim($task->solution);
         $student_solution = $request->studnet_solution;
