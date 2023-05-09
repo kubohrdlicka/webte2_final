@@ -2,6 +2,7 @@
   <div class="h-wrapper ma-2">
     {{ data.title }} | {{ data.description }} | {{ data.start }} | {{ data.end }}| {{ store.role }}
     <v-btn color="primary" v-if="store.role === 'student' && active" @click="take()">{{ $t('assignmentTile.take') }}</v-btn>
+    <h2 v-if="done">{{ data.points }} / {{data.total_points}}</h2>
   </div>
 </template>
 
@@ -14,6 +15,10 @@ export default {
       required: true,
     },
     active: {
+      type: Boolean,
+      required: true,
+    },
+    done: {
       type: Boolean,
       required: true,
     },
