@@ -17,6 +17,7 @@
         "@mdi/js": "^7.2.96",
         "@vitejs/plugin-vue": "^4.1.0",
         "axios": "^1.4.0",
+        "katex": "^0.16.7",
         "latex.js": "^0.12.6",
         "latexjs": "^0.2.0",
         "vite": "^4.2.1",

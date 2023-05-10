@@ -77,6 +77,7 @@ class TaskBundleController extends Controller
         $name = '';
         $breaker = false;
         $names = [];
+        $solution = false;
         $assigments = [];
         $solutions = [];
 
@@ -87,9 +88,31 @@ class TaskBundleController extends Controller
                 $name = substr($line, strpos($line, '{') + 1, -2);
             }
 
-            if ($breaker && !(strpos($line, '\end{solution}') !== false || strpos($line, '\end{task} ') !== false ||
-                strpos($line, '\begin{') !== false || strpos($line, '\end{') !== false)) {
-                $content .= $line;
+            if (
+                $breaker && !(strpos($line, '\end{solution}') !== false || strpos($line, '\end{task} ') !== false ||
+                    strpos($line, '\begin{t') !== false || strpos($line, '\end{t') !== false ||
+                    strpos($line, '\begin{s') !== false || strpos($line, '\end{s') !== false)
+            ) {
+                if(!$solution){   
+                    if (strpos($line, '\begin{equation*}') !== false) {
+                        $line = str_replace('\begin{equation*}', '$$', $line);
+                    }
+                    
+                    if (strpos($line, '\end{equation*}') !== false) {
+                        $line = str_replace('\end{equation*}', '$$', $line);
+                    }
+                }
+
+                if((strpos($line, '\begin{') !== false || strpos($line, '\end{') !== false) && $solution){
+                    
+                }else{
+                    if(strpos($line, "=") !== false && $solution){
+                        $tmp = explode("=", $line);
+                        $line = $tmp[1];
+                    }
+                    $content .= $line;
+                }
+                
             }
 
             if (strpos($line, '\begin{task}') !== false) {
@@ -107,11 +130,13 @@ class TaskBundleController extends Controller
 
             if (strpos($line, '\begin{solution}') !== false) {
                 //            $content .= $line;
+                $solution = true;
                 $breaker = true;
             }
 
             if (strpos($line, '\end{solution}') !== false) {
                 $breaker = false;
+                $solution = false;
                 // $con = str_replace("\"", "\\", $content );
                 $solutions[] = $content;
                 $content = '';

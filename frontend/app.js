@@ -11,6 +11,7 @@ import Toast, { POSITION } from 'vue-toastification';
 import * as Mathlive from 'https://unpkg.com/mathlive@0.90.10/dist/mathlive.min.js'
 import VueMathfield from "https://unpkg.com/mathlive@0.90.10/dist/vue-mathlive.mjs";
 import 'vue-toastification/dist/index.css';
+import 'katex/dist/katex.css'
 
 const toastOptions = {
   position: POSITION.BOTTOM_RIGHT,
