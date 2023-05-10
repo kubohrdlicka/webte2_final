@@ -170,7 +170,7 @@ class AssigmentController extends Controller
         }
 
         return response()->json([
-            'assigment' => $assigment,
+            'assignment' => $assigment,
             'exams' => $exams,
         ], 200);
     }
