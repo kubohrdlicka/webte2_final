@@ -12,7 +12,8 @@ class ExamBundle extends Model
     protected $fillable = [
         "assignment_id",
         "task_bundle_id",
-        "points"
+        "points",
+        "title"
     ];
 
     public function AssigmentBundle(): BelongsTo {

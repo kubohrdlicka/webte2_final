@@ -62,7 +62,7 @@
               <template v-slot:selection="{ item }">
                 <v-chip class="mr-2 my-1" variant="outlined" color="primary">
                   <v-icon color="primary" class="mr-2">mdi-file-outline</v-icon>
-                  <div class="text-black">{{ item.title }}</div>
+                  <div class="text-surface-variant">{{ item.title }}</div>
                 </v-chip>
               </template>
             </v-autocomplete>
@@ -75,11 +75,16 @@
             </div>
             <v-divider class="pb-3"/>
 
-            <div v-for="i in values" class="d-flex align-center">
-              <v-icon color="primary" class="mr-1 mb-5">mdi-file</v-icon>
-              <div class="v-col-12 v-col-md-5 v-col-lg-3 py-0">
-                <v-text-field v-model="i.points" type="number" :label="i.name" variant="outlined" density="compact" :rules="[requiredRule, positiveNumber]"></v-text-field>
+            <div v-for="i in values">
+              <div class="d-flex align-center pt-4 pb-2">
+                <v-icon size="small" color="primary" class="ml-2 mr-2">mdi-file</v-icon>
+                <v-card-subtitle class="pa-0">{{ i.name }}</v-card-subtitle>
               </div>
+              <div class="d-flex flex-wrap align-center">
+                <v-text-field class="v-col-6 v-col-md-4 py-0" v-model="i.title" type="text" :label="$t('input.assignemntTitle')" variant="outlined" density="compact" :rules="[requiredRule]"></v-text-field>
+                <v-text-field class="v-col-3 v-col-md-2 py-0" v-model="i.points" type="number" :label="$t('input.assignemntPoints')" variant="outlined" density="compact" :rules="[requiredRule, positiveNumber]"></v-text-field>
+              </div>
+              <v-divider/>
             </div>
           </div>
 

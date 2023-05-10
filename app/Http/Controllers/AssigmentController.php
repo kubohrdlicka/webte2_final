@@ -36,6 +36,7 @@ class AssigmentController extends Controller
                 'assignment_id' => $assigment->id,
                 'task_bundle_id' => $exam['id'],
                 'points' => $exam['points'],
+                'title' => $exam['title'],
             ]);
 
         }

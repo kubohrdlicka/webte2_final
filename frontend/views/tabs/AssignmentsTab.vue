@@ -9,6 +9,17 @@
           :active="active"
           :done="done"
         />
+
+        <div v-if="!assignments.length" class="d-flex justify-center py-8 w-100">
+          <div>
+            <div class="d-flex justify-center mb-2">
+              <v-icon size="large" color="grey-lighten-1">mdi-border-none-variant</v-icon>
+            </div>
+            <div class="d-flex justify-center">
+              <v-card-subtitle>{{ $t('title.noData') }}</v-card-subtitle>
+            </div>
+          </div>
+        </div>
       </div>
     </v-card>
   </div>
