@@ -6,7 +6,7 @@
 
     <v-card class="mx-4">
       <div class="pa-4 pb-0">
-        <v-form ref="form">
+        <v-form v-model="isFormValid" @submit.prevent>
 
           
           <!-- to be continued... -->
@@ -20,8 +20,8 @@
                 </div>
                 <v-divider class="pb-3"/>
 
-                <v-text-field v-model="name" :label="$t('assignmentDetails.name')"/>
-                <v-text-field v-model="description" :label="$t('assignmentDetails.description')"/>
+                <v-text-field v-model="name" :label="$t('assignmentDetails.name')" :rules="textRules"/>
+                <v-text-field v-model="description" :label="$t('assignmentDetails.description')" :rules="textRules"/>
               </div>
               
               <div>
@@ -31,8 +31,8 @@
                 </div>
                 <v-divider class="pb-3"/>
 
-                <v-text-field v-model="start" :label="$t('assignmentDetails.start')" type="datetime-local"/>
-                <v-text-field v-model="end" :label="$t('assignmentDetails.end')" type="datetime-local"/>
+                <v-text-field v-model="start" :label="$t('assignmentDetails.start')" type="datetime-local" :rules="required"/>
+                <v-text-field v-model="end" :label="$t('assignmentDetails.end')" type="datetime-local" :rules="required"/>
               </div>
             </div>
 
@@ -57,6 +57,7 @@
               :label="$t('assignmentDetails.taskBundles')"
               return-object
               multiple
+              :rules="selectRequired"
             >
               <template v-slot:selection="{ item }">
                 <v-chip class="mr-2 my-1" variant="outlined" color="primary">
@@ -77,7 +78,7 @@
             <div v-for="i in values" class="d-flex align-center">
               <v-icon color="primary" class="mr-1 mb-5">mdi-file</v-icon>
               <div class="v-col-12 v-col-md-5 v-col-lg-3 py-0">
-                <v-text-field v-model="i.points" type="number" :label="i.name" variant="outlined" density="compact"></v-text-field>
+                <v-text-field v-model="i.points" type="number" :label="i.name" variant="outlined" density="compact" :rules="[requiredRule, positiveNumber]"></v-text-field>
               </div>
             </div>
           </div>
@@ -87,7 +88,7 @@
 
           <div class="d-flex justify-center pa-4">
             <v-btn class="mx-2" @click="back()">{{ $t('button.cancel') }}</v-btn>
-            <v-btn class="mx-2" color="primary" @click="submitForm()">{{ $t('button.save') }}</v-btn>
+            <v-btn class="mx-2" color="primary" type="submit" @click="submitForm()">{{ $t('button.save') }}</v-btn>
           </div>
         </v-form>
       </div>
@@ -103,16 +104,25 @@ export default {
   name: 'Assignment Creation view',
   data() {
     return {
-      rules: [
+      textRules: [
           value => !!value || 'Required.',
           value => (value && value.length >= 3) || 'Min 3 characters',
       ],
+      required: [
+          value => !!value || 'Required.',
+      ],
+      selectRequired: [
+        value => !!(value && value.length) || 'Item is required'
+      ],
+      requiredRule: value => !!value || 'Required.',
+      positiveNumber: value => value >= 0 || 'not negative please',
       taskBundles: [],
       values: [],
       name: '',
       description: '',
       start: '',
       end: '',
+      isFormValid: false,
     }
   },
   methods: {
@@ -123,7 +133,7 @@ export default {
         })
     },
     submitForm() {
-      if (this.$refs.form.validate()) {
+      if (this.isFormValid) {
         apiService.post('api/assigments/create', {
           name: this.name,
           description: this.description,

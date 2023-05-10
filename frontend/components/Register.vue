@@ -1,132 +1,138 @@
 <template>
-    <div class="d-flex justify-center align-center">
-        <div class="form">
+	<div class="d-flex justify-center align-center">
+		<div class="v-col-12 v-col-md-7 v-col-lg-5">
+			<v-form v-model="isFormValid" @submit.prevent>
+				<v-card flat>
+					<v-card-title class="pt-4 pb-3">{{ $t('register.title') }}</v-card-title>
+					<v-divider class="pb-4" />
 
-            <v-sheet width="600" class="align-self-center">
-                <h1>{{ $t('register.title') }}</h1>
-                <v-form validate-on="submit" @submit.prevent="submit">
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-text-field v-model="name" :label="$t('register.name')" :rules="[required]"></v-text-field>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-text-field v-model="surname" :label="$t('register.surname')" :rules="[required]"></v-text-field>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-text-field v-model="email" :label="$t('register.email')" :rules="[required, validMail]" required></v-text-field>
-                        </v-col>
-                    </v-row>
+					<div class="d-flex flex-wrap">
+						<div class="v-col-12 v-col-md-6 py-1">
+							<v-text-field color="primary" v-model="name" :label="$t('register.name')"
+								:rules="[required]"></v-text-field>
+						</div>
+						<div class="v-col-12 v-col-md-6 py-1">
+							<v-text-field color="primary" v-model="surname" :label="$t('register.surname')"
+								:rules="[required]"></v-text-field>
+						</div>
+						<div class="v-col-12 py-1">
+							<v-text-field color="primary" v-model="email" :label="$t('register.email')"
+								:rules="[required, validMail]"></v-text-field>
+						</div>
+					</div>
 
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                                :type="visible ? 'text' : 'password'" v-model="password" :label="$t('register.password')"
-                                @click:append-inner="visible = !visible" :rules="[required, min6, validPassword]"
-                                required></v-text-field>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-text-field :append-inner-icon="visibler ? 'mdi-eye-off' : 'mdi-eye'"
-                                :type="visibler ? 'text' : 'password'" v-model="repeatpassword"
-                                :label="$t('register.password2')" @click:append-inner="visibler = !visibler"
-                                :rules="[required, min6, matchingPasswords]" required></v-text-field>
-                        </v-col>
-                    </v-row>
-                    <v-btn type="submit" @click="register()">{{ $t('register.title') }}</v-btn>
+					<div class="d-flex flex-wrap">
+						<div class="v-col-12 v-col-md-6 py-1">
+							<v-text-field color="primary" :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+								:type="visible ? 'text' : 'password'" v-model="password" :label="$t('register.password')"
+								@click:append-inner="visible = !visible" :rules="[required, min6, validPassword]"></v-text-field>
+						</div>
+						<div class="v-col-12 v-col-md-6 py-1">
+							<v-text-field color="primary" :append-inner-icon="visibler ? 'mdi-eye-off' : 'mdi-eye'"
+								:type="visibler ? 'text' : 'password'" v-model="repeatpassword" :label="$t('register.password2')"
+								@click:append-inner="visibler = !visibler" :rules="[required, matchingPasswords]"></v-text-field>
+						</div>
+					</div>
 
-                </v-form>
-            </v-sheet>
-        </div>
-    </div>
+					<div class="my-4 v-col-12 d-flex justify-center">
+						<v-btn type="submit" color="primary" @click="register()">{{ $t('register.title') }}</v-btn>
+					</div>
+				</v-card>
+			</v-form>
+
+			<div class="d-flex justify-center mt-4">
+				<router-link class="hk-login-link" to="/login">{{ $t('links.alreadyHaveAccount') }}</router-link>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-    name: 'Login',
-    data() {
-        return {
-            rules: {
-                match: value => this.repeatpassword === this.password || 'Passwords do not match'
-            },
-            name: '',
-            surname: '',
-            email: '',
-            password: '',
-            repeatpassword: '',
-            visible: false,
-            visibler: false
-        }
-    },
-    computed: {
+	name: 'Login',
+	data() {
+		return {
+			name: '',
+			surname: '',
+			email: '',
+			password: '',
+			repeatpassword: '',
+			visible: false,
+			visibler: false,
+			isFormValid: false
+		}
+	},
+	computed: {
 
-    },
-    methods: {
-        required: function (value) {
-            if (value) {
-                return true;
-            } else {
-                return this.$t('validation.required');
-            }
-        },
-        min6: function (value) {
-            if (value.length >= 6) {
-                return true;
-            } else {
-                return this.$t('validation.minLength');
-            }
-        },
-        validPassword: function () {
-            if (/.*\d.*/.test(this.password)) {
-                return true;
-            } else {
-                return this.$t('validation.mustContainDigit');
-            }
-        },
-        matchingPasswords: function () {
-            if (this.password === this.repeatpassword) {
-                return true;
-            } else {
-                return this.$t('validation.passwordsDontMatch');
-            }
-        },
-        validMail: function () {
-            if (/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)) {
-                return true;
-            } else {
-                return this.$t('validation.invalidMail');
-            }
-        },
-        register() {
-            if(this.password != this.repeatpassword) {
-                // this.$store.dispatch('showSnackbar', this.$t('register.passwordsNotMatch'))
-                // alert("bad");
-                return
-            }
+	},
+	methods: {
+		required: function (value) {
+			if (value) {
+				return true;
+			} else {
+				return this.$t('validation.required');
+			}
+		},
+		min6: function (value) {
+			if (value.length >= 6) {
+				return true;
+			} else {
+				return this.$t('validation.minLength');
+			}
+		},
+		validPassword: function () {
+			if (/.*\d.*/.test(this.password)) {
+				return true;
+			} else {
+				return this.$t('validation.mustContainDigit');
+			}
+		},
+		matchingPasswords: function () {
+			if (this.password === this.repeatpassword) {
+				return true;
+			} else {
+				return this.$t('validation.passwordsDontMatch');
+			}
+		},
+		validMail: function () {
+			if (/^(([^<>()[\]\\.,;:\s@']+(\.[^<>()\\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.email)) {
+				return true;
+			} else {
+				return this.$t('validation.invalidMail');
+			}
+		},
+		register() {
+			if (this.password != this.repeatpassword) {
+				// this.$store.dispatch('showSnackbar', this.$t('register.passwordsNotMatch'))
+				// alert("bad");
+				return
+			}
 
-            
+			if (this.isFormValid) {
+				try {
+					axios.post(import.meta.env.VITE_URL + '/api/account/register', {
+						name: this.name,
+						surname: this.surname,
+						email: this.email,
+						password: this.password,
 
-            try {
-                axios.post(import.meta.env.VITE_URL + '/api/account/register', {
-                    name: this.name,
-                    surname: this.surname,
-                    email: this.email,
-                    password: this.password,
+					}).then((response) => {
+						console.log(response)
 
-                }).then((response) => {
-                    console.log(response)
+						sessionStorage.setItem('token', response.data.token)
+						sessionStorage.setItem('role', response.data.role)
+						this.$router.push("/")
+						this.$store.dispatch('login', [response.data.token, response.data.role])
 
-                    sessionStorage.setItem('token', response.data.token)
-                    sessionStorage.setItem('role', response.data.role)
-                    this.$router.push("/")
-                    this.$store.dispatch('login', [response.data.token, response.data.role])
-
-                })
-            } catch (e) {
-                console.log(e)
-            }
-        }
-    },
+					})
+				} catch (e) {
+					console.log(e)
+				}
+			}
+		},
+	}
 }
 </script>
 
