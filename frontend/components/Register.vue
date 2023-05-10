@@ -10,6 +10,9 @@
                             <v-text-field v-model="name" :label="$t('register.name')" :rules="[required]"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
+                            <v-text-field v-model="surname" :label="$t('register.surname')" :rules="[required]"></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
                             <v-text-field v-model="email" :label="$t('register.email')" :rules="[required, validMail]"
                                 required></v-text-field>
                         </v-col>
