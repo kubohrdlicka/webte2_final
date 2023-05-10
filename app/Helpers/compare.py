@@ -12,6 +12,8 @@ expr1 = parse_latex(expr1)
 expr2 = parse_latex(expr2)
 
 
+expr1 = nsimplify(expr1, tolerance=0.001, rational=True)
+expr2 = nsimplify(expr2, tolerance=0.001, rational=True)
 
 
 rounded_expr1 = expr1
