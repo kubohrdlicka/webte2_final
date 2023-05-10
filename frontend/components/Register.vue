@@ -4,13 +4,14 @@
 
             <v-sheet width="600" class="align-self-center">
                 <h1>{{ $t('register.title') }}</h1>
-                <v-form validate-on="submit" @submit.prevent="submit">
+                <v-form v-model="isFormValid" @submit.prevent>
                     <v-row>
                         <v-col cols="12" md="6">
                             <v-text-field v-model="name" :label="$t('register.name')" :rules="[required]"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field v-model="email" :label="$t('register.email')" :rules="[required, validMail]" required></v-text-field>
+                            <v-text-field v-model="email" :label="$t('register.email')" :rules="[required, validMail]"
+                                required></v-text-field>
                         </v-col>
                     </v-row>
 
@@ -25,7 +26,7 @@
                             <v-text-field :append-inner-icon="visibler ? 'mdi-eye-off' : 'mdi-eye'"
                                 :type="visibler ? 'text' : 'password'" v-model="repeatpassword"
                                 :label="$t('register.password2')" @click:append-inner="visibler = !visibler"
-                                :rules="[required, min6, matchingPasswords]" required></v-text-field>
+                                :rules="[required, matchingPasswords]" required></v-text-field>
                         </v-col>
                     </v-row>
                     <v-btn type="submit" @click="register()">{{ $t('register.title') }}</v-btn>
@@ -43,15 +44,13 @@ export default {
     name: 'Login',
     data() {
         return {
-            rules: {
-                match: value => this.repeatpassword === this.password || 'Passwords do not match'
-            },
             name: '',
             email: '',
             password: '',
             repeatpassword: '',
             visible: false,
-            visibler: false
+            visibler: false,
+            isFormValid: false
         }
     },
     computed: {
@@ -94,31 +93,25 @@ export default {
             }
         },
         register() {
-            if(this.password != this.repeatpassword) {
-                // this.$store.dispatch('showSnackbar', this.$t('register.passwordsNotMatch'))
-                // alert("bad");
-                return
-            }
+            if (this.isFormValid) {
+                try {
+                    axios.post(import.meta.env.VITE_URL + '/api/account/register', {
+                        name: this.name,
+                        email: this.email,
+                        password: this.password,
 
-            
+                    }).then((response) => {
+                        console.log(response)
 
-            try {
-                axios.post(import.meta.env.VITE_URL + '/api/account/register', {
-                    name: this.name,
-                    email: this.email,
-                    password: this.password,
+                        sessionStorage.setItem('token', response.data.token)
+                        sessionStorage.setItem('role', response.data.role)
+                        this.$router.push("/")
+                        this.$store.dispatch('login', [response.data.token, response.data.role])
 
-                }).then((response) => {
-                    console.log(response)
-
-                    sessionStorage.setItem('token', response.data.token)
-                    sessionStorage.setItem('role', response.data.role)
-                    this.$router.push("/")
-                    this.$store.dispatch('login', [response.data.token, response.data.role])
-
-                })
-            } catch (e) {
-                console.log(e)
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
             }
         }
     },
