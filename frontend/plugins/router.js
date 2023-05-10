@@ -1,9 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import PortalLayout from '../layouts/PortalLayout.vue'
+import store from './store'
 
 function requireLogin(to, from, next) {
-  const role = window.sessionStorage.getItem('auth')
-  if (role) {
+  const auth = window.sessionStorage.getItem('auth')
+  if (auth && !store.state.authentificated) {
+    const role = window.sessionStorage.getItem('role')
+    const token = window.sessionStorage.getItem('token')
+    store.dispatch('login', {token: token, role: role})
+    console.log('restored login');
+  }
+  if (auth) {
     next()
   } else {
     next('/login')
