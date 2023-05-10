@@ -9,6 +9,7 @@
 
     //TOTO: add table with results <br>
     //fancy one with infos about assigment u got data on /assigments/info/:id
+    //pri vyhreeslovani solutionov treba pred ne a za ne da $$ $$ pri posielani propu do componentu
     <div>
     </div>
     <v-btn @click="getCSV()"> {{$t('table.getsv')}}</v-btn>
