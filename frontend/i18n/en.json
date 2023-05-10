@@ -56,6 +56,7 @@
   "register": {
     "title": "Register",
     "name": "Name",
+    "surname": "Surname",
     "email": "E-mail",
     "password": "Password",
     "password2": "Repeat password",

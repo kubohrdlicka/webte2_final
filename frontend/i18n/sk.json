@@ -47,6 +47,7 @@
   "register": {
     "title": "Zaregistrovať sa",
     "name": "Meno",
+    "surname": "Priezvisko",
     "password": "Heslo",
     "password2": "Heslo znovu",
     "email": "E-mail",
