@@ -10,6 +10,9 @@
                             <v-text-field v-model="name" :label="$t('register.name')" :rules="[required]"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
+                            <v-text-field v-model="surname" :label="$t('register.surname')" :rules="[required]"></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
                             <v-text-field v-model="email" :label="$t('register.email')" :rules="[required, validMail]" required></v-text-field>
                         </v-col>
                     </v-row>
@@ -47,6 +50,7 @@ export default {
                 match: value => this.repeatpassword === this.password || 'Passwords do not match'
             },
             name: '',
+            surname: '',
             email: '',
             password: '',
             repeatpassword: '',
@@ -105,6 +109,7 @@ export default {
             try {
                 axios.post(import.meta.env.VITE_URL + '/api/account/register', {
                     name: this.name,
+                    surname: this.surname,
                     email: this.email,
                     password: this.password,
 
