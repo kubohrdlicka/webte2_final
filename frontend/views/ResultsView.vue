@@ -1,47 +1,81 @@
 <template>
   <div class="pt-6">
-    <v-select
-      :items="assigments"
-      label="Select Assignment"
-      item-text="name"
-      item-value="id"
-    ></v-select>
+    <v-select :items="assigments" v-model="select" label="Select Assignment" item-text="name" item-value="id"></v-select>
 
     //TOTO: add table with results <br>
     //fancy one with infos about assigment u got data on /assigments/info/:id
-    //pri vyhreeslovani solutionov treba pred ne a za ne da $$  pri posielani propu do componentu
+    //pri vyhreeslovani solutionov treba pred ne a za ne da $$ pri posielani propu do componentu
 
-    
+    <v-data-table v-if="active" v-model:expanded="expanded" :headers="tableHeaders" :items="tableData" 
+       item-key="name" show-expand class="elevation-1">
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>Expandable Table</v-toolbar-title>
+          <v-spacer></v-spacer>
+
+        </v-toolbar>
+      </template>
+      <template v-slot:expanded-row="{ columns, item }">
+      <tr>
+        <td :colspan="columns.length">
+          <div v-for="point in item.raw.points">
+            {{point}}
+
+          </div> 
+        </td>
+      </tr>
+    </template>
+    </v-data-table>
 
 
     <div>
     </div>
-    <v-btn @click="getCSV()"> {{$t('table.getsv')}}</v-btn>
+    <v-btn @click="getCSV()"> {{ $t('table.getsv') }}</v-btn>
   </div>
 </template>
 
 <script>
+import { VDataTable } from 'vuetify/labs/VDataTable'
 import axios from 'axios'
 import apiService from '../services/apiService'
 
 export default {
   name: 'Results view',
-  data(){
-    return{
-      assigments: []
+  components: {
+    VDataTable,
+  },
+  data() {
+    return {
+      expanded: [],
+      tableHeaders: [
+        { title: 'Name', value: 'student.name' },
+        { title: 'Surname', value: 'student.surname' },
+        { title: 'Points', value: 'sumpoints' },
+        { title: 'Max Points', value: 'totalpoints' },
+      ],
+      singleExpand: true,
+      assigments: [],
+      tableData: null,
+      active: false,
+      select: null,
     }
   },
-  methods:{
-    getData(){
+  watch: {
+    select: function (val) {
+      this.getAssigmentInfo(val)
+    }
+  },
+  methods: {
+    getData() {
       apiService.get('/api/allassigments').then((response) => {
         this.assigments = response.data
       })
     },
-    getCSV(){
+    getCSV() {
       axios({
         url: import.meta.env.VITE_URL + '/api/generatecsv',
         method: 'GET',
-        responseType: 'blob', 
+        responseType: 'blob',
         headers: {
           Authorization: 'Bearer ' + sessionStorage.getItem('token')
         }
@@ -53,9 +87,16 @@ export default {
         document.body.appendChild(link)
         link.click()
       })
+    },
+    getAssigmentInfo(id) {
+      apiService.get('/api/assigmentpoints/' + id).then((response) => {
+        console.log(response.data)
+        this.tableData = response.data
+        this.active = true
+      })
     }
 
-  },mounted(){
+  }, mounted() {
     this.getData()
   }
 }
