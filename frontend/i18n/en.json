@@ -1,11 +1,16 @@
 {
-  "title": {
+  "titles": {
     "test": "Bon zour.",
     "adminViewTitle": "User administration",
     "assignmentCreation": "New assignment",
     "filesOverview": "File overview",
     "newFile": "Add files",
-    "filesList": "List of files"
+    "filesList": "List of files",
+    "noData": "No data available",
+    "assignment": "Assignment details",
+    "assignmentTime": "Start & Deadline",
+    "assignmentTasks": "Tasks in assignment",
+    "assignmentPoints": "Points"
   },
   "table": {
     "noData": "No data available",
@@ -14,7 +19,9 @@
     "email": "E-mail",
     "role": "Role",
     "title": "Title",
-    "created": "Created at"
+    "created": "Created at",
+    "points": "Points (Obtained)",
+    "maxPoints": "Points (Maximum)"
   },
   "button": {
     "cancel": "Cancel",
@@ -22,7 +29,8 @@
     "save": "Save",
     "createNewAssignment": "Create new assignment",
     "submitExam": "Submit",
-    "upload": "Upload"
+    "upload": "Upload",
+    "csv": "Download CSV"
   },
   "navigation": {
     "dashboard": "Overview",
@@ -72,7 +80,7 @@
     "name": "Name",
     "description": "Description",
     "start": "Start",
-    "end": "End",
+    "end": "Deadline",
     "points": "Points",
     "taskBundles": "Task bundle"
   },
@@ -81,7 +89,9 @@
   },
   "input": {
     "role": "Role",
-    "fileLabel": "Choose a .zip folder"
+    "fileLabel": "Choose a .zip folder",
+    "assignmentTitle": "Title",
+    "assignmentPoints": "Points"
   },
   "dashboard": {
     "activeAssignment": "Active Assignments",
@@ -94,7 +104,9 @@
     "required": "This field is required.",
     "minLength": "Field must contain at least 6 characters.",
     "mustContainDigit": "Password must contain at least one digit.",
-    "passwordsDontMatch": "Passwords don't match",
-    "invalidMail": "Input a valid e-mail address."
+    "passwordsDontMatch": "Passwords don't match.",
+    "invalidMail": "Input a valid e-mail address.",
+    "notNegative": "Not negative, please.",
+    "min3Chars": "Field must contain at least 3 characters."
   }
 }
