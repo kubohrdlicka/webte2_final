@@ -54,7 +54,8 @@
   "login": {
     "title": "Log in",
     "password": "Password",
-    "email": "E-mail"
+    "email": "E-mail",
+    "register": "Register"
   },
   "roles": {
     "admin": "Admin",

@@ -45,7 +45,8 @@
   "login": {
     "title": "Prihlásiť sa",
     "password": "Heslo",
-    "email": "E-mail"
+    "email": "E-mail",
+    "register": "Zaregistrovať sa"
   },
   "roles": {
     "admin": "Admin",

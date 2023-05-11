@@ -2,10 +2,6 @@
   <div class="pt-6">
     <v-select :items="assigments" v-model="select" label="Select Assignment" item-text="name" item-value="id"></v-select>
 
-    //TOTO: add table with results <br>
-    //fancy one with infos about assigment u got data on /assigments/info/:id
-    //pri vyhreeslovani solutionov treba pred ne a za ne da $$ pri posielani propu do componentu
-
     <v-data-table v-if="active" v-model:expanded="expanded" :headers="tableHeaders" :items="tableData" 
        item-key="name" show-expand class="elevation-1">
       <template v-slot:top>

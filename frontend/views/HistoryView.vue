@@ -5,8 +5,8 @@
     </div>
 
     <v-card>
-      <v-card-subtitle class="pt-4 pb-2">{{ $t('title.doneAssignments') }}</v-card-subtitle>
-      <div class="d-flex flex-wrap">
+      <v-card-subtitle class="pt-4 pb-2"  v-if="store.role === 'student'">{{ $t('title.doneAssignments') }}</v-card-subtitle>
+      <div class="d-flex flex-wrap"  v-if="store.role === 'student'">
         <AssignmentTile v-for="item, i in assignmentsDone" :key="i" :data="item" variant='done' />
 
         <div v-if="!assignmentsDone.length" class="d-flex justify-center py-8 w-100">
@@ -48,6 +48,11 @@ export default {
   name: 'History view',
   components: {
     AssignmentTile,
+  },
+  computed: {
+    store() {
+      return this.$store.state
+    },
   },
   data() {
     return {

@@ -1,18 +1,19 @@
 <template>
     <div class="d-flex justify-center align-center">
         <div class="form">
-
+            
             <v-sheet width="300" class="align-self-center">
                 <h1>{{ $t('login.title') }}</h1>
                 <v-form fast-fail v-model="isFormValid" @submit.prevent>
                     <v-text-field v-model="email" :label="$t('login.email')" :rules="[required]"></v-text-field>
-
+                    
                     <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                        :type="visible ? 'text' : 'password'" v-model="password" :label="$t('login.password')"
-                        @click:append-inner="visible = !visible" :rules="[required]"></v-text-field>
-
+                    :type="visible ? 'text' : 'password'" v-model="password" :label="$t('login.password')"
+                    @click:append-inner="visible = !visible" :rules="[required]"></v-text-field>
+                    
                     <v-btn type="submit" @click="logIn" block class="mt-2">{{ $t('login.title') }}</v-btn>
-
+                    <v-btn @click="$router.push('/register')" block class="mt-2"> {{ $t('login.register')}} </v-btn>
+                    
                 </v-form>
             </v-sheet>
         </div>
