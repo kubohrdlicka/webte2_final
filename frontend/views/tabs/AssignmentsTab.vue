@@ -16,7 +16,7 @@
               <v-icon size="large" color="grey-lighten-1">mdi-border-none-variant</v-icon>
             </div>
             <div class="d-flex justify-center">
-              <v-card-subtitle>{{ $t('title.noData') }}</v-card-subtitle>
+              <v-card-subtitle>{{ $t('titles.noData') }}</v-card-subtitle>
             </div>
           </div>
         </div>

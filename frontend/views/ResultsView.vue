@@ -30,7 +30,7 @@
 
     <div>
     </div>
-    <v-btn @click="getCSV()"> {{ $t('table.getsv') }}</v-btn>
+    <v-btn @click="getCSV()"> {{ $t('button.csv') }}</v-btn>
   </div>
 </template>
 
@@ -48,10 +48,10 @@ export default {
     return {
       expanded: [],
       tableHeaders: [
-        { title: 'Name', value: 'student.name' },
-        { title: 'Surname', value: 'student.surname' },
-        { title: 'Points', value: 'sumpoints' },
-        { title: 'Max Points', value: 'totalpoints' },
+        { title: this.$t('table.name'), value: 'student.name' },
+        { title: this.$t('table.surname'), value: 'student.surname' },
+        { title: this.$t('table.points'), value: 'sumpoints' },
+        { title: this.$t('table.maxPoints'), value: 'totalpoints' },
       ],
       singleExpand: true,
       assigments: [],

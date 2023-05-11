@@ -5,7 +5,12 @@
     "assignmentCreation": "Nové zadanie",
     "filesOverview": "Prehľad súborov",
     "newFile": "Pridať súbory",
-    "filesList": "Zoznam súborov"
+    "filesList": "Zoznam súborov",
+    "noData": "Žiadne dostupné dáta",
+    "assignment": "Detaily zadania",
+    "assignmentTime": "Začiatok a deadline",
+    "assignmentTasks": "Úlohy v zadaní",
+    "assignmentPoints": "Body"
   },
   "table": {
     "noData": "Žiadne dostupné dáta",
@@ -14,7 +19,9 @@
     "email": "E-mail",
     "role": "Rola",
     "title": "Názov",
-    "created": "Vytvorený"
+    "created": "Vytvorený",
+    "points": "Body (Získané)",
+    "maxPoints": "Body (Maximum)"
   },
   "button": {
     "cancel": "Späť",
@@ -22,7 +29,8 @@
     "save": "Uložiť",
     "createNewAssignment": "Vytvoriť nové zadanie",
     "submitExam": "Odovzdať",
-    "upload": "Nahrať"
+    "upload": "Nahrať",
+    "csv": "Staihnuť CSV"
   },
   "messages": {
     "changeUser": "Zmena role",
@@ -72,7 +80,7 @@
     "name": "Názov",
     "description": "Popis",
     "start": "Začiatok",
-    "end": "Koniec",
+    "end": "Deadline",
     "points": "Body",
     "taskBundles": "Sada príkladov"
   },
@@ -81,7 +89,9 @@
   },
   "input": {
     "role": "Rola",
-    "fileLabel": "Zvoľte .zip priečinok"
+    "fileLabel": "Zvoľte .zip priečinok",
+    "assignmentTitle": "Názov",
+    "assignmentPoints": "Body"
   },
   "dashboard": {
     "activeAssignment": "Aktívne zadania",
@@ -95,6 +105,8 @@
     "minLength": "Pole musí obsahovať aspoň 6 znakov.",
     "mustContainDigit": "Heslo musí obsahovať aspoň jednu číslicu.",
     "passwordsDontMatch": "Heslá sa nezhodujú.",
-    "invalidMail": "Zadajte platnú mailovú adresu."
+    "invalidMail": "Zadajte platnú mailovú adresu.",
+    "notNegative": "Nie záporne, prosím.",
+    "min3Chars": "Pole musí obsahovať aspoň 3 znakoy."
   }
 }
