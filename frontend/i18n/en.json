@@ -86,7 +86,8 @@
     "taskBundles": "Task bundle"
   },
   "assignmentTile": {
-    "take": "Take"
+    "take": "Take",
+    "details": "Details"
   },
   "input": {
     "role": "Role",

@@ -1,9 +1,68 @@
 <template>
+  <v-card class="hk-assignment-tile-wrapper ma-3" @click="take()">
+    <div class="d-flex justify-center align-center">
+      <div v-if="variant === 'active'" class="w-100">
+        <div class="d-flex justify-center hk-big-icon-2">
+          <v-icon color="primary" class="pa-8">mdi-folder-open-outline</v-icon>
+        </div>
+        <div class="mx-2">
+          <v-divider class="mx-1"/>
+          <v-card-title class="pa-0">{{ data.title }}</v-card-title>
+          <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
+          <v-divider class="mx-1 mt-1"/>
+        </div>
+        <div class="d-flex justify-end ma-4">
+          <v-btn color="primary">{{ $t('assignmentTile.take') }}</v-btn>
+        </div>
+        <div class="d-flex justify-center align-center pb-2" title="Deadline">
+          <v-card-subtitle>{{ formatDateTime(data.end) }}</v-card-subtitle>
+        </div>
+      </div>
+
+      <div v-else-if="variant === 'done'" class="w-100">
+        <div class="d-flex justify-center hk-big-icon-2">
+          <v-icon color="primary" class="pa-8">mdi-folder-open</v-icon>
+        </div>
+        <div class="mx-2">
+          <v-divider class="mx-1"/>
+          <v-card-title class="pa-0">{{ data.title }}</v-card-title>
+          <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
+          <v-divider class="mx-1 mt-1"/>
+        </div>
+        <div class="d-flex justify-end mx-4 my-2">
+          <v-card-title class="pa-0">{{ data.points }} / {{data.total_points}}</v-card-title>
+        </div>
+        <div class="d-flex justify-end mx-4 my-2">
+          <v-btn color="primary">{{ $t('assignmentTile.details') }}</v-btn>
+        </div>
+      </div>
+
+      <div v-else-if="variant === 'pastdue'">
+        <div class="d-flex justify-center hk-big-icon-2">
+          <v-icon color="error" class="pa-8">mdi-timer-lock-outline</v-icon>
+        </div>
+        <div class="mx-2">
+          <v-divider class="mx-1"/>
+          <v-card-title class="pa-0">{{ data.title }}</v-card-title>
+          <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
+          <v-divider class="mx-1 mt-1"/>
+        </div>
+        <div class="d-flex justify-center align-center pb-2 pt-4" title="Deadline">
+          <v-card-subtitle>{{ formatDateTime(data.end) }}</v-card-subtitle>
+        </div>
+      </div>
+      <div v-else class="hk-big-icon-4">
+        <v-icon size="large" color="grey-lighten-1">mdi-robot-dead-outline</v-icon>
+      </div>
+    </div>
+  </v-card>
+
+  <!--
   <div class="h-wrapper ma-2">
     {{ data.title }} | {{ data.description }} | {{ data.start }} | {{ data.end }}| {{ store.role }}
     <v-btn color="primary" v-if="store.role === 'student' && variant === 'active'" @click="take()">{{ $t('assignmentTile.take') }}</v-btn>
     <h2 v-if="variant === 'done'">{{ data.points }} / {{data.total_points}}</h2>
-  </div>
+  </div>-->
 </template>
 
 <script>
@@ -29,16 +88,22 @@ export default {
       this.$router.push({ name: 'assigment-info', params: { id: this.data.id } })
       //redirect to page wehere studend chooses tasks from assigmesnts
       //get from api /api/assigments/info/{id} (id is in props data object)
-    }
-  }
+    },
+    formatDateTime(input) {
+      const date = new Date(input);
+      return `${date.toLocaleDateString('sk')} (${date.toLocaleTimeString('sk')})`
+    },
+  },
 
 }
 </script>
 
 <style lang="scss" scoped>
-.h-wrapper {
-  background-color: rgb(var(--v-theme-primary));
-  width: 10rem;
-  height: 10rem;
+
+.hk-assignment-tile-wrapper {
+  background-color: rgb(var(--v-theme-background));
+  border: 3px solid rgb(var(--v-theme-primary));
+  border-radius: 1rem;
+  width: 12rem;
 }
 </style>

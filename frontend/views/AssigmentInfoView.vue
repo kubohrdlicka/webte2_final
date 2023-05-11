@@ -26,6 +26,7 @@
       <div class="mx-2">
         <ExamTile v-for="item, i in examBundles" :key="i"
           :data="item"
+          :deadline="assignment.end"
         />
       </div>
     </v-card>

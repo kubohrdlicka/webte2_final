@@ -86,7 +86,8 @@
     "taskBundles": "Sada príkladov"
   },
   "assignmentTile": {
-    "take": "Vstúpiť"
+    "take": "Vstúpiť",
+    "details": "Detaily"
   },
   "input": {
     "role": "Rola",
