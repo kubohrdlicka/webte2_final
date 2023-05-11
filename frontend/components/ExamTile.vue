@@ -8,7 +8,7 @@
       </div>
 
       <div class="d-flex align-center py-1">
-        <div v-if="store.role === 'student' && !data.earned_points" class="d-flex align-center">
+        <div v-if="store.role === 'student' && data.earned_points === undefined" class="d-flex align-center">
           <v-card-subtitle class="pa-0 mr-3">( {{ data.points }} {{ $t('examTile.pointSign') }} )</v-card-subtitle>
           <v-btn color="primary" @click="take()">{{ $t('examTile.take') }}</v-btn>
         </div>

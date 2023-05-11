@@ -14,6 +14,17 @@
       <v-card-subtitle class="pt-4 pb-2">{{ $t('title.canBeDoneAssignments') }}</v-card-subtitle>
       <div class="d-flex flex-wrap">
         <AssignmentTile v-for="item, i in assignments" :key="i" :data="item" variant="active" />
+
+        <div v-if="!assignments.length" class="d-flex justify-center py-8 w-100">
+          <div>
+            <div class="d-flex justify-center mb-2 hk-big-icon-2 py-4">
+              <v-icon size="large" color="grey-lighten-1">mdi-robot-happy-outline</v-icon>
+            </div>
+            <div class="d-flex justify-center">
+              <v-card-subtitle>{{ $t('titles.noData') }}</v-card-subtitle>
+            </div>
+          </div>
+        </div>
       </div>
     </v-card>
   </div>
