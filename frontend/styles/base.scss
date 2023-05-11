@@ -5,3 +5,18 @@
 .w-100 {
   width: 100% !important;
 }
+.hk-big-icon-2 {
+  * {
+    transform: scale(2);
+  }
+}
+.hk-big-icon-3 {
+  * {
+    transform: scale(3);
+  }
+}
+.hk-big-icon-4 {
+  * {
+    transform: scale(4);
+  }
+}

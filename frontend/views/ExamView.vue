@@ -1,9 +1,17 @@
 <template>
   <div class="pt-6">
     <v-card class="mx-4 mt-6">
+      <v-card-title>{{ $t('title.assignment') }}</v-card-title>
+
       <v-container class="v-col-sm-12 v-col-md-10 v-col-lg-8 pb-8">
         <div class="contentCenter">
           <div v-html="htmlContent"></div>
+
+          <div class="d-flex justify-start my-4 pt-6">
+            <v-chip prepend-icon="mdi-alert-circle-outline" color="warning" closable @click:close="{}">{{ $t('message.howToWriteAnAnswear') }}</v-chip>
+          </div>
+
+          <v-card-subtitle class="pb-1">{{ $t('title.answear') }}</v-card-subtitle>
           <math-field id="formula" v-model="formula" @input="change" />
         </div>
       </v-container>
@@ -19,8 +27,13 @@
   <v-dialog v-model="confirmSubmit" max-width="500px">
 
     <v-card>
+      
+      <div class="d-flex justify-center py-8 hk-big-icon">
+        <v-icon color="primary" size="large" class="pa-8">mdi-clipboard-check-outline</v-icon>
+      </div>
 
       <v-card-title class="text-h5 pb-0">{{ $t('messages.askForSubmitExam') }}</v-card-title>
+      <v-card-subtitle class=" pb-6">{{ $t('messages.actionWillSubmitExam') }}</v-card-subtitle>
 
       <v-card-actions class="d-flex justify-center">
         <v-btn @click="confirmSubmit = false">{{ $t('button.cancel') }}</v-btn>
@@ -106,7 +119,11 @@ export default {
           "exambundle_id": this.$route.params.id,
           "studnet_solution": this.formula,
         }
-      )
+      ).then(response => {
+        if(response.status === 200) {
+          this.$router.go(-1)
+        }
+      })
     }
   },
   async mounted() {
@@ -126,7 +143,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .img-fluid {
   max-width: 60%;
   height: auto;
@@ -160,4 +177,11 @@ body.ML__fonts-loading .ML__base {
   width: 60%;
   margin: 0 auto;
   display: block;}
+
+.hk-big-icon {
+  * {
+    transform: scale(3);
+  }
+}
+
 </style>

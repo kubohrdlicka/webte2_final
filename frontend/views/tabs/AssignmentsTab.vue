@@ -11,8 +11,8 @@
 
         <div v-if="!assignments.length" class="d-flex justify-center py-8 w-100">
           <div>
-            <div class="d-flex justify-center mb-2">
-              <v-icon size="large" color="grey-lighten-1">mdi-border-none-variant</v-icon>
+            <div class="d-flex justify-center mb-2 hk-big-icon-2 py-4">
+              <v-icon size="large" color="grey-lighten-1">mdi-robot-happy-outline</v-icon>
             </div>
             <div class="d-flex justify-center">
               <v-card-subtitle>{{ $t('title.noData') }}</v-card-subtitle>
@@ -50,13 +50,12 @@ export default {
   },
   methods: {
     async getAssignments() {
-      console.log(this.done)
-      if(this.active){
+      if(this.variant === 'active'){
         apiService.get('/api/assigments/active').then(Response => {
           this.assignments = Response.data
         })
       }else{
-        if(this.done){
+        if(this.variant === 'done'){
           apiService.get('api/assigments/done').then(Response => {
             this.assignments = Response.data
           })
