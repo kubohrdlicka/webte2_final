@@ -81,8 +81,8 @@
                 <v-card-subtitle class="pa-0">{{ i.name }}</v-card-subtitle>
               </div>
               <div class="d-flex flex-wrap align-center">
-                <v-text-field class="v-col-6 v-col-md-4 py-0" v-model="i.title" type="text" :label="$t('input.assignemntTitle')" variant="outlined" density="compact" :rules="[requiredRule]"></v-text-field>
-                <v-text-field class="v-col-3 v-col-md-2 py-0" v-model="i.points" type="number" :label="$t('input.assignemntPoints')" variant="outlined" density="compact" :rules="[requiredRule, positiveNumber]"></v-text-field>
+                <v-text-field class="v-col-6 v-col-md-4 py-0" v-model="i.title" type="text" :label="$t('input.assignmentTitle')" variant="outlined" density="compact" :rules="[requiredRule]"></v-text-field>
+                <v-text-field class="v-col-3 v-col-md-2 py-0" v-model="i.points" type="number" :label="$t('input.assignmentPoints')" variant="outlined" density="compact" :rules="[requiredRule, positiveNumber]"></v-text-field>
               </div>
               <v-divider/>
             </div>
@@ -110,17 +110,17 @@ export default {
   data() {
     return {
       textRules: [
-          value => !!value || 'Required.',
-          value => (value && value.length >= 3) || 'Min 3 characters',
+          value => !!value || this.$t('validation.required'),
+          value => (value && value.length >= 3) || this.$t('validation.min3Chars'),
       ],
       required: [
-          value => !!value || 'Required.',
+          value => !!value || this.$t('validation.required'),
       ],
       selectRequired: [
-        value => !!(value && value.length) || 'Item is required'
+        value => !!(value && value.length) || this.$t('validation.required')
       ],
-      requiredRule: value => !!value || 'Required.',
-      positiveNumber: value => value >= 0 || 'not negative please',
+      requiredRule: value => !!value || this.$t('validation.required'),
+      positiveNumber: value => value >= 0 || this.$t('validation.notNegative'),
       taskBundles: [],
       values: [],
       name: '',
