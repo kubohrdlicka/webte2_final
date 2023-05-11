@@ -19,8 +19,10 @@
       <tr>
         <td :colspan="columns.length">
           <div v-for="point in item.raw.points">
-            {{point}}
-
+            <!-- {{point}}  -->
+            {{point.examBundleId.title}}
+            <assigment-giver :assigment="`$$` + point.student_exam[0].studen_solution + `$$`"></assigment-giver>
+            {{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}}
           </div> 
         </td>
       </tr>
@@ -38,11 +40,13 @@
 import { VDataTable } from 'vuetify/labs/VDataTable'
 import axios from 'axios'
 import apiService from '../services/apiService'
+import AssigmentGiver from '../components/AssigmentGiver.vue'
 
 export default {
   name: 'Results view',
   components: {
     VDataTable,
+    AssigmentGiver
   },
   data() {
     return {
