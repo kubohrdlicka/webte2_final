@@ -1,12 +1,12 @@
 <template>
   <div class="pt-6">
-    <v-select :items="assigments" v-model="select" label="Select Assignment" item-text="name" item-value="id"></v-select>
+    <v-select :items="assigments" v-model="select" :label="$t('fancy.select')" item-text="name" item-value="id"></v-select>
 
     <v-data-table v-if="active" v-model:expanded="expanded" :headers="tableHeaders" :items="tableData" 
        item-key="name" show-expand class="elevation-1">
       <template v-slot:top>
-        <v-toolbar flat>
-          <v-toolbar-title>Expandable Table</v-toolbar-title>
+        <v-toolbar flat color="primary">
+          <v-toolbar-title >{{ $t('fancy.name')}}</v-toolbar-title>
           <v-spacer></v-spacer>
 
         </v-toolbar>
@@ -15,10 +15,20 @@
       <tr>
         <td :colspan="columns.length">
           <div v-for="point in item.raw.points">
-            <!-- {{point}}  -->
-            {{point.examBundleId.title}}
-            <assigment-giver :assigment="`$$` + point.student_exam[0].studen_solution + `$$`"></assigment-giver>
-            {{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}}
+           
+
+
+              <h4>{{point.examBundleId.title}}</h4> 
+              <div class="d-flex allign-start justify-space-between ">
+                {{ point.task[0].solutions }}
+
+                <div>
+                  {{ $t('fancy.solutionTitle') }}
+                  <assigment-giver :assigment="`$$` + point.student_exam[0].studen_solution + `$$`"></assigment-giver>
+                </div>
+                {{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}}
+              </div> 
+            
           </div> 
         </td>
       </tr>
@@ -28,7 +38,9 @@
 
     <div>
     </div>
-    <v-btn @click="getCSV()"> {{ $t('button.csv') }}</v-btn>
+    <div class="d-flex justify-end ma-4">
+      <v-btn @click="getCSV()" class="mx-2" color="primary"> {{ $t('button.csv') }}</v-btn>
+    </div>
   </div>
 </template>
 

@@ -111,5 +111,10 @@
     "invalidMail": "Zadajte platnú mailovú adresu.",
     "notNegative": "Nie záporne, prosím.",
     "min3Chars": "Pole musí obsahovať aspoň 3 znakoy."
+  },
+  "fancy":{
+    "select": "Vyberte zadanie",
+    "name": "Výsledky zo zadania: ",
+    "solutionTitle": "Riešenie študenta:"
   }
 }

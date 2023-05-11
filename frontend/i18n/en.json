@@ -111,5 +111,10 @@
     "invalidMail": "Input a valid e-mail address.",
     "notNegative": "Not negative, please.",
     "min3Chars": "Field must contain at least 3 characters."
+  },
+  "fancy":{
+    "select": "Choose assigment",
+    "name": "Details of assigmnet: ",
+    "solutionTitle": "Student`s solution"
   }
 }
