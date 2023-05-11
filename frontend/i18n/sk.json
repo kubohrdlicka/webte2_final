@@ -74,7 +74,8 @@
     "chooseFile": "Zvoľte súbor"
   },
   "examTile": {
-    "take": "Vstúpiť"
+    "take": "Vstúpiť",
+    "pointSign": "b"
   },
   "assignmentDetails": {
     "name": "Názov",

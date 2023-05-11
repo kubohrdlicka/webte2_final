@@ -6,25 +6,16 @@
         <v-card-title v-if="data.title" class="">{{ data.title }}</v-card-title>
         <v-card-subtitle v-else class="">{{ $t('title.noTitle') }}</v-card-subtitle>
       </div>
+
       <div class="d-flex align-center py-1">
-        <div v-if="store.role === 'student' && !data.earned_points" class="d-flex">
-          <v-card-title class="pa-0 mr-3">{{ data.points }} {{ $t('examTile.pointSign') }}</v-card-title>
+        <div v-if="store.role === 'student' && !data.earned_points" class="d-flex align-center">
+          <v-card-subtitle class="pa-0 mr-3">( {{ data.points }} {{ $t('examTile.pointSign') }} )</v-card-subtitle>
           <v-btn color="primary" @click="take()">{{ $t('examTile.take') }}</v-btn>
         </div>
         <v-card-title v-else class="pa-0">{{data.earned_points}} / {{data.points}}</v-card-title>
       </div>
     </div>
   </div>
-
-
-  <!--
-    <div class="h-wrapper ma-2">
-        {{ data.title }} | {{ data.description }} | {{ data.created_at }} | {{ data.end }}| {{ store.role }}
-
-        <v-btn color="primary" v-if="store.role === 'student' && data.earned_points == undefined" @click="take()">{{ $t('examTile.take') }}</v-btn>
-        <h2 v-if="data.earned_points != undefined">{{data.earned_points}} / {{data.points}}</h2>
-    </div>
--->
 </template>
   
 <script>
