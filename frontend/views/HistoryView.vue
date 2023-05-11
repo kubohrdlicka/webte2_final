@@ -7,12 +7,12 @@
     <v-card>
       <v-card-subtitle class="pt-4 pb-2">{{ $t('title.doneAssignments') }}</v-card-subtitle>
       <div class="d-flex flex-wrap">
-        <AssignmentTile v-for="item, i in assignmentsDone" :key="i" :data="item" :active="false" />
+        <AssignmentTile v-for="item, i in assignmentsDone" :key="i" :data="item" variant='done' />
       </div>
 
       <v-card-subtitle class="pt-4 pb-2 mt-5">{{ $t('title.pastDueAssignments') }}</v-card-subtitle>
       <div class="d-flex flex-wrap">
-        <AssignmentTile v-for="item, i in assignmentsPastDue" :key="i" :data="item" :active="false" />
+        <AssignmentTile v-for="item, i in assignmentsPastDue" :key="i" :data="item" variant='pastdue' />
       </div>
     </v-card>
   </div>

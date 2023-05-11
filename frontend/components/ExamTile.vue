@@ -42,7 +42,7 @@ export default {
   
 <style lang="scss" scoped>
 .h-wrapper {
-    background-color: rgb(var(--v-theme-primary));
+    background-color: rgb(var(--v-theme-secondary));
     width: 10rem;
     height: 10rem;
 }

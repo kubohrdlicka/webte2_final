@@ -13,7 +13,7 @@
     <v-card>
       <v-card-subtitle class="pt-4 pb-2">{{ $t('title.canBeDoneAssignments') }}</v-card-subtitle>
       <div class="d-flex flex-wrap">
-        <AssignmentTile v-for="item, i in assignments" :key="i" :data="item" :active="true" />
+        <AssignmentTile v-for="item, i in assignments" :key="i" :data="item" variant="active" />
       </div>
     </v-card>
   </div>

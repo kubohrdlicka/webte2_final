@@ -7,9 +7,9 @@
 
       <div class="pt-6">
         <div v-if="store.role === 'student'">
-          <AssignmentsTab :title="$t('dashboard.activeAssignment')" :active="true" :done="false"/>
-          <AssignmentsTab :title="$t('dashboard.doneAssignment')" :active="false" :done="true"/>
-          <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false" :done="false"/>
+          <AssignmentsTab :title="$t('dashboard.activeAssignment')" :active="true" variant="active"/>
+          <AssignmentsTab :title="$t('dashboard.doneAssignment')" :active="false" variant="done"/>
+          <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false" variant="pastdue"/>
 
         </div>
 
@@ -24,15 +24,15 @@
             </router-link>
           </div>
 
-          <AssignmentsTab :title="$t('dashboard.activeAssignment')" :active="true"/>
-          <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false"/>
+          <AssignmentsTab :title="$t('dashboard.activeAssignment')" variant="active"/>
+          <AssignmentsTab :title="$t('dashboard.historyAssignment')" variant="done"/>
         </div>
 
         <div v-else-if="store.role === 'admin'">
 
 
-          <AssignmentsTab :title="$t('dashboard.activeAssignment')" :active="true"/>
-          <AssignmentsTab :title="$t('dashboard.historyAssignment')" :active="false"/>
+          <AssignmentsTab :title="$t('dashboard.activeAssignment')" variant="active"/>
+          <AssignmentsTab :title="$t('dashboard.historyAssignment')" variant="done"/>
         </div>
 
         <v-card v-else>

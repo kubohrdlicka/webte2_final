@@ -6,8 +6,7 @@
       <div class="d-flex flex-wrap h-limit-max-height">
         <AssignmentTile v-for="item, i in assignments" :key="i"
           :data="item"
-          :active="active"
-          :done="done"
+          :variant="variant"
         />
 
         <div v-if="!assignments.length" class="d-flex justify-center py-8 w-100">
@@ -36,12 +35,8 @@ export default {
     AssignmentTile
   },
   props: {
-    active: {
-      type: Boolean,
-      required: true,
-    },
-    done: {
-      type: Boolean,
+    variant: {
+      type: String,
       required: true,
     },
     title: {

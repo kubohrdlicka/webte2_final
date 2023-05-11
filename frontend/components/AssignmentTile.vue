@@ -1,8 +1,8 @@
 <template>
   <div class="h-wrapper ma-2">
     {{ data.title }} | {{ data.description }} | {{ data.start }} | {{ data.end }}| {{ store.role }}
-    <v-btn color="primary" v-if="store.role === 'student' && active" @click="take()">{{ $t('assignmentTile.take') }}</v-btn>
-    <h2 v-if="done">{{ data.points }} / {{data.total_points}}</h2>
+    <v-btn color="primary" v-if="store.role === 'student' && variant === 'active'" @click="take()">{{ $t('assignmentTile.take') }}</v-btn>
+    <h2 v-if="variant === 'done'">{{ data.points }} / {{data.total_points}}</h2>
   </div>
 </template>
 
@@ -14,12 +14,8 @@ export default {
       type: Object,
       required: true,
     },
-    active: {
-      type: Boolean,
-      required: true,
-    },
-    done: {
-      type: Boolean,
+    variant: {
+      type: String, // active, done, pastdue
       required: true,
     },
   },

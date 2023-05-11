@@ -14,6 +14,8 @@
 
       <v-card-title>{{ assignment.description }}</v-card-title>
 
+      <v-card-subtitle>{{ $t('titles.availableExams') }}</v-card-subtitle>
+
       <div class="d-flex flex-wrap h-limit-max-height mx-2">
         <ExamTile v-for="item, i in examBundles" :key="i"
           :data="item"
