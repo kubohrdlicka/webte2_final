@@ -25,14 +25,14 @@
           </div>
 
           <AssignmentsTab :title="$t('dashboard.activeAssignment')" variant="active"/>
-          <AssignmentsTab :title="$t('dashboard.historyAssignment')" variant="done"/>
+          <AssignmentsTab :title="$t('dashboard.historyAssignment')" variant="pastdue"/>
         </div>
 
         <div v-else-if="store.role === 'admin'">
 
 
           <AssignmentsTab :title="$t('dashboard.activeAssignment')" variant="active"/>
-          <AssignmentsTab :title="$t('dashboard.historyAssignment')" variant="done"/>
+          <AssignmentsTab :title="$t('dashboard.historyAssignment')" variant="pastdue"/>
         </div>
 
         <v-card v-else>
