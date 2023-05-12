@@ -60,8 +60,8 @@ class ExamController extends Controller
                     
                     $studentPoints[] = ['examBundleId' => $examBundle, 'task'=> $task , "student_exam"=>$exam];
                     $sumpoints += $exam[0]["earned_points"];
-                    $totalpoints += $examBundle->points;
                 }
+                $totalpoints += $examBundle->points;
             }
             $points[] = ['student' => $student, 'points' => $studentPoints, 'sumpoints' => $sumpoints, 'totalpoints' => $totalpoints];
         }
