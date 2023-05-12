@@ -16,7 +16,7 @@ export default defineConfig({
       '__VUE_I18N_LEGACY_API__': false,
     },
   },
-  base: '/',
+  base: '/final',
   root: './frontend',
   runtimeCompiler: true,
   

@@ -34,7 +34,7 @@ function requireAdmin(to, from, next) {
 }
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/final'),
   routes: [
     {
       path: '/',
