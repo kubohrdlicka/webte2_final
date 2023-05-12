@@ -49,7 +49,7 @@ class TaskBundleController extends Controller
                     pathinfo($filename, PATHINFO_EXTENSION) == 'jpeg'
                 ) {
                     $publicPath = public_path();
-                    $fileDestination = $publicPath . '/' . basename($filename);
+                    $fileDestination = $publicPath . '/images/' . basename($filename);
                     copy("zip://" . storage_path('app/' . $tempPath) . "#" . $filename, $fileDestination);
                 }
             }
