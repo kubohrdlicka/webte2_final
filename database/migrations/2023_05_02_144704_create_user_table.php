@@ -22,6 +22,15 @@ return new class extends Migration
             $table->string("role")->default("student");
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array(
+                'name' => 'admin01',
+                'surname' => 'admin01',
+                'email' => 'admin@admin.admin',
+                'password' => bcrypt('Admin01'),
+                'role' => 'admin')
+        );
     }
 
     /**
