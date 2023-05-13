@@ -6,15 +6,24 @@
 
     <v-card class="mx-4">
 
-      <v-container class="v-col-sm-12 v-col-md-10 v-col-lg-8 pb-8">
+      <div class="pa-4 pb-8">
         <div class="d-flex justify-end my-2">
-          <v-text-field variant="outlined" class="v-col-5 pa-0" density="compact" prepend-icon="mdi-magnify" v-model="search"/>
+          <v-text-field variant="outlined" class="v-col-5 v-col-md-3 pa-0" density="compact"
+            prepend-icon="mdi-magnify" v-model="search" :placeholder="$t('input.search')"/>
         </div>
 
         <v-data-table v-model:items-per-page="itemsPerPage" :headers="headers" :items="userList" item-value="name"
           class="elevation-1 hk-table" :search="search">
           <template v-slot:item.icon="{ item }">
-            <v-icon color="primary">mdi-file</v-icon>
+            <v-icon v-if="item.props.title.role === 'admin'" color="primary">mdi-security</v-icon>
+            <v-icon v-else-if="item.props.title.role === 'teacher'" color="primary">mdi-school</v-icon>
+            <v-icon v-else-if="item.props.title.role === 'student'" color="primary">mdi-account</v-icon>
+          </template>
+
+          <template v-slot:top>
+            <v-toolbar flat color="primary">
+              <v-toolbar-title >{{ $t('title.registeredUsers')}}</v-toolbar-title>
+            </v-toolbar>
           </template>
 
           <template v-slot:no-data>
@@ -26,16 +35,18 @@
           </template>
 
           <template v-slot:item.actions="{ item }">
-            <v-icon size="small" class="me-2" @click="editUser(item.raw)">
-              mdi-pencil
-            </v-icon>
-            <v-icon size="small" @click="deleteUser(item.raw)">
-              mdi-delete
-            </v-icon>
+            <div class="d-flex">  
+              <v-icon size="small" class="me-2" @click="editUser(item.raw)">
+                mdi-pencil
+              </v-icon>
+              <v-icon size="small" @click="deleteUser(item.raw)">
+                mdi-delete
+              </v-icon>
+            </div>
           </template>
 
         </v-data-table>
-      </v-container>
+      </div>
     </v-card>
 
     <v-dialog v-model="dialogDelete" max-width="500px">
@@ -116,11 +127,12 @@ export default {
   computed: {
     headers() {
       return [
-        { title: this.$t('table.name'), value: 'name', width: '40%' },
-        { title: this.$t('table.surname'), value: 'surname', width: '40%' },
-        { title: this.$t('table.email'), value: 'email', width: '25%' },
-        { title: this.$t('table.role'), value: 'role', width: '23%' },
-        { key: 'actions', sortable: false, align: 'end', width: '12%' },
+        { key: 'icon', width: '7%', sortable: false },
+        { title: this.$t('table.name'), key: 'name', width: '30%' },
+        { title: this.$t('table.surname'), key: 'surname', width: '30%' },
+        { title: this.$t('table.email'), key: 'email', width: '38%' },
+        { title: this.$t('table.role'), key: 'role', width: '20%' },
+        { key: 'actions', sortable: false, align: 'end', width: '15%', sortable: false },
       ]
     }
   },
@@ -172,13 +184,8 @@ export default {
 <style lang="scss" scoped>
 :deep(.v-table__wrapper),
 .hk-table {
-  background-color: rgb(var(--v-theme-on-surface-variant)) !important;
-  * {
-    background-color: rgb(var(--v-theme-on-surface-variant)) !important;
-  }
   th {
-    text-transform: uppercase;
-    font-weight: 600 !important;
+    font-weight: 300;
   }
 }
 .hk-big-icon {
