@@ -94,5 +94,14 @@
     "mustContainDigit": "Heslo musí obsahovať aspoň jednu číslicu.",
     "passwordsDontMatch": "Heslá sa nezhodujú.",
     "invalidMail": "Zadajte platnú mailovú adresu."
+  },
+  "manual": {
+    "title": "Užívateľský manuál",
+    "teacherTitle": "Učiteľ",
+    "studentTitle": "Študent",
+    "register": "Registrácia",
+    "login": "Prihlásenie",
+    "dashboard": "Úvodná strana",
+    "assignments": "Zadania"
   }
 }
