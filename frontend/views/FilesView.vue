@@ -9,7 +9,7 @@
         <v-card-title class="text-h6 pa-0 pb-4">{{ $t('titles.newFile') }}</v-card-title>
 
         <v-file-input v-model="file" :label="$t('input.fileLabel')" accept=".zip" :loading="false" color="primary"
-          variant="outlined" />
+          variant="outlined"/>
 
         <div class="d-flex justify-end pb-4">
           <v-btn @click="uploadBundle()" color="primary">{{ $t('button.upload') }}</v-btn>
@@ -20,13 +20,23 @@
     <v-card class="mx-4 mt-6">
       <v-card-title>{{ $t('titles.filesList') }}</v-card-title>
 
-      <v-container class="v-col-sm-12 v-col-md-10 v-col-lg-8 pb-8">
+      <v-container class="v-col-sm-12 pb-8">
         <div class="d-flex justify-end my-2">
-          <v-text-field variant="outlined" class="v-col-5 pa-0" density="compact" prepend-icon="mdi-magnify" v-model="search"/>
+          <v-text-field variant="outlined" class="v-col-5 pa-0" density="compact" prepend-icon="mdi-magnify"
+            v-model="search" :placeholder="$t('input.search')"/>
         </div>
 
         <v-data-table v-model:items-per-page="itemsPerPage" :headers="headers" :items="fileList" item-value="name"
           class="elevation-1 hk-table" :search="search">
+
+          <template v-slot:top>
+            <v-toolbar flat color="primary">
+              <v-toolbar-title >{{ $t('titles.uploadedFiles')}}</v-toolbar-title>
+              <v-spacer></v-spacer>
+
+            </v-toolbar>
+          </template>
+
           <template v-slot:item.icon="{ item }">
             <v-icon color="primary">mdi-file</v-icon>
           </template>
@@ -112,13 +122,8 @@ export default {
 <style lang="scss" scoped>
 :deep(.v-table__wrapper),
 .hk-table {
-  background-color: rgb(var(--v-theme-on-surface-variant)) !important;
-  * {
-    background-color: rgb(var(--v-theme-on-surface-variant)) !important;
-  }
   th {
-    text-transform: uppercase;
-    font-weight: 600 !important;
+    font-weight: 300;
   }
 }
 </style>

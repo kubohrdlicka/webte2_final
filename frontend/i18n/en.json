@@ -10,7 +10,15 @@
     "assignment": "Assignment details",
     "assignmentTime": "Start & Deadline",
     "assignmentTasks": "Tasks in assignment",
-    "assignmentPoints": "Points"
+    "assignmentPoints": "Points",
+    "uploadedFiles": "Uploaded files",
+    "canBeDoneAssignments": "Available assignments to take",
+    "availableExams": "Available exam bundles",
+    "assignmentOverview": "Assignment overview",
+    "doneAssignments": "Done assignments",
+    "pastDueAssignments": "Past due assignments",
+    "exam": "Exam",
+    "answear": "Answear"
   },
   "table": {
     "noData": "No data available",
@@ -46,10 +54,12 @@
     "actionWillChangeRole": "The role of selected user will be changed.",
     "askForDelete": "Delete user",
     "actionWillDeleteUser": "Do you really want to delete this user?",
-    "askForSubmitExam": "Do you really want to submit the exam?",
-    "postSuccess": "Request completed successfully",
-    "putSuccess": "Request completed successfully",
-    "deleteSuccess": "Deleted successfully"
+    "askForSubmitExam": "Do you want to submit the exam?",
+    "postSuccess": "Request completed successfully.",
+    "putSuccess": "Request completed successfully.",
+    "deleteSuccess": "Deleted successfully.",
+    "actionWillSubmitExam": "The exam will be submitted",
+    "howToWriteAnAnswear": "Ommit the ' y= ' in your answear, enter just right part of an equation"
   },
   "login": {
     "title": "Log in",
@@ -98,7 +108,8 @@
     "role": "Role",
     "fileLabel": "Choose a .zip folder",
     "assignmentTitle": "Title",
-    "assignmentPoints": "Points"
+    "assignmentPoints": "Points",
+    "search": "Search..."
   },
   "dashboard": {
     "activeAssignment": "Active Assignments",
@@ -113,12 +124,12 @@
     "mustContainDigit": "Password must contain at least one digit.",
     "passwordsDontMatch": "Passwords don't match.",
     "invalidMail": "Input a valid e-mail address.",
-    "notNegative": "Not negative, please.",
+    "notNegative": "Value mast be a positive number.",
     "min3Chars": "Field must contain at least 3 characters."
   },
   "fancy":{
-    "select": "Choose assigment",
-    "name": "Details of assigmnet: ",
+    "select": "Choose assignment",
+    "name": "Details of assignment: ",
     "solutionTitle": "Student`s solution"
   },
   "links": {

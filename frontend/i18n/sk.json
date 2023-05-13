@@ -10,7 +10,15 @@
     "assignment": "Detaily zadania",
     "assignmentTime": "Začiatok a deadline",
     "assignmentTasks": "Úlohy v zadaní",
-    "assignmentPoints": "Body"
+    "assignmentPoints": "Body",
+    "uploadedFiles": "Nahrané súbory",
+    "canBeDoneAssignments": "Dostupné zadania na vypracovanie",
+    "availableExams": "Dostupné balíky úloh",
+    "assignmentOverview": "Prehľad zadania",
+    "doneAssignments": "Vypracované zadania",
+    "pastDueAssignments": "Zadania po termíne odovzdania",
+    "exam": "Príklad",
+    "answear": "Odpoveď"
   },
   "table": {
     "noData": "Žiadne dostupné dáta",
@@ -38,9 +46,11 @@
     "askForDelete": "Odstrániť používateľa",
     "actionWillDeleteUser": "Naozaj chcete odstrániť zvoleného používateľa?",
     "askForSubmitExam": "Naozaj chcete zadanie odovzdať?",
-    "postSuccess": "Požiadavka úspešne vykonaná",
-    "putSuccess": "Požiadavka úspešne vykonaná",
-    "deleteSuccess": "Odstránenie prebehlo úspešne"
+    "postSuccess": "Požiadavka úspešne vykonaná.",
+    "putSuccess": "Požiadavka úspešne vykonaná.",
+    "deleteSuccess": "Odstránenie prebehlo úspešne.",
+    "actionWillSubmitExam": "Potvrdením sa príklad odovzdá.",
+    "howToWriteAnAnswear": "V odpovedi vynechaj ' y= ', stačí pravá časť rovnice"
   },
   "login": {
     "title": "Prihlásenie",
@@ -98,13 +108,14 @@
     "role": "Rola",
     "fileLabel": "Zvoľte .zip priečinok",
     "assignmentTitle": "Názov",
-    "assignmentPoints": "Body"
+    "assignmentPoints": "Body",
+    "search": "Vyhľadať..."
   },
   "dashboard": {
     "activeAssignment": "Aktívne zadania",
     "doneAssignment": "Odovzdané",
     "historyAssignment": "Po termíne",
-    "greetingTitle": "Vitajte!",
+    "greetingTitle": "Vitaj!",
     "expiredSession": "Platnosť relácie vypršala"
   },
   "validation": {
@@ -113,7 +124,7 @@
     "mustContainDigit": "Heslo musí obsahovať aspoň jednu číslicu.",
     "passwordsDontMatch": "Heslá sa nezhodujú.",
     "invalidMail": "Zadajte platnú mailovú adresu.",
-    "notNegative": "Nie záporne, prosím.",
+    "notNegative": "Hodnota musí byť kladné čislo.",
     "min3Chars": "Pole musí obsahovať aspoň 3 znakoy."
   },
   "fancy":{
