@@ -1,75 +1,49 @@
-FROM ubuntu:22.04
+FROM php:8.2-fpm
 
-LABEL maintainer="Taylor Otwell"
+# Copy composer.lock and composer.json into the working directory
+COPY composer.lock composer.json /var/www/html/
 
-ARG WWWGROUP
-ARG NODE_VERSION=18
-ARG POSTGRES_VERSION=15
+# Set working directory
+WORKDIR /var/www/html/
 
-WORKDIR /var/www/html
+# Install dependencies for the operating system software
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    zip \
+    vim \
+    git \
+    curl
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV TZ=UTC
+# Install extensions for php
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install gd
 
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# Install composer (php package manager)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN apt-get update \
-    && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 dnsutils librsvg2-bin \
-    && curl -sS 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c' | gpg --dearmor | tee /etc/apt/keyrings/ppa_ondrej_php.gpg > /dev/null \
-    && echo "deb [signed-by=/etc/apt/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
-    && apt-get update \
-    && apt-get install -y php8.2-cli php8.2-dev \
-       php8.2-pgsql php8.2-sqlite3 php8.2-gd php8.2-imagick \
-       php8.2-curl \
-       php8.2-imap php8.2-mysql php8.2-mbstring \
-       php8.2-xml php8.2-zip php8.2-bcmath php8.2-soap \
-       php8.2-intl php8.2-readline \
-       php8.2-ldap \
-       php8.2-msgpack php8.2-igbinary php8.2-redis php8.2-swoole \
-       php8.2-memcached php8.2-pcov php8.2-xdebug \
-    && curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
-    && curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g npm \
-    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /etc/apt/keyrings/yarn.gpg >/dev/null \
-    && echo "deb [signed-by=/etc/apt/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
-    && curl -sS https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | tee /etc/apt/keyrings/pgdg.gpg >/dev/null \
-    && echo "deb [signed-by=/etc/apt/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt jammy-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
-    && apt-get update \
-    && apt-get install -y yarn \
-    && apt-get install -y mysql-client \
-    && apt-get install -y postgresql-client-$POSTGRES_VERSION \
-    && apt-get -y autoremove \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Copy existing application directory contents to the working directory
+COPY . /var/www/html
 
-RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.2
-
-# nase snahy
-
-RUN apt install php-cli unzip
-RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
-RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-
+# Assign permissions of the working directory to the www-data user
+RUN chown -R www-data:www-data \
+    /var/www/html/storage \
+    /var/www/html/bootstrap/cache
 
 
 RUN composer install
 RUN php artisan key:generate
-RUN php artisan migrate
 
-# ---
+# TODO migration and chown commands don't work
+# TODO python
+# TODO php ini, ktore chceme
+# TODO maybe images
+# TODO sleep (vela)
 
-RUN groupadd --force -g $WWWGROUP sail
-RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
+# RUN sleep 45
 
-COPY start-container /usr/local/bin/start-container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY php.ini /etc/php/8.2/cli/conf.d/99-sail.ini
-RUN chmod +x /usr/local/bin/start-container
-RUN chown -R $WWWGROUP:$WWWGROUP /var/www/html/storage
-RUN chown -R $WWWGROUP:$WWWGROUP /var/www/html/bootstrap/cache
+# RUN php artisan migrate
 
-EXPOSE 8000
-
-ENTRYPOINT ["start-container"]
+# Expose port 9000 and start php-fpm server (for FastCGI Process Manager)
+EXPOSE 9000
+CMD ["php-fpm"]
