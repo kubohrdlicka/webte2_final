@@ -15,11 +15,9 @@ services:
       SERVICE_NAME: backend
       SERVICE_TAGS: dev
     working_dir: /var/www/html/
-    volumes:
-      - ./:/var/www/html/
-      - ./php/laravel.ini:/usr/local/etc/php/conf.d/laravel.ini
-    networks:
-      - app-network
+    
+    # networks:
+    #   - app-network
 
   frontend:
     stdin_open: true
@@ -30,13 +28,16 @@ services:
     volumes:
       - /node_modules
       - ./frontend:/var/www/html/
-    networks:
-      - app-network
+    # networks:
+    #   - app-network
   mysql:
     image: mysql:latest
     container_name: mysql
     ports:
         - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+        - '3306'
     environment:
         MYSQL_ROOT_PASSWORD: 'whatever'
         MYSQL_ROOT_HOST: 'mysql'
@@ -46,8 +47,8 @@ services:
         MYSQL_ALLOW_EMPTY_PASSWORD: 1
     # volumes:
     #   - ./mysql:/var/lib/mysql
-    networks:
-      - app-network
+    # networks:
+    #   - app-network
   #Nginx Service
   webserver:
     depends_on:
@@ -61,8 +62,8 @@ services:
     tty: true
     ports:
       - "80:80"
-    networks:
-      - app-network
+    # networks:
+    #   - app-network
 
 #Docker Networks
 networks:

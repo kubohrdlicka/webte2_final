@@ -70,3 +70,6 @@ Route::get('getstudentassigmentpoints/{id}', [ExamController::class, 'getAllPoin
 Route::get('assigmentpoints/{id}', [ExamController::class, 'getPointsFromExambundle']);
 
 Route::get('generatecsv', [AssigmentController::class, 'generateCsv']);
+Route::get('image/{name}', function($name){
+	return response()->file(base_path()."/public/images/".$name);
+});

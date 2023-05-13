@@ -84,7 +84,7 @@ export default {
 
               let img = this.g.create('img')
               let url = import.meta.env.VITE_URL
-              img.src = url + '/images/' + src
+              img.src = url + '/api/image/' + src
               img.className = 'img-fluid'
               return [img]
             }
