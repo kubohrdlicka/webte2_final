@@ -53,9 +53,11 @@
   },
   "login": {
     "title": "Log in",
+    "action": "Log in",
     "password": "Password",
     "email": "E-mail",
-    "register": "Register"
+    "register": "Register",
+    "fail": "Login credentials are wrong!"
   },
   "roles": {
     "admin": "Admin",
@@ -63,13 +65,15 @@
     "teacher": "Teacher"
   },
   "register": {
-    "title": "Register",
+    "title": "Registration",
+    "action": "Register",
     "name": "Name",
     "surname": "Surname",
     "email": "E-mail",
     "password": "Password",
     "password2": "Repeat password",
-    "passwordsDontMatch": "Passwords don't match"
+    "passwordsDontMatch": "Passwords don't match",
+    "fail": "Account could not be created!"
   },
   "uploadZip": {
     "chooseFile": "Choose a file"
@@ -116,5 +120,9 @@
     "select": "Choose assigment",
     "name": "Details of assigmnet: ",
     "solutionTitle": "Student`s solution"
+  },
+  "links": {
+    "alreadyHaveAccount": "Already have an account? Log In.",
+    "noAccount": "No account? Register."
   }
 }

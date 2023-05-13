@@ -6,6 +6,10 @@
 					<v-card-title class="pt-4 pb-3">{{ $t('register.title') }}</v-card-title>
 					<v-divider class="pb-4" />
 
+					<div v-if="error" class="mx-4 d-flex justify-center pb-4">
+            <v-chip color="error" variant="outlined" prepend-icon="mdi-alert-circle-outline">{{ error }}</v-chip>
+          </div>
+
 					<div class="d-flex flex-wrap">
 						<div class="v-col-12 v-col-md-6 py-1">
 							<v-text-field color="primary" v-model="name" :label="$t('register.name')"
@@ -35,13 +39,13 @@
 					</div>
 
 					<div class="my-4 v-col-12 d-flex justify-center">
-						<v-btn type="submit" color="primary" @click="register()">{{ $t('register.title') }}</v-btn>
+						<v-btn type="submit" color="primary" @click="register()">{{ $t('register.action') }}</v-btn>
 					</div>
 				</v-card>
 			</v-form>
 
 			<div class="d-flex justify-center mt-4">
-				<router-link class="hk-login-link" to="/login">{{ $t('links.alreadyHaveAccount') }}</router-link>
+				<router-link class="hk-login-link text-caption" to="/login">{{ $t('links.alreadyHaveAccount') }}</router-link>
 			</div>
 		</div>
 	</div>
@@ -61,7 +65,8 @@ export default {
 			repeatpassword: '',
 			visible: false,
 			visibler: false,
-			isFormValid: false
+			isFormValid: false,
+			error: '',
 		}
 	},
 	computed: {
@@ -111,28 +116,38 @@ export default {
 			}
 
 			if (this.isFormValid) {
-				try {
-					axios.post(import.meta.env.VITE_URL + '/api/account/register', {
-						name: this.name,
-						surname: this.surname,
-						email: this.email,
-						password: this.password,
+				axios.post(import.meta.env.VITE_URL + '/api/account/register', {
+					name: this.name,
+					surname: this.surname,
+					email: this.email,
+					password: this.password,
 
-					}).then((response) => {
-						console.log(response)
+				}).then((response) => {
+					console.log(response)
 
-						sessionStorage.setItem('token', response.data.token)
-						sessionStorage.setItem('role', response.data.role)
-						this.$router.push("/")
-						this.$store.dispatch('login', [response.data.token, response.data.role])
+					sessionStorage.setItem('token', response.data.token)
+					sessionStorage.setItem('role', response.data.role)
+					this.$router.push("/")
+					this.$store.dispatch('login', [response.data.token, response.data.role])
 
-					})
-				} catch (e) {
-					console.log(e)
-				}
+				}).catch(e => {
+					this.error = this.$t('register.fail')
+				})
 			}
 		},
 	}
 }
 </script>
 
+<style lang="scss" scoped>
+.hk-login-link {
+  text-decoration: none;
+	color: rgb(var(--v-theme-secondary));
+	transition: all .2s;
+
+	&:hover {
+    transition: all .2s;
+    color: rgb(var(--v-theme-surface-variant));;
+  }
+}
+</style>

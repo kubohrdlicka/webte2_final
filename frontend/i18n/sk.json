@@ -43,10 +43,12 @@
     "deleteSuccess": "Odstránenie prebehlo úspešne"
   },
   "login": {
-    "title": "Prihlásiť sa",
+    "title": "Prihlásenie",
+    "action": "Prihlásiť sa",
     "password": "Heslo",
     "email": "E-mail",
-    "register": "Zaregistrovať sa"
+    "register": "Zaregistrovať sa",
+    "fail": "Prihlasovacie údaje nie sú správne!"
   },
   "roles": {
     "admin": "Admin",
@@ -54,13 +56,15 @@
     "teacher": "Učiteľ"
   },
   "register": {
-    "title": "Zaregistrovať sa",
+    "title": "Registrácia",
+    "action": "Zaregistrovať sa",
     "name": "Meno",
     "surname": "Priezvisko",
     "password": "Heslo",
     "password2": "Heslo znovu",
     "email": "E-mail",
-    "passwordsDontMatch": "Heslá sa nezhodujú"
+    "passwordsDontMatch": "Heslá sa nezhodujú",
+    "fail": "Účet nie je možné vytvoriť!"
   },
   "navigation": {
     "dashboard": "Prehľad",
@@ -116,5 +120,10 @@
     "select": "Vyberte zadanie",
     "name": "Výsledky zo zadania: ",
     "solutionTitle": "Riešenie študenta:"
+  }
+  ,
+  "links": {
+    "alreadyHaveAccount": "Máš účet? Prihlás sa.",
+    "noAccount": "Nemáš účet? Zaregistruj sa."
   }
 }
