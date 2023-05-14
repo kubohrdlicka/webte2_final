@@ -18,7 +18,9 @@
     "doneAssignments": "Vypracované zadania",
     "pastDueAssignments": "Zadania po termíne odovzdania",
     "exam": "Príklad",
-    "answear": "Odpoveď"
+    "answear": "Odpoveď",
+    "resultView": "Prehľad výsledkov",
+    "registeredUsers": "Registrovaní používatelia"
   },
   "table": {
     "noData": "Žiadne dostupné dáta",
@@ -50,7 +52,13 @@
     "putSuccess": "Požiadavka úspešne vykonaná.",
     "deleteSuccess": "Odstránenie prebehlo úspešne.",
     "actionWillSubmitExam": "Potvrdením sa príklad odovzdá.",
-    "howToWriteAnAnswear": "V odpovedi vynechaj ' y= ', stačí pravá časť rovnice"
+    "howToWriteAnAnswear": "V odpovedi vynechaj ' y= ', stačí pravá časť rovnice",
+    "getError": "Vyskytla sa chyba",
+    "postError": "Nahranie zlyhalo",
+    "putError": "Upravenie zlyhalo",
+    "deleteError": "Vymazanie zlyhalo",
+    "requestNotAllowed": "Táto požiadavka nie je povolená!",
+    "maybeErrorMaybeNot": "Možno to je chyba, možno nie..."
   },
   "login": {
     "title": "Prihlásenie",

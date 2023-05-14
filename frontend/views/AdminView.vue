@@ -22,7 +22,7 @@
 
           <template v-slot:top>
             <v-toolbar flat color="primary">
-              <v-toolbar-title >{{ $t('title.registeredUsers')}}</v-toolbar-title>
+              <v-toolbar-title >{{ $t('titles.registeredUsers')}}</v-toolbar-title>
             </v-toolbar>
           </template>
 

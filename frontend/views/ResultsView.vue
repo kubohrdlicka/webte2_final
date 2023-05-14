@@ -72,12 +72,6 @@ export default {
   data() {
     return {
       expanded: [],
-      tableHeaders: [
-        { title: this.$t('table.name'), key: 'student.name' },
-        { title: this.$t('table.surname'), key: 'student.surname' },
-        { title: this.$t('table.points'), key: 'sumpoints' },
-        { title: this.$t('table.maxPoints'), key: 'totalpoints' },
-      ],
       singleExpand: true,
       assigments: [],
       tableData: null,
@@ -85,6 +79,16 @@ export default {
       select: null,
       search: '',
     }
+  },
+  computed: {
+    tableHeaders() {
+      return [
+        { title: this.$t('table.name'), key: 'student.name' },
+        { title: this.$t('table.surname'), key: 'student.surname' },
+        { title: this.$t('table.points'), key: 'sumpoints' },
+        { title: this.$t('table.maxPoints'), key: 'totalpoints' },
+      ]
+    },
   },
   watch: {
     select: function (val) {

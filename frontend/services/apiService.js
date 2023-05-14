@@ -80,15 +80,15 @@ export default {
       })
   },
   handleGetError (error) {
-    toast.error(`${i18n.global.t('message.getError')} (${error.response.status})`)
+    toast.error(`${i18n.global.t('messages.getError')} (${error.response.status})`)
   },
   handlePostError (error) {
-    toast.error(`${i18n.global.t('message.postError')} (${error.response.status})`)
+    toast.error(`${i18n.global.t('messages.postError')} (${error.response.status})`)
   },
   handlePutError (error) {
-    toast.error(`${i18n.global.t('message.putError')} (${error.response.status})`)
+    toast.error(`${i18n.global.t('messages.putError')} (${error.response.status})`)
   },
   handleDeleteError (error) {
-    toast.error(`${i18n.global.t('message.deleteError')} (${error.response.status})`)
+    toast.error(`${i18n.global.t('messages.deleteError')} (${error.response.status})`)
   },
 }

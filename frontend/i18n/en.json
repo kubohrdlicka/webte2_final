@@ -18,12 +18,14 @@
     "doneAssignments": "Done assignments",
     "pastDueAssignments": "Past due assignments",
     "exam": "Exam",
-    "answear": "Answear"
+    "answear": "Answear",
+    "resultView": "Results overview",
+    "registeredUsers": "Registered users"
   },
   "table": {
     "noData": "No data available",
     "name": "Name",
-    "surneme": "Surname",
+    "surname": "Surname",
     "email": "E-mail",
     "role": "Role",
     "title": "Title",
@@ -59,7 +61,13 @@
     "putSuccess": "Request completed successfully.",
     "deleteSuccess": "Deleted successfully.",
     "actionWillSubmitExam": "The exam will be submitted",
-    "howToWriteAnAnswear": "Ommit the ' y= ' in your answear, enter just right part of an equation"
+    "howToWriteAnAnswear": "Ommit the ' y= ' in your answear, enter just right part of an equation",
+    "getError": "Error occurred",
+    "postError": "Upload failed",
+    "putError": "Update failed",
+    "deleteError": "Delete failed",
+    "requestNotAllowed": "This request is not allowed!",
+    "maybeErrorMaybeNot": "It might me a mistake, or might not..."
   },
   "login": {
     "title": "Log in",

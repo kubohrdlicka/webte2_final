@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-6">
+  <div v-if="!error" class="pt-6">
     <v-card class="mx-4 mt-6">
       <v-card-title>{{ $t('titles.exam') }}</v-card-title>
 
@@ -20,9 +20,19 @@
         <v-btn class="gombicekXD" @click="submit()" color="primary">{{ $t('button.submitExam') }}</v-btn>
       </v-container>
     </v-card>
-
   </div>
 
+  <div v-if="error">
+    <div class="d-flex align-center pa-8">
+      <div class="hk-big-icon-4 pa-8 mr-8">
+        <v-icon color="surface-variant">mdi-robot-dead-outline</v-icon>
+      </div>
+      <div>
+        <v-card-title class="pb-0">{{ $t('messages.requestNotAllowed') }}</v-card-title>
+        <v-card-subtitle>{{ $t('messages.maybeErrorMaybeNot') }}</v-card-subtitle>
+      </div>
+    </div>
+  </div>
 
   <v-dialog v-model="confirmSubmit" max-width="500px">
 
@@ -61,6 +71,7 @@ export default {
       task: null,
       formula: "",
       confirmSubmit: false,
+      error: null,
     }
   },
   computed: {
@@ -128,15 +139,24 @@ export default {
   },
   async mounted() {
     await apiService.get("/api/generatetask/" + this.$route.params.id).then((response) => {
-      console.log(response.data)
-      this.taskId = response.data
+      if (response?.status === 200) {
+        this.error = null
+        this.taskId = response.data
+      } else {
+        this.error = 'nop'
+      }
     })
 
-    apiService.get("/api/task/" + this.taskId).then((response) => {
-      console.log(response.data)
-      this.task = response.data.task.instructions
-      console.log(this.task)
-    })
+    if(this.taskId) {
+      apiService.get("/api/task/" + this.taskId).then((response) => {
+        if (response?.status === 200) {
+          this.error = null
+          this.task = response.data.task.instructions
+        } else {
+          this.error = 'nop'
+        }
+      })
+    }
 
   },
 
