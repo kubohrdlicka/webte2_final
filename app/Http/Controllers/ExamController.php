@@ -17,6 +17,16 @@ class ExamController extends Controller
     public function generateTaskFromExambundle($id)
     {
         $examBundle = ExamBundle::find($id);
+        if (!$examBundle) {
+            return response(400)->json("Exam bundle not found");
+        }
+        $exam = Exam::where('exam_bundle_id', $id)->where('user_id', JWTAuth::parseToken()->authenticate()->id)->get();
+        if (count($exam) > 0) {
+            return response(400)->json("You already have an exam for this assignment");
+        }
+        if($examBundle->end > date("Y-m-d H:i:s")){
+            return response(400)->json("The exam time is over");
+        }
         $taskBundle = $examBundle->task_bundle_id;
         $tasks = Task::where('task_bundle_id', $taskBundle)->get()->toArray();
         $task = array_rand($tasks, 1);
