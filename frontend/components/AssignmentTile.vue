@@ -5,17 +5,18 @@
         <div class="d-flex justify-center hk-big-icon-2">
           <v-icon color="primary" class="pa-8">mdi-folder-open-outline</v-icon>
         </div>
-        <div class="mx-2">
+        <div class="px-2 hk-asign-title-wrapper">
           <v-divider class="mx-1"/>
           <v-card-title class="pa-0">{{ data.title }}</v-card-title>
           <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
           <v-divider class="mx-1 mt-1"/>
         </div>
-        <div class="d-flex justify-end ma-4">
-          <v-btn color="primary">{{ $t('assignmentTile.take') }}</v-btn>
+        <div class="d-flex justify-start align-center pb-2 pl-1" title="Deadline">
+          <v-icon size="x-small" color="surface-variant">mdi-clock-outline</v-icon>
+          <v-card-subtitle class="px-1 py-1 text-caption">{{ formatDateTime(data.end) }}</v-card-subtitle>
         </div>
-        <div class="d-flex justify-center align-center pb-2" title="Deadline">
-          <v-card-subtitle>{{ formatDateTime(data.end) }}</v-card-subtitle>
+        <div class="d-flex justify-end ma-2 pt-4">
+          <v-btn color="primary">{{ $t('assignmentTile.take') }}</v-btn>
         </div>
       </div>
 
@@ -25,33 +26,59 @@
         </div>
         <div class="mx-2">
           <v-divider class="mx-1"/>
-          <v-card-title class="pa-0">{{ data.title }}</v-card-title>
+          <v-card-title class="pa-0 text-primary">{{ data.title }}</v-card-title>
           <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
           <v-divider class="mx-1 mt-1"/>
         </div>
         <div class="d-flex justify-end mx-4 my-2">
           <v-card-title class="pa-0">{{ data.points }} / {{data.total_points}}</v-card-title>
         </div>
-        <div class="d-flex justify-end mx-4 my-2">
-          <v-btn color="primary">{{ $t('assignmentTile.details') }}</v-btn>
+        <div class="d-flex justify-end ma-2">
+          <v-btn variant="outlined" color="primary">{{ $t('assignmentTile.details') }}</v-btn>
         </div>
       </div>
 
-      <div v-else-if="variant === 'pastdue'">
-        <div class="d-flex justify-center hk-big-icon-2">
-          <v-icon color="error" class="pa-8">mdi-timer-lock-outline</v-icon>
+      <div v-else-if="variant === 'pastdue'" class="w-100">
+        <div v-if="$store.state.role === 'student'" class="w-100">
+          <div class="d-flex justify-center hk-big-icon-2">
+            <v-icon color="error" class="pa-8">mdi-timer-lock-outline</v-icon>
+          </div>
+          <div class="d-flex justify-start align-center pl-2" title="Deadline">
+            <v-icon size="x-small" color="error">mdi-clock-outline</v-icon>
+            <v-card-subtitle class="px-1 py-1 text-caption text-error">{{ formatDateTime(data.end) }}</v-card-subtitle>
+          </div>
+          <div class="mx-2">
+            <v-divider class="mx-1"/>
+            <v-card-title class="pa-0 text-error">{{ data.title }}</v-card-title>
+            <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
+            <v-divider class="mx-1 mt-1"/>
+          </div>
+          <div class="d-flex justify-end ma-2 pt-6">
+            <v-btn variant="outlined">{{ $t('assignmentTile.details') }}</v-btn>
+          </div>
         </div>
-        <div class="mx-2">
-          <v-divider class="mx-1"/>
-          <v-card-title class="pa-0">{{ data.title }}</v-card-title>
-          <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
-          <v-divider class="mx-1 mt-1"/>
-        </div>
-        <div class="d-flex justify-center align-center pb-2 pt-4" title="Deadline">
-          <v-card-subtitle>{{ formatDateTime(data.end) }}</v-card-subtitle>
+
+        <div v-else class="w-100">
+          <div class="d-flex justify-center hk-big-icon-2">
+            <v-icon class="pa-8">mdi-folder-lock</v-icon>
+          </div>
+          <div class="mx-2">
+            <v-divider class="mx-1"/>
+            <v-card-title class="pa-0 text-primary">{{ data.title }}</v-card-title>
+            <v-card-subtitle class="pa-0">{{ data.description }}</v-card-subtitle>
+            <v-divider class="mx-1 mt-1"/>
+          </div>
+          <div class="d-flex justify-start align-center pl-2" title="Deadline">
+            <v-icon size="x-small">mdi-timer-lock-outline</v-icon>
+            <v-card-subtitle class="px-1 py-1 text-caption">{{ formatDateTime(data.end) }}</v-card-subtitle>
+          </div>
+          <div class="d-flex justify-end ma-2 pt-6">
+            <v-btn variant="outlined" color="primary">{{ $t('assignmentTile.details') }}</v-btn>
+          </div>
         </div>
       </div>
-      <div v-else class="hk-big-icon-4">
+
+      <div v-else class="hk-big-icon-2 py-16">
         <v-icon size="large" color="grey-lighten-1">mdi-robot-dead-outline</v-icon>
       </div>
     </div>
@@ -99,11 +126,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.hk-asign-title-wrapper {
+  background-color: rgb(var(--v-theme-primary));
+  color: rgb(var(--v-theme-surface));
+}
 .hk-assignment-tile-wrapper {
   background-color: rgb(var(--v-theme-background));
   border: 3px solid rgb(var(--v-theme-primary));
   border-radius: 1rem;
   width: 12rem;
+
+  button {
+    border-radius: 0.6rem;
+  }
 }
 </style>

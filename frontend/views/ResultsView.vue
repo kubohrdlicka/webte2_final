@@ -1,46 +1,59 @@
 <template>
   <div class="pt-6">
-    <v-select :items="assigments" v-model="select" :label="$t('fancy.select')" item-text="name" item-value="id"></v-select>
-
-    <v-data-table v-if="active" v-model:expanded="expanded" :headers="tableHeaders" :items="tableData" 
-       item-key="name" show-expand class="elevation-1">
-      <template v-slot:top>
-        <v-toolbar flat color="primary">
-          <v-toolbar-title >{{ $t('fancy.name')}}</v-toolbar-title>
-          <v-spacer></v-spacer>
-
-        </v-toolbar>
-      </template>
-      <template v-slot:expanded-row="{ columns, item }">
-      <tr>
-        <td :colspan="columns.length">
-          <div v-for="point in item.raw.points">
-           
-
-
-              <h4>{{point.examBundleId.title}}</h4> 
-              <div class="d-flex allign-start justify-space-between ">
-                {{ point.task[0].solutions }}
-
-                <div>
-                  {{ $t('fancy.solutionTitle') }}
-                  <assigment-giver :assigment="`$$` + point.student_exam[0].studen_solution + `$$`"></assigment-giver>
-                </div>
-                {{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}}
-              </div> 
-            
-          </div> 
-        </td>
-      </tr>
-    </template>
-    </v-data-table>
-
-
     <div>
+      <v-card-title>{{ $t('titles.resultView') }}</v-card-title>
     </div>
-    <div class="d-flex justify-end ma-4">
-      <v-btn @click="getCSV()" class="mx-2" color="primary"> {{ $t('button.csv') }}</v-btn>
-    </div>
+
+    <v-card class="mx-4">
+      <div class="pa-4 pb-8">
+        <v-select :items="assigments" v-model="select" :label="$t('fancy.select')" item-text="name" item-value="id"></v-select>
+
+        <div v-if="active">
+          <div class="d-flex justify-end my-2">
+            <v-text-field variant="outlined" class="v-col-5 v-col-md-3 pa-0" density="compact"
+              prepend-icon="mdi-magnify" v-model="search" :placeholder="$t('input.search')"/>
+          </div>
+        
+          <v-data-table v-if="active" v-model:expanded="expanded" :headers="tableHeaders" :items="tableData" 
+            item-key="name" show-expand class="elevation-1" :search="search">
+            <template v-slot:top>
+              <v-toolbar flat color="primary">
+                <v-toolbar-title >{{ $t('fancy.name')}}</v-toolbar-title>
+                <v-spacer></v-spacer>
+
+              </v-toolbar>
+            </template>
+            <template v-slot:expanded-row="{ columns, item }">
+            <tr>
+              <td :colspan="columns.length">
+                <div v-for="point in item.raw.points">
+                
+
+
+                    <h4>{{point.examBundleId.title}}</h4> 
+                    <div class="d-flex allign-start justify-space-between ">
+                      {{ point.task[0].solutions }}
+
+                      <div>
+                        {{ $t('fancy.solutionTitle') }}
+                        <assigment-giver :assigment="`$$` + point.student_exam[0].studen_solution + `$$`"></assigment-giver>
+                      </div>
+                      {{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}}
+                    </div> 
+                  
+                </div> 
+              </td>
+            </tr>
+          </template>
+          </v-data-table>
+        </div>
+      </div>
+      
+      <div class="d-flex justify-end ma-4">
+        <v-btn @click="getCSV()" class="mx-2" color="primary"> {{ $t('button.csv') }}</v-btn>
+      </div>
+    </v-card>
+
   </div>
 </template>
 
@@ -60,16 +73,17 @@ export default {
     return {
       expanded: [],
       tableHeaders: [
-        { title: this.$t('table.name'), value: 'student.name' },
-        { title: this.$t('table.surname'), value: 'student.surname' },
-        { title: this.$t('table.points'), value: 'sumpoints' },
-        { title: this.$t('table.maxPoints'), value: 'totalpoints' },
+        { title: this.$t('table.name'), key: 'student.name' },
+        { title: this.$t('table.surname'), key: 'student.surname' },
+        { title: this.$t('table.points'), key: 'sumpoints' },
+        { title: this.$t('table.maxPoints'), key: 'totalpoints' },
       ],
       singleExpand: true,
       assigments: [],
       tableData: null,
       active: false,
       select: null,
+      search: '',
     }
   },
   watch: {

@@ -5,7 +5,7 @@
     </div>
 
     <v-card>
-      <v-card-subtitle class="pt-4 pb-2"  v-if="store.role === 'student'">{{ $t('title.doneAssignments') }}</v-card-subtitle>
+      <v-card-subtitle class="pt-4 pb-2"  v-if="store.role === 'student'">{{ $t('titles.doneAssignments') }}</v-card-subtitle>
       <div class="d-flex flex-wrap"  v-if="store.role === 'student'">
         <AssignmentTile v-for="item, i in assignmentsDone" :key="i" :data="item" variant='done' />
 
@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <v-card-subtitle class="pt-4 pb-2 mt-5">{{ $t('title.pastDueAssignments') }}</v-card-subtitle>
+      <v-card-subtitle class="pt-4 pb-2 mt-5">{{ $t('titles.pastDueAssignments') }}</v-card-subtitle>
       <div class="d-flex flex-wrap">
         <AssignmentTile v-for="item, i in assignmentsPastDue" :key="i" :data="item" variant='pastdue' />
 

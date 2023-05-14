@@ -1,17 +1,17 @@
 <template>
   <div class="pt-6">
     <v-card class="mx-4 mt-6">
-      <v-card-title>{{ $t('title.assignment') }}</v-card-title>
+      <v-card-title>{{ $t('titles.exam') }}</v-card-title>
 
       <v-container class="v-col-sm-12 v-col-md-10 v-col-lg-8 pb-8">
         <div class="contentCenter">
           <div v-html="htmlContent"></div>
 
           <div class="d-flex justify-start my-4 pt-6">
-            <v-chip prepend-icon="mdi-alert-circle-outline" color="warning" closable @click:close="{}">{{ $t('message.howToWriteAnAnswear') }}</v-chip>
+            <v-chip prepend-icon="mdi-alert-circle-outline" color="warning" closable @click:close="{}">{{ $t('messages.howToWriteAnAnswear') }}</v-chip>
           </div>
 
-          <v-card-subtitle class="pb-1">{{ $t('title.answear') }}</v-card-subtitle>
+          <v-card-subtitle class="pb-1">{{ $t('titles.answear') }}</v-card-subtitle>
           <math-field id="formula" v-model="formula" @input="change" />
         </div>
       </v-container>
