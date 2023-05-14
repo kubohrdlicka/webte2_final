@@ -51,6 +51,7 @@ class AssigmentController extends Controller
         if ($user->role == 'student') {
             $assigments = Assignment::where('start', '<=', now())
                 ->where('end', '>=', now())
+                ->orderBy('end', 'asc')
                 ->get()
                 ->toArray();
 
@@ -122,6 +123,7 @@ class AssigmentController extends Controller
     {
         $user = JWTAuth::parseToken()->authenticate();
         $assigments = Assignment::where('end', '<', now())
+            ->orderBy('end', 'asc')
             ->get()
             ->toArray();
 
