@@ -83,6 +83,10 @@ const router = createRouter({
           component: () => import('../views/AdminView.vue'),
           beforeEnter: requireAdmin,
         },
+        {
+          path: '/manual',
+          component: () => import('../views/ManualView.vue'),
+        }
       ]
     }, {
       path: '/user',

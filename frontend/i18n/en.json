@@ -116,5 +116,14 @@
     "select": "Choose assigment",
     "name": "Details of assigmnet: ",
     "solutionTitle": "Student`s solution"
+  },
+  "manual": {
+    "title": "User manual",
+    "teacherTitle": "Teacher",
+    "studentTitle": "Student",
+    "register": "Registration",
+    "login": "Login",
+    "dashboard": "Front page",
+    "assignments": "Assignments"
   }
 }

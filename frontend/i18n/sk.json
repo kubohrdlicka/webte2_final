@@ -116,5 +116,14 @@
     "select": "Vyberte zadanie",
     "name": "Výsledky zo zadania: ",
     "solutionTitle": "Riešenie študenta:"
+  },
+  "manual": {
+    "title": "Užívateľský manuál",
+    "teacherTitle": "Učiteľ",
+    "studentTitle": "Študent",
+    "register": "Registrácia",
+    "login": "Prihlásenie",
+    "dashboard": "Úvodná strana",
+    "assignments": "Zadania"
   }
 }
