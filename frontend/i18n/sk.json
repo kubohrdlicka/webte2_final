@@ -20,7 +20,8 @@
     "exam": "Príklad",
     "answear": "Odpoveď",
     "resultView": "Prehľad výsledkov",
-    "registeredUsers": "Registrovaní používatelia"
+    "registeredUsers": "Registrovaní používatelia",
+    "noExamsDone": "Žiadne vypracované zadania"
   },
   "table": {
     "noData": "Žiadne dostupné dáta",
@@ -31,7 +32,8 @@
     "title": "Názov",
     "created": "Vytvorený",
     "points": "Body (Získané)",
-    "maxPoints": "Body (Maximum)"
+    "maxPoints": "Body (Maximum)",
+    "doneExams": "Vypracované zadania"
   },
   "button": {
     "cancel": "Späť",
@@ -40,7 +42,7 @@
     "createNewAssignment": "Vytvoriť nové zadanie",
     "submitExam": "Odovzdať",
     "upload": "Nahrať",
-    "csv": "Staihnuť CSV"
+    "csv": "Stiahnuť CSV"
   },
   "messages": {
     "changeUser": "Zmena role",

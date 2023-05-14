@@ -20,7 +20,8 @@
     "exam": "Exam",
     "answear": "Answear",
     "resultView": "Results overview",
-    "registeredUsers": "Registered users"
+    "registeredUsers": "Registered users",
+    "noExamsDone": "No exams taken"
   },
   "table": {
     "noData": "No data available",
@@ -31,7 +32,8 @@
     "title": "Title",
     "created": "Created at",
     "points": "Points (Obtained)",
-    "maxPoints": "Points (Maximum)"
+    "maxPoints": "Points (Maximum)",
+    "doneExams": "Taken exams"
   },
   "button": {
     "cancel": "Cancel",

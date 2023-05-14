@@ -25,23 +25,28 @@
             </template>
             <template v-slot:expanded-row="{ columns, item }">
             <tr>
-              <td :colspan="columns.length">
+              <td :colspan="columns.length" class="hk-table-expand-cell">
                 <div v-for="point in item.raw.points">
-                
-
-
-                    <h4>{{point.examBundleId.title}}</h4> 
-                    <div class="d-flex allign-start justify-space-between ">
-                      {{ point.task[0].solutions }}
-
+                  <div class="d-flex justify-space-between align-center flex-wrap">
+                    <div class="d-flex align-center">
+                      <v-icon color="primary">mdi-file</v-icon>
+                      <v-card-title>{{ point.examBundleId.title }}</v-card-title>
+                    </div>
+                    <v-card-title class="text-primary">{{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}} {{ $t('examTile.pointSign') }}</v-card-title>
+                    <div class="d-flex align-center">
+                      <v-card-subtitle>{{ $t('fancy.solutionTitle') }}</v-card-subtitle>
                       <div>
-                        {{ $t('fancy.solutionTitle') }}
                         <assigment-giver :assigment="`$$` + point.student_exam[0].studen_solution + `$$`"></assigment-giver>
+                        <div class="mx-4 py-2">( {{ point.student_exam[0].studen_solution }} )</div>
                       </div>
-                      {{point.student_exam[0].earned_points}}  / {{point.examBundleId.points}}
-                    </div> 
-                  
-                </div> 
+                    </div>
+                  </div>
+                  <v-divider class="mb-1"/>
+                </div>
+
+                <div v-if="item.raw.points.length === 0" class="d-flex justify-center align-center">
+                  <v-card-subtitle>{{ $t('titles.noExamsDone') }}</v-card-subtitle>
+                </div>
               </td>
             </tr>
           </template>
@@ -85,6 +90,7 @@ export default {
       return [
         { title: this.$t('table.name'), key: 'student.name' },
         { title: this.$t('table.surname'), key: 'student.surname' },
+        { title: this.$t('table.doneExams'), key: 'points.length' },
         { title: this.$t('table.points'), key: 'sumpoints' },
         { title: this.$t('table.maxPoints'), key: 'totalpoints' },
       ]
@@ -131,3 +137,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.hk-table-expand-cell {
+  background-color: rgb(var(--v-theme-on-surface-variant)) !important;
+}
+</style>

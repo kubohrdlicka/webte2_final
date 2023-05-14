@@ -48,8 +48,13 @@ export default {
 .link{
   text-decoration: none;
   cursor: pointer;
-  /*:hover {
-    background-color: red;
-  }*/
+  color: rgb(var(--v-theme-primary)) !important;
+  :hover {
+    background-color: rgb(var(--v-theme-on-surface-variant));
+  }
+}
+
+:deep(.v-list-item__content) {
+  color: rgb(var(--v-theme-on-surface)) !important;
 }
 </style>
