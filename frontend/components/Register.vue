@@ -123,12 +123,11 @@ export default {
 					password: this.password,
 
 				}).then((response) => {
-					console.log(response)
-
-					sessionStorage.setItem('token', response.data.token)
-					sessionStorage.setItem('role', response.data.role)
-					this.$router.push("/")
-					this.$store.dispatch('login', [response.data.token, response.data.role])
+					if (response.status === 200) {
+						this.$router.push("/login")
+					} else {
+						this.error = this.$t('register.fail')
+					}
 
 				}).catch(e => {
 					this.error = this.$t('register.fail')
