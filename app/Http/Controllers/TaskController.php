@@ -27,7 +27,7 @@ class TaskController extends Controller
         if(Exam::where('user_id', JWTAuth::parseToken()->authenticate()->id)->where('exam_bundle_id', $request->exambundle_id)->first()){
             return response()->json([
                 'message' => 'Already taken'
-            ], 200);
+            ], 400);
         }
         
         $solution = trim($task->solution);
