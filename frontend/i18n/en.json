@@ -21,7 +21,8 @@
     "save": "Save",
     "createNewAssignment": "Create new assignment",
     "submitExam": "Submit",
-    "upload": "Upload"
+    "upload": "Upload",
+    "savepdf": "Save PDF"
   },
   "navigation": {
     "dashboard": "Overview",
@@ -94,5 +95,24 @@
     "mustContainDigit": "Password must contain at least one digit.",
     "passwordsDontMatch": "Passwords don't match",
     "invalidMail": "Input a valid e-mail address."
+  },
+  "manual": {
+    "title": "User manual",
+    "teacherTitle": "User role: teacher",
+    "teacherAssignments": "Assignments overview",
+    "teacherAssignmentsText": "Basic information about active assignments, submitted assignments, and assignments after the deadline can be found on the ,,Overview\" subpage. To view detailed information about individual assignments, click on the desired assignment. If you want to see all assigned tasks, go to the ,,Assignments\" subpage.",
+    "teacherCreateAssignment": "Create new assignment",
+    "teacherCreateAssignmentText": "To create a new assignment, on the ,,Assignments\" subpage, click on ,,Create new assignment\" in the top right corner. Then, fill in all the fields, enter a set of examples that will be part of the assignment, and create the assignment by clicking ,,SAVE\".",
+    "teacherResultsAssignment": "Students results",
+    "teacherResultsAssignmentText": "To view students results, go to the ,,Results\" subpage and select the assignment for which you want to view the results. To export the results in CSV format, click on ,,DOWNLOAD CSV\" in the bottom right corner.",
+    "teacherImport": "Importing new mathematical examples",
+    "teacherImportText": "To insert new examples, go to the ,,Files\" subpage and then select the folder containing the examples. The examples must be in TEX format and compressed into a ZIP folder.",
+    "studentTitle": "User role: student",
+    "studentAssignments": "Assignments overview",
+    "studentAssignmentsText": "The basic information about active assignments, submitted assignments, and assignments after the deadline can be found on the ,,Overview\" subpage. To view detailed information about individual assignments, click on the desired assignment. If you want to see all assigned tasks, go to the ,,Assignments\" subpage.",
+    "studentAssignmentElaborate": "Taking an assignment",
+    "studentAssignmentElaborateText": "After entering the assignment, you will see the individual examples of the assignment. You can work on the examples by clicking on ,,TAKE\" next to the assignment. To input special characters, a keyboard with special characters will appear when you click on the input field.",
+    "studentHistory": "Assignments history",
+    "studentHistoryText": "To view completed assignments, go to the ,,Assignment History\" subpage. Assignments are divided into completed assignments and unfinished, uncompleted assignments."
   }
 }
