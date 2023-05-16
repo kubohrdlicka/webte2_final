@@ -98,10 +98,22 @@
   "manual": {
     "title": "Užívateľský manuál",
     "teacherTitle": "Učiteľ",
+    "teacherOverviewText": "Stránka ,,Prehľad\" zobrazuje základné údaje o aktuálne spustených zadaniach a zadaniach, ktoré",
+    "teacherAssignments": "Prehľad zadaní",
+    "teacherAssignmentsText": "Základné údaje o zadaniach sa nachádzajú na podstránke ,,Prehľad\". Pre zobrazenie podrobných údajoch o jednotlivých zadaniach kliknite na požadované zadanie. Ak chcete zobraziť všetky aktívne zadania, prejdite na podstránku ,,Aktívne zadania\". ",
+    "teacherCreateAssignment": "Vytvorenie nového zadania",
+    "teacherCreateAssignmentText": "Pre vytvorenie nového zadania, na podstránke ,,Aktívne zadania\" v pravom hornom rohu kliknite na ,,Vytvoriť nové zadanie\n. Následne vyplňte všetky polia, zadajte sadu príkladov, ktorá bude súčasťou zadania a vytvorte zadanie kliknutím na ,,Uložiť\"",
+    "teacherResultsAssignment": "Výsledky študentov",
+    "teacherResultsAssignmentText": "Pre zobrazenie výsledkov študentov, prejdite na podstránku ,,Výsledky\" a vyberte zadanie, ktoré výsledky chcete zobraziť. Pre export výsledkov vo formáte CSV, kliknite v ľavom dolnom rohu na ,,STIAHNUŤ CSV\".",
+    "teacherImport": "Vkladanie nových príkladov príkladov",
+    "teacherImportText": "Pre vloženie nových príkladov, prejdite na podstránku ,,Súbory\" a násladne vyberte priečinok s príkladmi. Príklady musia byť vo formáte tex a komprimované do zip priečinka.",
     "studentTitle": "Študent",
-    "register": "Registrácia",
-    "login": "Prihlásenie",
-    "dashboard": "Úvodná strana",
-    "assignments": "Zadania"
+    "studentAssignments": "Prehľad zadaní",
+    "studentAssignmentsText": "Základné údaje o aktívnych zadaniach, odovzdaných zadaniach zadaní po termíne sa nachádzajú na podstránke ,,Prehľad\". Pre zobrazenie podrobných údajoch o jednotlivých zadaniach kliknite na požadované zadanie. Ak chcete zobraziť všetky pripadené zadania, prejdite na podstránku ,,Aktívne zadania\".",
+    "studentAssignmentElaborate": "Vypracovanie zadania",
+    "studentAssignmentElaborateText": "Po vstúpení do zadania sa vám zobrazia jednotlivé príklady zadania. Príklady môžete vypracovať kliknutím na ,,VSTÚPIŤ\" vedľa zadania. Pre napísanie špeciálnych znakov sa vám pri kliknutí na pole pre cýsledok zobrazí klávesnica so špeciálnymi znakmi.",
+    "studentHistory": "História zadaní",
+    "studentHistoryText": "Pre zobrazenie ukončených zadaní, prejdite na podstránku ,,História zadaní\". Zadania sú rozdelené na vypracované zadania a ukončené, nevypracované zadania."
+
   }
 }
