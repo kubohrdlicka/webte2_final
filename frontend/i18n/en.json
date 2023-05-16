@@ -31,7 +31,8 @@
     "historyAssignments": "Turned in",
     "results": "Results",
     "adminPortal": "App management",
-    "logout": "Log out"
+    "logout": "Log out",
+    "userManual": "User manual"
   },
   "messages": {
     "changeUser": "Change role",

@@ -60,7 +60,8 @@
     "historyAssignments": "Odovzdané zadania",
     "results": "Výsledky",
     "adminPortal": "Správa aplikácie",
-    "logout": "Odhlásiť sa"
+    "logout": "Odhlásiť sa",
+    "userManual": "Užívateľksý manuál"
   },
   "uploadZip": {
     "chooseFile": "Zvoľte súbor"
