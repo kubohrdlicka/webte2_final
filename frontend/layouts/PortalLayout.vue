@@ -22,6 +22,7 @@
         <NavLink link="/history" :title="$t('navigation.historyAssignments')" icon="mdi-file-clock" />
         <NavLink link="/results" :title="$t('navigation.results')" icon="mdi-clipboard-file" :requireRole="['teacher','admin']"/>
         <NavLink link="/admin" :title="$t('navigation.adminPortal')" icon="mdi-security" :requireRole="['admin']"/>
+        <NavLink link="/manual" :title="$t('navigation.userManual')" icon="mdi-book-open-blank-variant"/>
       </v-list>
       <v-divider/>
       <v-list>
