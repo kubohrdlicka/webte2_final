@@ -8,7 +8,6 @@ function requireLogin(to, from, next) {
     const role = window.sessionStorage.getItem('role')
     const token = window.sessionStorage.getItem('token')
     store.dispatch('login', {token: token, role: role})
-    console.log('restored login');
   }
   if (auth) {
     next()

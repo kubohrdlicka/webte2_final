@@ -121,7 +121,6 @@ export default {
     },
     methods: {
         editUser(item) {
-            console.log(item)
             this.dialogEdit = true
             this.itemToEdit = item
         },
@@ -151,7 +150,6 @@ export default {
             this.itemToDel = null
         },
         async deleteConfirm() {
-            console.log(this.itemToDel.id)
             try {
                 await axios.delete(import.meta.env.VITE_URL + '/api/account/deleteuser/' + this.itemToDel.id, { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
                     this.users = this.users.filter((item) => item.id !== this.itemToDel.id)
@@ -167,7 +165,6 @@ export default {
         try {
             await axios.get(import.meta.env.VITE_URL + '/api/account/users', { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
                 this.users = response.data
-                console.log(this.users)
             })
         } catch (e) {
             console.log(e)

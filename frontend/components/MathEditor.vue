@@ -13,7 +13,6 @@
     },
     methods: {
       printForm() {
-        console.log(this.formula);
       },
       change(event) {
         const input = event.target.value;

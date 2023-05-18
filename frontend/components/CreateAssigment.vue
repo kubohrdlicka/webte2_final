@@ -53,7 +53,6 @@ export default {
     },
     methods: {
         check() {
-            console.log(this.values)
             try {
                 axios.post(import.meta.env.VITE_URL + '/api/assigments/create', {
                     name: this.name,
@@ -62,7 +61,6 @@ export default {
                     end: this.end,
                     exams: this.values
                 }, { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
-                    console.log(response)
                 })
             } catch (e) {
                 console.log(e)

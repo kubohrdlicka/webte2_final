@@ -31,7 +31,6 @@ export default {
                     let formData = new FormData()
                     formData.append('file', f)
                     axios.post(url, formData, { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
-                        console.log(response)
                     })
                     
                 });
