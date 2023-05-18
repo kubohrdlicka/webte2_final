@@ -126,7 +126,6 @@ export default {
     },
     getAssigmentInfo(id) {
       apiService.get('/api/assigmentpoints/' + id).then((response) => {
-        console.log(response.data)
         this.tableData = response.data
         this.active = true
       })

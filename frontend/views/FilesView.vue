@@ -60,7 +60,9 @@
 
 <script>
 import { VDataTable } from 'vuetify/labs/VDataTable'
+import { useToast } from 'vue-toastification'
 import apiService from '../services/apiService'
+const toast = useToast()
 
 export default {
   name: 'Fiels view',
@@ -86,11 +88,10 @@ export default {
           let formData = new FormData()
           formData.append('file', f)
           axios.post(url, formData, { headers: { Authorization: 'Bearer ' + sessionStorage.getItem('token') } }).then((response) => {
-            console.log(response)
           })
         });
       } catch (e) {
-        console.log(e) //TODO file error toast
+        toast.error(`${i18n.global.t('messages.getError')} (${error.response.status})`)
       }
     },
     getBundles() {

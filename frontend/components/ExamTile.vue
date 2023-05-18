@@ -49,7 +49,6 @@ export default {
   },
   mounted() {
     this.isDoable = (new Date(this.deadline) >= new Date())
-    console.log(this.deadline);
   }
 
 }
